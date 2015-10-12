@@ -152,8 +152,6 @@
             android:name=".NotificationsPageActivity"
             android:label="@string/title_activity_notifications_page" >
         </activity>
-        <activity android:name=".BottomMenu" >
-        </activity>
     </application>
 
 </manifest>

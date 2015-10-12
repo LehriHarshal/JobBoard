@@ -35,6 +35,7 @@ public class JobDetailsActivity extends BottomMenu {
     boolean isJobDoer = false;
 
     String userId = ParseUser.getCurrentUser().getObjectId();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -251,5 +252,6 @@ public class JobDetailsActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
+
 
 }

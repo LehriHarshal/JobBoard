@@ -64,7 +64,6 @@ public class NotificationsPageActivity extends BottomMenu {
                 }
             }
         });
-
         //set up the listview to display notifications
         ListView notificationsListView = (ListView) findViewById(R.id.notificationsList);
         notificationsListAdapter = new ArrayAdapter<String>(
