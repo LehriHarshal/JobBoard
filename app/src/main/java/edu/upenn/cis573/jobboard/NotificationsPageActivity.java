@@ -138,7 +138,7 @@ public class NotificationsPageActivity extends BottomMenu {
             user.put("notifications", userNotifications);
             user.save();
         } catch (ParseException e) {
-            Log.v("There is no user associated with the id.", "");
+            Log.v("There is no user as", "");
         }
 
         //now we want to refresh our page

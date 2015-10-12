@@ -145,8 +145,8 @@
         android:layout_below="@id/linearLayout2"
         android:layout_centerHorizontal="true"/>
 
-
-    <Button
+    <include layout = "@layout/bottom_menu" />
+    <!--<Button
         android:id="@+id/buttonDashboard"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -155,7 +155,9 @@
         android:layout_marginLeft="0dp"
         android:onClick="displayHomepage"
         android:layout_alignParentBottom="true"
-        />
+        />-->
+
+
 
 </RelativeLayout>
 
