@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="parse_app_id">9tRjp0biQVhmD8nDSSKEq0jgLx6WSemFP1fOgsbc</string>
+    <string name="parse_client_key">rm3H0T94rlsEFyfEEojuSv29XSWrPmmzfLVCWsFb</string>
+    <string name="hello">Hello World, ParseStarterProjectActivity!</string>
+    <string name="newJobsAroundYou">New Jobs Around You</string>
+    <string name="cartTab">Cart</string>
+    <string name="settingsTab">Settings</string>
+    <string name="dashboardTab">Dashboard</string>
+    <string name="app_name">Job Board</string>
+    <string name="welcome">Please sign in below:</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="addTab">add</string>
+    <string name="jobName">Job Name:</string>
+    <string name="jobDescription">Description:</string>
+    <string name="sign_up"><u>Sign Up for Job Board</u></string>
+    <string name="email">Email:</string>
+    <string name="phone">Phone Number:</string>
+    <string name="startDate">Start Date:</string>
+    <string name="endDate">End Date:</string>
+    <string name="search_title">Search</string>
+
+    <color name="white">#FFFFFF</color>
+
+    <string name="title_activity_sign_in">Sign In</string>
+    <string name="title_activity_sign_up">Sign Up</string>
+    <string name="title_activity_current_user">Current User</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_homepage">Homepage</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_cart">My Cart</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="jobPrompt">Please Enter Job Information</string>
+    <string name="title_activity_job_creation">Make a Job</string>
+    <string name="title_activity_job_details">Job Details</string>
+    <string name="title_activity_my_posted_jobs">My Posted Jobs</string>
+    <string name="title_activity_job_requestors">Job Requestors</string>
+    <string name="title_activity_searchable">Search</string>
+    <string name="title_activity_view_requestor">Requestor Details</string>
+    <string name="title_activity_notifications_page">Notifications</string>
+
+</resources>

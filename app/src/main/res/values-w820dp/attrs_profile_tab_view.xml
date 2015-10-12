@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="ProfileTabView">
+        <attr name="exampleString2" format="string" />
+        <attr name="exampleDimension2" format="dimension" />
+        <attr name="exampleColor2" format="color" />
+        <attr name="exampleDrawable2" format="color|reference" />
+    </declare-styleable>
+</resources>

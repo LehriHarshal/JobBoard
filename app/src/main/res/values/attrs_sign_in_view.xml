@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="SignInView">
+        <attr name="exampleStringSignIn" format="string" />
+        <attr name="exampleDimensionSignIn" format="dimension" />
+        <attr name="exampleColorSignIn" format="color" />
+        <attr name="exampleDrawableSignIn" format="color|reference" />
+    </declare-styleable>
+</resources>

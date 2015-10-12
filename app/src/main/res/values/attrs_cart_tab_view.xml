@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="CartTabView">
+        <attr name="exampleStringCartTab" format="string" />
+        <attr name="exampleDimensionCartTab" format="dimension" />
+        <attr name="exampleColorCartTab" format="color" />
+        <attr name="exampleDrawableCartTab" format="color|reference" />
+    </declare-styleable>
+</resources>
