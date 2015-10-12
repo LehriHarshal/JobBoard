@@ -2,7 +2,6 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
-
     <!--TABS AT BOTTOM OF PAGE -->
     <!-- TEXT -->
     <LinearLayout
@@ -67,7 +66,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_container"
         android:layout_alignStart="@+id/button_names_container"
-        android:layout_above="@id/button_names_container">
+        android:layout_above="@id/button_names_container"
+        android:layout_alignParentBottom="true">
 
         <Button
             android:id="@+id/buttonDashboard"
@@ -117,5 +117,5 @@
             android:background="@drawable/notifications_icon"/>
     </LinearLayout>
 
-
     </merge>
+
