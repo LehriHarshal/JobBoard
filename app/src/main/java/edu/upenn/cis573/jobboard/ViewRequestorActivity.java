@@ -23,12 +23,10 @@ import java.util.List;
 
 public class ViewRequestorActivity extends BottomMenu {
 
-    String userId;
-    String jobId;
-    String jobName;
+
     boolean isJobDoer = false;
     boolean isComplete = false;
-    String jobStatus;
+    UserJobData u = new UserJobData();
     Job job;
 
     String userPhone;
@@ -43,8 +41,8 @@ public class ViewRequestorActivity extends BottomMenu {
         super.init();
         super.enable("Home");
         Intent intent = getIntent();
-        userId = intent.getStringExtra("userID");
-        jobId = intent.getStringExtra("jobID");
+        u.userId = intent.getStringExtra("userID");
+        u.jobId = intent.getStringExtra("jobID");
         displayUserInfoParse();
     }
 
@@ -53,19 +51,19 @@ public class ViewRequestorActivity extends BottomMenu {
         //Query the job
         ParseQuery<Job> query = new ParseQuery("Job");
         try {
-            job = (Job) query.get(jobId);
-            jobName = job.getString("jobName");
+            job = (Job) query.get(u.jobId);
+            u.jobName = job.getString("jobName");
 
-            if (userId.equals(job.get("jobDoer"))) {
+            if (u.userId.equals(job.get("jobDoer"))) {
                 isJobDoer = true;
             }
 
-            jobStatus = job.getString("jobStatus");
-            if (jobStatus.equals("completed")) {
+            u.jobStatus = job.getString("jobStatus");
+            if (u.jobStatus.equals("completed")) {
                 isComplete = true;
             }
 
-            if (jobStatus.equals("inProgress")) {
+            if (u.jobStatus.equals("inProgress")) {
                 TextView buttonID = (TextView) findViewById(R.id.moveForwardButton);
                 buttonID.setText("JOB IN PROGRESS");
             }
@@ -84,7 +82,7 @@ public class ViewRequestorActivity extends BottomMenu {
 
         //Query Parse for the user that requested the job, so we can display their name
         ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-        userQuery.getInBackground(userId, new GetCallback<ParseUser>() {
+        userQuery.getInBackground(u.userId, new GetCallback<ParseUser>() {
             @Override
             public void done(ParseUser o, ParseException e) {
                 /*final String userNameParse = o.getUsername();*/
@@ -93,7 +91,7 @@ public class ViewRequestorActivity extends BottomMenu {
                 username.setText(userName);
 
                 TextView jobTitle = (TextView) findViewById(R.id.title);
-                jobTitle.setText(jobName);
+                jobTitle.setText(u.jobName);
 
                 String userEmail;
                 if (isJobDoer) {
@@ -117,7 +115,7 @@ public class ViewRequestorActivity extends BottomMenu {
     public void moveForward(View view) {
         if (isComplete) {
             payJobDoer();
-        } else if (jobStatus.equals("inProgress")) {
+        } else if (u.jobStatus.equals("inProgress")) {
 
             return;
         } else {
@@ -136,7 +134,7 @@ public class ViewRequestorActivity extends BottomMenu {
             public void onClick(DialogInterface dialog, final int rating) {
                 //Query Parse for the user that requested the job, so we can display their name
                 ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-                userQuery.getInBackground(userId, new GetCallback<ParseUser>() {
+                userQuery.getInBackground(u.userId, new GetCallback<ParseUser>() {
                     @Override
                     public void done(ParseUser o, ParseException e) {
                         Double oldRating = Double.parseDouble(o.get("userRating").toString());
@@ -157,7 +155,7 @@ public class ViewRequestorActivity extends BottomMenu {
         builder.show();
 
 
-        Intent venmoIntent = VenmoLibrary.openVenmoPayment("2590", "Job Board", userPhone, "0", jobName, "pay");
+        Intent venmoIntent = VenmoLibrary.openVenmoPayment("2590", "Job Board", userPhone, "0", u.jobName, "pay");
         startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
 
     }
@@ -165,7 +163,7 @@ public class ViewRequestorActivity extends BottomMenu {
 
     public void selectAsJobDoer() {
         //update the Job object
-        job.put("jobDoer", userId);
+        job.put("jobDoer", u.userId);
         job.put("jobStatus", "inProgress");
         job.saveInBackground();
         isJobDoer = true;
@@ -177,7 +175,7 @@ public class ViewRequestorActivity extends BottomMenu {
 
         String jobName = job.getString("jobName");
         String notification = "You have been selected to complete " + jobName;
-        NotificationsManager.notifyUser(userId, notification);
+        NotificationsManager.notifyUser(u.userId, notification);
         removeOtherRequesters();
 
     }
@@ -185,9 +183,9 @@ public class ViewRequestorActivity extends BottomMenu {
     private void removeOtherRequesters() {
         ParseQuery<Job> query = new ParseQuery("Job");
         try {
-            job = (Job) query.get(jobId);
+            job = (Job) query.get(u.jobId);
             List<String> jobRequestor = new ArrayList<String>();
-            jobRequestor.add(userId);
+            jobRequestor.add(u.userId);
             job.put("jobRequestors", jobRequestor);
         } catch (ParseException e) {
             Log.v("Parse Exception:", "While trying to get job");
