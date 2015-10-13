@@ -1,7 +1,7 @@
 package edu.upenn.cis573.jobboard;
 
 import android.app.Activity;
-import android.app.job.JobInfo;
+import edu.upenn.cis573.jobboard.JobInfo;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -96,7 +96,7 @@ public class MyPostedJobsActivity extends BottomMenu {
                 text2.setTextColor(Color.parseColor("#dc4e00"));
                 text1.setTextColor(Color.parseColor("#89cede"));
 
-                text1.setText(j1.geName(position));
+                text1.setText(j1.getName(position));
                 text1.setTextSize(25);
                 text2.setText(j1.getDescription(position));
                 text2.setPadding(50, 0, 0, 0);

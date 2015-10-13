@@ -1,11 +1,15 @@
 package edu.upenn.cis573.jobboard;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,9 +19,10 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-class JobCreationActivity extends Activity {
+public class JobCreationActivity extends Activity {
 
     EditText jobNameTextObject;
     EditText jobDescriptionTextObject;
@@ -25,16 +30,34 @@ class JobCreationActivity extends Activity {
     EditText endDateTextObject;
     EditText jobLocationTextObject;
 
+    String startDate="";
+    String endDate="";
+
+    int clicked_button_id;
+    int year,day,month;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.job_creation_view);
-
+        setDate();
         jobNameTextObject = (EditText) findViewById(R.id.creationName);
         jobDescriptionTextObject = (EditText) findViewById(R.id.creationDescription);
-        startDateTextObject = (EditText) findViewById(R.id.creationStartDate);
-        endDateTextObject = (EditText) findViewById(R.id.creationEndDate);
+        //startDateTextObject = (EditText) findViewById(R.id.creationStartDate);
+        //endDateTextObject = (EditText) findViewById(R.id.creationEndDate);
+    }
+
+    protected  void setDate()
+    {
+        Calendar c = Calendar.getInstance();
+        year = c.get(Calendar.YEAR);
+        day = c.get(Calendar.DAY_OF_MONTH);
+        month = c.get(Calendar.MONTH);
+        String current_date = month+"/"+day+"/"+year;
+        Button start_date = (Button)findViewById(R.id.creation_START_Date_Button);
+        start_date.setText(current_date);
+        Button end_date = (Button)findViewById(R.id.creation_END_Date_Button);
+        end_date.setText(current_date);
     }
 
 
@@ -64,8 +87,7 @@ class JobCreationActivity extends Activity {
     public void submitJob(View view) {
         String jobName = jobNameTextObject.getText().toString().trim();
         String jobDescription = jobDescriptionTextObject.getText().toString().trim();
-        String startDate = startDateTextObject.getText().toString().trim();
-        String endDate = endDateTextObject.getText().toString().trim();
+        //endDateTextObject.getText().toString().trim();
 
         //all fields must be filled in for the sign up to work
 
@@ -134,7 +156,34 @@ class JobCreationActivity extends Activity {
         return;
     }
 
+    public Dialog openDateDialog(View view)
+    {
+        Button b = (Button)view;
+        clicked_button_id = b.getId();
+        DatePickerDialog d = new DatePickerDialog(this,dateListener,year,month,day);
+        d.show();
+        return d;
+    }
 
+    private DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
+
+        public  void onDateSet(DatePicker v, int year, int month , int day) {
+
+            if(clicked_button_id == R.id.creation_START_Date_Button) {
+                startDate = month+"/"+day+"/"+year;
+                Button b = (Button)findViewById(clicked_button_id);
+                b.setText(startDate);
+            }
+            else
+            {
+                endDate = month+"/"+day+"/"+year;
+                Button b = (Button)findViewById(clicked_button_id);
+                b.setText(endDate);
+            }
+
+
+        }
+    };
 
 
 }

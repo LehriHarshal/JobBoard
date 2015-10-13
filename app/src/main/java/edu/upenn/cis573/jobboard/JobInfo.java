@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class JobInfo {
     final ArrayList<String> jobNames = new ArrayList<String>();
     final ArrayList<String> jobDescriptions = new ArrayList<>();
+
     public JobInfo(){}
 
 
