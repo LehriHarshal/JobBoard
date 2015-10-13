@@ -1,7 +1,6 @@
 package edu.upenn.cis573.jobboard;
 
 import android.app.Activity;
-import edu.upenn.cis573.jobboard.JobInfo;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,27 +20,23 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.String;
 
 
 public class MyPostedJobsActivity extends BottomMenu {
     //List<String> myPostedJobs;
-    ArrayAdapter<String> postedlistAdapter;
+    ArrayAdapter<String> listAdapter;
     ArrayList<Job> jobObjects = new ArrayList<>();
     //ArrayList<Job> shownObjects = new ArrayList<>();
-      JobInfo j1=new JobInfo();
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_posted_jobs);
         super.init();
         super.enable("All");
-
-
+        final ArrayList<String> jobNames = new ArrayList<String>();
+        final ArrayList<String> jobDescriptions = new ArrayList<>();
 
         //List of IDS for all the jobs
         List<String> myPostedJobs = ParseUser.getCurrentUser().getList("myPostedJobs");
@@ -53,21 +48,10 @@ public class MyPostedJobsActivity extends BottomMenu {
                     @Override
                     public void done(final Job o, ParseException e) {
                         if (o == null) return;
-                        final String name = o.getJobName();
-                        jobObjects.add(o);
-                        //shownObjects.add(o);
-
-                        //Thread used to ensure list appears properly each time it is loaded
-                        //Also adds each item to list
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                j1.addName(name);
-                                j1.addDescription(o.getString("jobDescription"));
-                                postedlistAdapter.notifyDataSetChanged();
-                            }
-                        });
-
+                        addvalues(jobNames,jobDescriptions,o);
                     }
+
+
                 });
             }
 
@@ -75,11 +59,11 @@ public class MyPostedJobsActivity extends BottomMenu {
 
         ListView postedJobsListview = (ListView) findViewById(R.id.postedJobsList);
 
-        postedlistAdapter = new ArrayAdapter<String>(
+        listAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_2,
                 android.R.id.text1,
-                j1.jobNames) {
+                jobNames) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -96,15 +80,15 @@ public class MyPostedJobsActivity extends BottomMenu {
                 text2.setTextColor(Color.parseColor("#dc4e00"));
                 text1.setTextColor(Color.parseColor("#89cede"));
 
-                text1.setText(j1.getName(position));
+                text1.setText(jobNames.get(position));
                 text1.setTextSize(25);
-                text2.setText(j1.getDescription(position));
+                text2.setText(jobDescriptions.get(position));
                 text2.setPadding(50, 0, 0, 0);
                 return view;
             }
         };
 
-        postedJobsListview.setAdapter(postedlistAdapter);
+        postedJobsListview.setAdapter(listAdapter);
         postedJobsListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
@@ -113,6 +97,28 @@ public class MyPostedJobsActivity extends BottomMenu {
         });
 
     }
+
+    public void addvalues(final ArrayList<String>jobNames,final ArrayList<String>jobDescriptions,final Job o)
+    {
+        //Thread used to ensure list appears properly each time it is loaded
+        //Also adds each item to list
+        runOnUiThread(new Runnable() {
+            public void run() {
+                final String name = o.getJobName();
+                jobObjects.add(o);
+                jobNames.add(name);
+                jobDescriptions.add(o.getString("jobDescription"));
+                listAdapter.notifyDataSetChanged();
+            }
+        });
+
+    }
+
+
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
