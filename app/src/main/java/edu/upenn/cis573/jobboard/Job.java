@@ -20,7 +20,8 @@ import java.util.List;
 
 @ParseClassName("Job")
 public class Job extends ParseObject {
-
+    protected String jobId;
+    protected String jobName;
     public Job(String name, String description, String start, String end) {
         setJobName(name);
         setJobDescription(description);

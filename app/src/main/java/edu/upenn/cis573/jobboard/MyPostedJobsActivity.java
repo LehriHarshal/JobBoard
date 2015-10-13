@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MyPostedJobsActivity extends BottomMenu {
     //List<String> myPostedJobs;
-    ArrayAdapter<String> postedlistAdapter;
+    ArrayAdapter<String> listAdapter;
     ArrayList<Job> jobObjects = new ArrayList<>();
     //ArrayList<Job> shownObjects = new ArrayList<>();
 
@@ -48,21 +48,10 @@ public class MyPostedJobsActivity extends BottomMenu {
                     @Override
                     public void done(final Job o, ParseException e) {
                         if (o == null) return;
-                        final String name = o.getJobName();
-                        jobObjects.add(o);
-                        //shownObjects.add(o);
-
-                        //Thread used to ensure list appears properly each time it is loaded
-                        //Also adds each item to list
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                jobNames.add(name);
-                                jobDescriptions.add(o.getString("jobDescription"));
-                                postedlistAdapter.notifyDataSetChanged();
-                            }
-                        });
-
+                        addvalues(jobNames,jobDescriptions,o);
                     }
+
+
                 });
             }
 
@@ -70,7 +59,7 @@ public class MyPostedJobsActivity extends BottomMenu {
 
         ListView postedJobsListview = (ListView) findViewById(R.id.postedJobsList);
 
-        postedlistAdapter = new ArrayAdapter<String>(
+        listAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_2,
                 android.R.id.text1,
@@ -99,7 +88,7 @@ public class MyPostedJobsActivity extends BottomMenu {
             }
         };
 
-        postedJobsListview.setAdapter(postedlistAdapter);
+        postedJobsListview.setAdapter(listAdapter);
         postedJobsListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
@@ -108,6 +97,28 @@ public class MyPostedJobsActivity extends BottomMenu {
         });
 
     }
+
+    public void addvalues(final ArrayList<String>jobNames,final ArrayList<String>jobDescriptions,final Job o)
+    {
+        //Thread used to ensure list appears properly each time it is loaded
+        //Also adds each item to list
+        runOnUiThread(new Runnable() {
+            public void run() {
+                final String name = o.getJobName();
+                jobObjects.add(o);
+                jobNames.add(name);
+                jobDescriptions.add(o.getString("jobDescription"));
+                listAdapter.notifyDataSetChanged();
+            }
+        });
+
+    }
+
+
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

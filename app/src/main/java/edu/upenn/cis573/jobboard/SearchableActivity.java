@@ -62,6 +62,8 @@ public class SearchableActivity extends BottomMenu {
 
     private void handleIntent(Intent intent) {
 
+        final MyPostedJobsActivity myPostedJobsActivity = new MyPostedJobsActivity();
+
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String search = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
@@ -78,25 +80,10 @@ public class SearchableActivity extends BottomMenu {
                 public void done(List objects, ParseException e) {
                     for (int i = 0; i < objects.size(); i++) {
                         Job o = (Job) objects.get(i);
-                        jobObjects.add(o);
-                        final String name = o.getString("jobName");
                         final String descr = o.getString("jobDescription");
 
-                        Log.v("searchable", name);
+                        myPostedJobsActivity.addvalues(jobNames,jobDescriptions,o);
 
-                        /*String[] temp = new String[2];
-                        temp[0] = name;
-                        temp[1] = descr;*/
-
-                        //Thread used to ensure list appears properly each time it is loaded
-                        //Also adds each item to list
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                jobNames.add(name);
-                                jobDescriptions.add(descr);
-                                listAdapter.notifyDataSetChanged();
-                            }
-                        });
                     }
                 }
             });
