@@ -27,8 +27,7 @@ import java.util.List;
 
 public class JobDetailsActivity extends BottomMenu {
     Job job;
-    String jobId;
-    String jobName;
+
     String doer;
     String doerUsername;
     String posterID;
@@ -43,12 +42,12 @@ public class JobDetailsActivity extends BottomMenu {
         super.init();
         super.enable("Home");
         Intent intent = getIntent();
-        jobId = intent.getStringExtra("jobID");
+        job.jobId = intent.getStringExtra("jobID");
         Log.v("DEBUG:", "commencing.");
 
         //Query Parse
         ParseQuery<Job> query = new ParseQuery("Job");
-        query.getInBackground(jobId, new GetCallback<Job>() {
+        query.getInBackground(job.jobId, new GetCallback<Job>() {
             @Override
             public void done(Job o, ParseException e) {
                 job = o;
@@ -66,10 +65,10 @@ public class JobDetailsActivity extends BottomMenu {
 
         ParseQuery<Job> query2 = new ParseQuery("Job");
         try {
-            job = (Job) query2.get(jobId);
+            job = (Job) query2.get(job.jobId);
             doer = job.getString("jobDoer");
             posterID = job.getString("jobPoster");
-            jobName = job.getString("jobName");
+            job.jobName = job.getString("jobName");
             if (userId.equals(doer)) {
                 isJobDoer = true;
 
@@ -124,7 +123,7 @@ public class JobDetailsActivity extends BottomMenu {
     private void jobCompleted() {
         //Query Parse
         ParseQuery<Job> query = new ParseQuery("Job");
-        query.getInBackground(jobId, new GetCallback<Job>() {
+        query.getInBackground(job.jobId, new GetCallback<Job>() {
             @Override
             public void done(Job o, ParseException e) {
                 o.put("jobStatus", "completed");
@@ -148,7 +147,7 @@ public class JobDetailsActivity extends BottomMenu {
             }
         });
 
-        String message = doerUsername + " has completed task: " + jobName;
+        String message = doerUsername + " has completed task: " + job.jobName;
         NotificationsManager.notifyUser(posterID, message);
 
         Intent intent = new Intent(this, HomepageActivity.class);
@@ -158,7 +157,7 @@ public class JobDetailsActivity extends BottomMenu {
     private void isJobDoer() {
         //Find the job in question
         ParseQuery<Job> query = new ParseQuery("Job");
-        query.getInBackground(jobId, new GetCallback<Job>() {
+        query.getInBackground(job.jobId, new GetCallback<Job>() {
             @Override
             public void done(Job o, ParseException e) {
 
@@ -199,7 +198,7 @@ public class JobDetailsActivity extends BottomMenu {
         //Allow the user to request this job
         //Update both the User and the Jobs
         addJobToMyRequested(); //current user gets this job added to requests
-        addUserToJobRequestors();//add current user to jobs list of requestors
+
         Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
     }
@@ -213,12 +212,9 @@ public class JobDetailsActivity extends BottomMenu {
             myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
         }
 
-        myRequestedJobs.add(jobId);
+        myRequestedJobs.add(job.jobId);
         ParseUser.getCurrentUser().saveInBackground();
-        return;
-    }
 
-    private void addUserToJobRequestors() {
         //Updates jobRequestors list in the Job
         List<String> currRequestors = job.getList("jobRequestors");
         if (currRequestors == null) {

@@ -31,12 +31,12 @@ public class MyPostedJobsActivity extends BottomMenu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        JobInfo ji=new JobInfo();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_posted_jobs);
         super.init();
         super.enable("All");
-        final ArrayList<String> jobNames = new ArrayList<String>();
-        final ArrayList<String> jobDescriptions = new ArrayList<>();
+
 
         //List of IDS for all the jobs
         List<String> myPostedJobs = ParseUser.getCurrentUser().getList("myPostedJobs");
@@ -56,8 +56,8 @@ public class MyPostedJobsActivity extends BottomMenu {
                         //Also adds each item to list
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                jobNames.add(name);
-                                jobDescriptions.add(o.getString("jobDescription"));
+                                j1.addName(name);
+                                j1.addDescription(o.getString("jobDescription"));
                                 postedlistAdapter.notifyDataSetChanged();
                             }
                         });
@@ -74,7 +74,7 @@ public class MyPostedJobsActivity extends BottomMenu {
                 this,
                 android.R.layout.simple_list_item_2,
                 android.R.id.text1,
-                jobNames) {
+                j1.jobNames) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -91,9 +91,9 @@ public class MyPostedJobsActivity extends BottomMenu {
                 text2.setTextColor(Color.parseColor("#dc4e00"));
                 text1.setTextColor(Color.parseColor("#89cede"));
 
-                text1.setText(jobNames.get(position));
+                text1.setText(j1.geNamet(position));
                 text1.setTextSize(25);
-                text2.setText(jobDescriptions.get(position));
+                text2.setText(j1.getDescription(position));
                 text2.setPadding(50, 0, 0, 0);
                 return view;
             }
