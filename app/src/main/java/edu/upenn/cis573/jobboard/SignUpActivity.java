@@ -16,22 +16,6 @@ import com.parse.SignUpCallback;
 /**
  * Created by mjrudin on 4/2/15.
  */
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import com.parse.ParseException;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
-
-
-/**
- * Created by mjrudin on 4/2/15.
- */
 public class SignUpActivity extends Activity {
 
     EditText usernameTextObject;
@@ -64,33 +48,24 @@ public class SignUpActivity extends Activity {
         String email = emailTextObject.getText().toString().trim();
         String phone = phoneTextObject.getText().toString().trim();
 
-        //all fields must be filled in for the sign up to work
-        StringBuilder signupErrors = new StringBuilder("");
-        boolean fieldError = false;
-        if (username.length() < 4) {
-            signupErrors.append("Username must be 4 characters. ");
-            fieldError = true;
-        }
-        if (password.length() < 4) {
-            signupErrors.append("Password must be 4 characters. ");
-            fieldError = true;
-        }
-        if (email.length() == 0) {
-            signupErrors.append("You must enter an email address. ");
-            fieldError = true;
-        }
-        if (phone.length() == 0) {
-            signupErrors.append("You must enter a phone number. ");
-            fieldError = true;
-        }
-
-        //displays the fieldErrors using Toast (taught in HW2)
-        if (fieldError) {
-            Toast.makeText(SignUpActivity.this, signupErrors.toString(),
-                    Toast.LENGTH_SHORT).show();
-            //We must breakout of the signUpUser() method if errors exist
+        FieldToCheck fieldToCheck_obj=new FieldToCheck();
+        int wrong_count=0;
+        wrong_count=fieldToCheck_obj.checkField(SignUpActivity.this,username,wrong_count);
+        if(wrong_count!=0)
             return;
-        }
+        wrong_count=fieldToCheck_obj.checkField(SignUpActivity.this,password,wrong_count);
+        if(wrong_count!=0)
+            return;
+        wrong_count=fieldToCheck_obj.checkField(SignUpActivity.this,email,wrong_count);
+        if(wrong_count!=0)
+            return;
+        wrong_count=fieldToCheck_obj.checkField(SignUpActivity.this,phone,wrong_count);
+        if(wrong_count!=0)
+            return;
+        //all fields must be filled in for the sign up to work
+
+        if(wrong_count!=0)
+            return;
 
 
         //Now, we use Parse to create users

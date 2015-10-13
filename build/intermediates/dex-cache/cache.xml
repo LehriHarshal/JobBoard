@@ -2,74 +2,74 @@
 <items version="2" >
 
     <item
-        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/classes-7543c4c929bdec39cdb71391871758249bba76f7.jar" />
-    </item>
-    <item
-        jar="/Users/harshal_lehri/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-6f5953f04c9e3fb183860eb0a76cb5f2199064f8.jar" />
-    </item>
-    <item
-        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/libs/ParseFacebookUtils-1.8.4.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="f17db949d266ba0b578e0f1314014a6a581d8935">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/ParseFacebookUtils-1.8.4-8648cef60ad3574b31931ccb5fc2b5cb6aa21281.jar" />
-    </item>
-    <item
-        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/classes-eafb710e31fce8b00dcced82b95465061a6ef9e1.jar" />
-    </item>
-    <item
-        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/libs/Parse-1.8.4.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="0fcb6bbc9cf6d2643a90c812539aa82ed16ea315">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/Parse-1.8.4-08c868167f2297e6ee630bb88eb72a60c0ed63b0.jar" />
-    </item>
-    <item
-        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/classes-5014817a1b07ec02354f5452d7ba66261d7ae935.jar" />
-    </item>
-    <item
-        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/libs/ParseCrashReporting-1.8.4.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1d00b92e605b3d970994449b93d8ff135f96bb41">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/ParseCrashReporting-1.8.4-cc972f05c5692d342395829bbd13ce72b1763f97.jar" />
-    </item>
-    <item
-        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/libs/bolts-android-1.1.4.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="129874135e6081269ace2312092031558865de12">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-1082a9a37d8376bae3c084e2f2df1b94bbd64d42.jar" />
-    </item>
-    <item
-        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/libs/json-simple-1.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5d6f9b6a9ddca2a28c0216cc44efb2e20d9c23b5">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/json-simple-1.1.1-141258fef4b6e184525bd217f428b141012a3937.jar" />
-    </item>
-    <item
-        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jar="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-ae9a7e22c99d0876a219a354f2b643b9d37a5588.jar" />
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-dd06862081f7b2f23ffebc3c79079663df9cf6bc.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\classes-a9036d66f59864c484fb2bff72a7fe0cb10e42a8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\classes-ced8a23170a124b1df18c3813bee2ebac5210721.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chirag\Desktop\JobBoard\app\libs\Parse-1.8.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0fcb6bbc9cf6d2643a90c812539aa82ed16ea315">
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\Parse-1.8.4-0ad0a14dae18b158e48926a93c12f1a1fa7e557b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\classes-43077873068c422aac9ee043ac4a7a4f7c3f2402.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chirag\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-f6454190880856ecf0bdbe9ba40151221875d8fc.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chirag\Desktop\JobBoard\app\libs\ParseFacebookUtils-1.8.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f17db949d266ba0b578e0f1314014a6a581d8935">
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\ParseFacebookUtils-1.8.4-6bd542e395f7d7944ea012e3f81ff97ff1aa04f0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chirag\Desktop\JobBoard\app\libs\bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-3f43efa7a17d1d308e55afb8611e07fe00f93467.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chirag\Desktop\JobBoard\app\libs\ParseCrashReporting-1.8.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1d00b92e605b3d970994449b93d8ff135f96bb41">
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\ParseCrashReporting-1.8.4-51bf6fac7690d42ab00660e6d14b65a5ac12a25d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chirag\Desktop\JobBoard\app\libs\json-simple-1.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5d6f9b6a9ddca2a28c0216cc44efb2e20d9c23b5">
+        <dex dex="C:\Users\Chirag\Desktop\JobBoard\app\build\intermediates\pre-dexed\debug\json-simple-1.1.1-f1e7ff4533f72b75f63dbe16305daacb89ee3336.jar" />
     </item>
 
 </items>

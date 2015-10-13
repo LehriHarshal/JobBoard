@@ -17,13 +17,13 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JobCreationActivity extends Activity {
+class JobCreationActivity extends Activity {
 
     EditText jobNameTextObject;
     EditText jobDescriptionTextObject;
     EditText startDateTextObject;
     EditText endDateTextObject;
-    //EditText jobLocationTextObject;
+    EditText jobLocationTextObject;
 
 
     @Override
@@ -68,32 +68,27 @@ public class JobCreationActivity extends Activity {
         String endDate = endDateTextObject.getText().toString().trim();
 
         //all fields must be filled in for the sign up to work
-        StringBuilder signupErrors = new StringBuilder("");
-        boolean fieldError = false;
-        if (jobName.length() == 0) {
-            signupErrors.append("Username must be 4 characters. ");
-            fieldError = true;
-        }
-        if (jobDescription.length() == 0) {
-            signupErrors.append("Password must be 4 characters. ");
-            fieldError = true;
-        }
-        if (startDate.length() == 0) {
-            signupErrors.append("You must enter an email address. ");
-            fieldError = true;
-        }
-        if (endDate.length() == 0) {
-            signupErrors.append("You must enter a phone number. ");
-            fieldError = true;
-        }
 
-        //displays the fieldErrors using Toast (taught in HW2)
-        if (fieldError) {
-            Toast.makeText(this, signupErrors.toString(),
-                    Toast.LENGTH_SHORT).show();
-            //We must breakout of the signUpUser() method if errors exist
+
+        // By Chirag M. Shah
+        FieldToCheck fieldToCheck_obj=new FieldToCheck();
+        int wrong_count=0;
+        wrong_count=fieldToCheck_obj.checkField(this, jobName,wrong_count);
+        if(wrong_count!=0)
             return;
-        }
+        wrong_count=fieldToCheck_obj.checkField(this, jobDescription,wrong_count);
+        if(wrong_count!=0)
+            return;
+        wrong_count=fieldToCheck_obj.checkField(this, startDate,wrong_count);
+        if(wrong_count!=0)
+            return;
+        wrong_count=fieldToCheck_obj.checkField(this, endDate,wrong_count);
+        if(wrong_count!=0)
+            return;
+        //displays the fieldErrors using Toast (taught in HW2)
+        // This is shifted ot the Field to check method.
+
+
 
         final Job newJob = new Job(jobName, jobDescription, startDate, endDate);
 
@@ -134,9 +129,12 @@ public class JobCreationActivity extends Activity {
 
         return;
     }
-    /*private void getLocation(View view) {
+
+    private void getLocation(View view) {
         return;
-    }*/
+    }
+
+
 
 
 }
