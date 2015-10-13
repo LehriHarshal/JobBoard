@@ -43,6 +43,7 @@ public class JobDetailsActivity extends BottomMenu {
         super.enable("Home");
         Intent intent = getIntent();
         job.jobId = intent.getStringExtra("jobID");
+        Log.v("Inside Job,",job+" "+job.jobId);
         Log.v("DEBUG:", "commencing.");
 
         //Query Parse
