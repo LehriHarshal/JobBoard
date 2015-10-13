@@ -66,23 +66,15 @@ public class SignInActivity extends Activity {
         String password = passwordTextObject.getText().toString().trim();
 
         //all fields must be filled in for the login to work
-        StringBuilder signinErrors = new StringBuilder("");
-        boolean fieldError = false;
-        if (username.length() == 0) {
-            signinErrors.append("Username was not entered. ");
-            fieldError = true;
-        }
-        if (password.length() == 0) {
-            signinErrors.append("Password was not entered. ");
-            fieldError = true;
-        }
-
-        //displays the fieldErrors using Toast
-        if (fieldError) {
-            Toast.makeText(SignInActivity.this, signinErrors.toString(),
-                    Toast.LENGTH_SHORT).show();
+        // Edited by Chirag
+        FieldToCheck fieldToCheck_obj=new FieldToCheck();
+        int wrong_count=0;
+        fieldToCheck_obj.checkField(SignInActivity.this,username,wrong_count);
+        if(wrong_count!=0)
             return;
-        }
+        fieldToCheck_obj.checkField(SignInActivity.this,password,wrong_count);
+        if(wrong_count!=0)
+            return;
 
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
