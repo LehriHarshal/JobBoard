@@ -26,7 +26,7 @@ import java.util.List;
 
 
 public class JobDetailsActivity extends BottomMenu {
-    Job job;
+    Job job=new Job();
 
     String doer;
     String doerUsername;
