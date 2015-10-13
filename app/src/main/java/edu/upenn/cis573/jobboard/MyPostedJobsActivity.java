@@ -1,6 +1,7 @@
 package edu.upenn.cis573.jobboard;
 
 import android.app.Activity;
+import android.app.job.JobInfo;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.String;
 
 
 public class MyPostedJobsActivity extends BottomMenu {
@@ -27,15 +29,18 @@ public class MyPostedJobsActivity extends BottomMenu {
     ArrayAdapter<String> postedlistAdapter;
     ArrayList<Job> jobObjects = new ArrayList<>();
     //ArrayList<Job> shownObjects = new ArrayList<>();
+      JobInfo j1=new JobInfo();
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        JobInfo ji=new JobInfo();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_posted_jobs);
         super.init();
         super.enable("All");
+
 
 
         //List of IDS for all the jobs
@@ -91,7 +96,7 @@ public class MyPostedJobsActivity extends BottomMenu {
                 text2.setTextColor(Color.parseColor("#dc4e00"));
                 text1.setTextColor(Color.parseColor("#89cede"));
 
-                text1.setText(j1.geNamet(position));
+                text1.setText(j1.geName(position));
                 text1.setTextSize(25);
                 text2.setText(j1.getDescription(position));
                 text2.setPadding(50, 0, 0, 0);
