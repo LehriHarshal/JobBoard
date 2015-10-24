@@ -72,7 +72,7 @@ public class SignUpActivity extends Activity {
         ParseUser currentUser = ParseUser.getCurrentUser();
         currentUser.logOut();
 
-        ParseUser newUser = new ParseUser();
+        final ParseUser newUser = new ParseUser();
         newUser.setUsername(username);
         newUser.setPassword(password);
         newUser.setEmail(email);
