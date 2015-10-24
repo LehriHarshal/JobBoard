@@ -69,6 +69,9 @@ public class SignUpActivity extends Activity {
 
 
         //Now, we use Parse to create users
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        currentUser.logOut();
+
         ParseUser newUser = new ParseUser();
         newUser.setUsername(username);
         newUser.setPassword(password);
