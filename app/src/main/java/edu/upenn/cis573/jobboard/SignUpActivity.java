@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -77,7 +79,6 @@ public class SignUpActivity extends Activity {
         newUser.setPassword(password);
         newUser.setEmail(email);
         newUser.put("phone", phone);
-
         //This is a Parse method to sign up a user
         newUser.signUpInBackground(new SignUpCallback() {
             @Override
@@ -93,5 +94,7 @@ public class SignUpActivity extends Activity {
                 }
             }
         });
+
+
     }
 }
