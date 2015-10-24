@@ -1,0 +1,85 @@
+commit ff310bf86e5168d172f09a1c16521d9d6db036cd
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Tue Oct 13 00:39:37 2015 -0400
+
+    JobDetailsActivity seems to be working fine changes made by Nishant and so does error checking added by Chirag.
+
+commit 9b67cdb6c4c183dc11b3034e6ddab838f9e7dd43
+Merge: e25a9fb 1e6ea9d
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Tue Oct 13 00:34:55 2015 -0400
+
+    Merge branch 'master' of https://github.com/LehriHarshal/JobBoard
+
+commit e25a9fbbf96da2252925df16ae85d07c2bf9e6fa
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Tue Oct 13 00:34:21 2015 -0400
+
+    Added DatePicker Class for picking dates in JobCreation Activity instead of using simple EditText
+
+commit 1e6ea9dde19aa3d56df4d2b8a2e9c0985d009aab
+Author: nishantbindu <nishantbindu@gmail.com>
+Date:   Mon Oct 12 23:48:20 2015 -0400
+
+    Initialized job object
+
+commit 86d089ce239787d23c1d9d595a86a6d09c131323
+Author: nishantbindu <nishantbindu@gmail.com>
+Date:   Mon Oct 12 23:30:11 2015 -0400
+
+    JobId and JobName stored in Job Class. New class called JobInfo created to store JobDescription. Converted addToMyRequested() and addUserToJobRequestor() functions into one method because they are called back to back.
+
+commit deafbd5b0999770e4c91bd6b1558c0f5034edebd
+Merge: 9412f76 7d7613b
+Author: nishantbindu <nishantbindu@gmail.com>
+Date:   Mon Oct 12 23:20:49 2015 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 7d7613bf762b079e48a33adce7000742097d45be
+Author: Chirag <chirags@seas.upenn.edu>
+Date:   Mon Oct 12 22:16:11 2015 -0400
+
+    Hello FieldToCheck added
+
+commit 9412f766a57903f0161f73f17f3c4fca7cd08167
+Author: nishantbindu <nishantbindu@gmail.com>
+Date:   Mon Oct 12 20:39:38 2015 -0400
+
+    JobId and JobName moved to Job class. JobDescription and other related information stored in  a new class JobInfo. Required methods created. Converted addJobtoMyRequested function and addUsertoJobRequestor()  to a single function, since they are called back to back and should be done in one method itself.
+
+commit 2aa47cc249bc134dbf9b080fcbab1a9e25b971a1
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Mon Oct 12 18:31:34 2015 -0400
+
+    Fixed button overlap issues and overflow.
+
+commit 2314890829387532b5c848c8731e2072b20bc4fa
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Mon Oct 12 16:11:59 2015 -0400
+
+    Fixed issue with activity job_creation_view to allow expansion as text increases.
+
+commit d07e4ba203f79e62bad5bee37799a28b20d4142b
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Mon Oct 12 15:00:52 2015 -0400
+
+    Created Common View for button menu used in multiple layouts. Created a common class to handle button requests.
+
+commit d6fa6435dc8fc3fec04182adcd76c018ece5f779
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Mon Oct 12 08:07:58 2015 -0400
+
+    Fixing issue with git ignore
+
+commit ae23811b82ba4b25e358d4eba290d8c54e1641eb
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Mon Oct 12 00:32:33 2015 -0400
+
+    Commiting on Local Repo
+
+commit 58f58e11ec075a1d0e0e3af7bc8d4e5b7ebff316
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Mon Oct 12 00:29:57 2015 -0400
+
+    Commiting on Local Repo
