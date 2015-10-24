@@ -79,6 +79,7 @@ public class SignUpActivity extends Activity {
         newUser.setPassword(password);
         newUser.setEmail(email);
         newUser.put("phone", phone);
+
         //This is a Parse method to sign up a user
         newUser.signUpInBackground(new SignUpCallback() {
             @Override

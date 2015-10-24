@@ -7,7 +7,9 @@ package edu.upenn.cis573.jobboard;
  */
 
 
+import com.google.android.gms.vision.barcode.Barcode;
 import com.parse.ParseACL;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 
 import android.location.Location;
@@ -22,14 +24,14 @@ import java.util.List;
 public class Job extends ParseObject {
     protected String jobId;
     protected String jobName;
-    public Job(String name, String description, String start, String end) {
+    public Job(String name, String description, String start, String end,String latitude,String longitude ) {
         setJobName(name);
         setJobDescription(description);
         setStartDate(start);
         setEndDate(end);
         setJobPoster();
         setJobStatus("available");  //default
-
+        setJobLocation(latitude,longitude);
         ParseACL acl = new ParseACL();
         acl.setPublicReadAccess(true);
         acl.setPublicWriteAccess(true);
@@ -47,6 +49,13 @@ public class Job extends ParseObject {
 
     public Job() {
 
+    }
+
+    public void  setJobLocation(String latitude, String longitude)
+    {
+        setLatitude(latitude);
+        setLongitude(longitude);
+        setGeoPoint(Double.parseDouble(latitude), Double.parseDouble(longitude));
     }
 
     //Setters
@@ -74,6 +83,21 @@ public class Job extends ParseObject {
         put("jobStatus", status);
     }
 
+    public void setLatitude(String latitude)
+    {
+        put("Latitude",latitude);
+    }
+
+    public void setLongitude(String longitude)
+    {
+        put("Longitude",longitude);
+    }
+
+    public void setGeoPoint(double latitude,double longitude)
+    {
+        ParseGeoPoint point = new ParseGeoPoint(latitude,longitude);
+        put("Location", point);
+    }
     /*public void setJobDoer(String userID) {
         put("jobDoer", userID);
     }*/
@@ -106,6 +130,13 @@ public class Job extends ParseObject {
 
     public String getJobPoster() {
         return getString("jobPoster");
+    }
+
+    public String getLatitude() {
+        return getString("Latitude");
+    }
+    public String getLongitude() {
+        return getString("Longitude");
     }
 
 }
