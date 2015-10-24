@@ -5,7 +5,8 @@
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="21" />
-
+    // Added
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission

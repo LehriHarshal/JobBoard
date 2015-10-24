@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.parse.ParseAnalytics;
 import com.parse.ParseObject;
 import edu.upenn.cis573.jobboard.VenmoLibrary.VenmoResponse;
 
 
-public class ParseStarterProjectActivity extends Activity {
+public class ParseStarterProjectActivity extends Activity
+
+{
 
     final int REQUEST_CODE_VENMO_APP_SWITCH = 1;
 
@@ -26,6 +30,11 @@ public class ParseStarterProjectActivity extends Activity {
         testObject.put("foo", "bar");
         testObject.saveInBackground();
 
+        // Edited by chirags
+        //LocationFetcher locationObj=new LocationFetcher();
+        //locationObj.buildGoogleApiClient();
+        // Edited by chirags
+
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
 
@@ -34,6 +43,9 @@ public class ParseStarterProjectActivity extends Activity {
         startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
         */
 	}
+
+
+
 
 
     @Override

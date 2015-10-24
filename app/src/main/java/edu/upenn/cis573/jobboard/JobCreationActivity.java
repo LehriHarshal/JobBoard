@@ -3,8 +3,14 @@ package edu.upenn.cis573.jobboard;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +19,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.vision.barcode.Barcode;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -22,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class JobCreationActivity extends Activity {
+public class JobCreationActivity extends Activity implements LocationListener{
 
     EditText jobNameTextObject;
     EditText jobDescriptionTextObject;
@@ -32,6 +41,13 @@ public class JobCreationActivity extends Activity {
 
     String startDate="";
     String endDate="";
+
+
+    protected LocationManager locationManager;
+    protected LocationListener locationListener;
+    protected Context context;
+    String latitude;
+    String longitude;
 
     int clicked_button_id;
     int year,day,month;
@@ -43,8 +59,16 @@ public class JobCreationActivity extends Activity {
         setDate();
         jobNameTextObject = (EditText) findViewById(R.id.creationName);
         jobDescriptionTextObject = (EditText) findViewById(R.id.creationDescription);
-        //startDateTextObject = (EditText) findViewById(R.id.creationStartDate);
-        //endDateTextObject = (EditText) findViewById(R.id.creationEndDate);
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        try {
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+            //startDateTextObject = (EditText) findViewById(R.id.creationStartDate);
+            //endDateTextObject = (EditText) findViewById(R.id.creationEndDate);
+        } catch (SecurityException exc) {
+
+        }
     }
 
     protected  void setDate()
@@ -58,6 +82,8 @@ public class JobCreationActivity extends Activity {
         start_date.setText(current_date);
         Button end_date = (Button)findViewById(R.id.creation_END_Date_Button);
         end_date.setText(current_date);
+        startDate = current_date;
+        endDate = current_date;
     }
 
 
@@ -89,6 +115,7 @@ public class JobCreationActivity extends Activity {
         String jobDescription = jobDescriptionTextObject.getText().toString().trim();
         //endDateTextObject.getText().toString().trim();
 
+
         //all fields must be filled in for the sign up to work
 
 
@@ -101,6 +128,7 @@ public class JobCreationActivity extends Activity {
         wrong_count=fieldToCheck_obj.checkField(this, jobDescription,wrong_count);
         if(wrong_count!=0)
             return;
+        Log.v("Start date", startDate + " End Date " + endDate);
         wrong_count=fieldToCheck_obj.checkField(this, startDate,wrong_count);
         if(wrong_count!=0)
             return;
@@ -111,8 +139,21 @@ public class JobCreationActivity extends Activity {
         // This is shifted ot the Field to check method.
 
 
+        Criteria criteria = new Criteria();
+        try {
+            Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+            latitude=Double.toString(location.getLatitude());
+            longitude=Double.toString(location.getLongitude());
+        }
+        catch(SecurityException s)
+        {
+            Toast.makeText(getApplicationContext(),"Kindly Switch on Location Settings",Toast.LENGTH_SHORT);
+        }
 
-        final Job newJob = new Job(jobName, jobDescription, startDate, endDate);
+        final Job newJob = new Job(jobName, jobDescription, startDate, endDate,latitude,longitude);
+        //Job jObj=new Job(latitude,longitude);
+
+
 
         //Ensures all users can see jobs posted by other users
         ParseACL acl = newJob.getACL();
@@ -152,9 +193,9 @@ public class JobCreationActivity extends Activity {
         return;
     }
 
-    private void getLocation(View view) {
-        return;
-    }
+    //private void getLocation(View view) {
+    //    return;
+    //}
 
     public Dialog openDateDialog(View view)
     {
@@ -186,4 +227,26 @@ public class JobCreationActivity extends Activity {
     };
 
 
+    @Override
+    public void onLocationChanged(Location location) {
+        latitude=Double.toString(location.getLatitude());
+        longitude=Double.toString(location.getLongitude());
+
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 }
