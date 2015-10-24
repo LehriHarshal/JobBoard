@@ -69,10 +69,10 @@ public class SignInActivity extends Activity {
         // Edited by Chirag
         FieldToCheck fieldToCheck_obj=new FieldToCheck();
         int wrong_count=0;
-        fieldToCheck_obj.checkField(SignInActivity.this,username,wrong_count);
+        wrong_count=fieldToCheck_obj.checkField(SignInActivity.this,username,wrong_count);
         if(wrong_count!=0)
             return;
-        fieldToCheck_obj.checkField(SignInActivity.this,password,wrong_count);
+        wrong_count=fieldToCheck_obj.checkField(SignInActivity.this,password,wrong_count);
         if(wrong_count!=0)
             return;
 
