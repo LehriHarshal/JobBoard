@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class JobCreationActivity extends Activity implements LocationListener{
+public class JobCreationActivity extends Activity{
 
     EditText jobNameTextObject;
     EditText jobDescriptionTextObject;
@@ -49,6 +49,9 @@ public class JobCreationActivity extends Activity implements LocationListener{
     String latitude;
     String longitude;
 
+    static double lat=0;
+    static double lon=0;
+
     int clicked_button_id;
     int year,day,month;
 
@@ -59,16 +62,6 @@ public class JobCreationActivity extends Activity implements LocationListener{
         setDate();
         jobNameTextObject = (EditText) findViewById(R.id.creationName);
         jobDescriptionTextObject = (EditText) findViewById(R.id.creationDescription);
-
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        try {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
-            //startDateTextObject = (EditText) findViewById(R.id.creationStartDate);
-            //endDateTextObject = (EditText) findViewById(R.id.creationEndDate);
-        } catch (SecurityException exc) {
-
-        }
     }
 
     protected  void setDate()
@@ -85,6 +78,7 @@ public class JobCreationActivity extends Activity implements LocationListener{
         startDate = current_date;
         endDate = current_date;
     }
+
 
 
     @Override
@@ -139,18 +133,9 @@ public class JobCreationActivity extends Activity implements LocationListener{
         // This is shifted ot the Field to check method.
 
 
-        Criteria criteria = new Criteria();
-        try {
-            Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-            latitude=Double.toString(location.getLatitude());
-            longitude=Double.toString(location.getLongitude());
-        }
-        catch(SecurityException s)
-        {
-            Toast.makeText(getApplicationContext(),"Kindly Switch on Location Settings",Toast.LENGTH_SHORT);
-        }
 
-        final Job newJob = new Job(jobName, jobDescription, startDate, endDate,latitude,longitude);
+
+        final Job newJob = new Job(jobName, jobDescription, startDate, endDate,Double.toString(lat),Double.toString(lon));
         //Job jObj=new Job(latitude,longitude);
 
 
@@ -174,6 +159,16 @@ public class JobCreationActivity extends Activity implements LocationListener{
 
 
         Intent intent = new Intent(this, MyPostedJobsActivity.class);
+        startActivity(intent);
+    }
+
+    // Call back for the Location
+    public  void getLocation(View view)
+    {
+        Log.v("Here","Here");
+        Intent intent = new Intent(this, MapsActivity.class);
+        //intent.putExtra("Latitude",latitude);
+        //intent.putExtra("Longitude", longitude);
         startActivity(intent);
     }
 
@@ -227,26 +222,6 @@ public class JobCreationActivity extends Activity implements LocationListener{
     };
 
 
-    @Override
-    public void onLocationChanged(Location location) {
-        latitude=Double.toString(location.getLatitude());
-        longitude=Double.toString(location.getLongitude());
 
 
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
 }

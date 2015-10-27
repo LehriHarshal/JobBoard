@@ -48,7 +48,7 @@
         android:layout_below="@+id/title"
         android:layout_marginTop="18dp"
         android:layout_toRightOf="@+id/username"
-        android:text="joeyraso"
+        android:text="chirags"
         style="@style/LogInFont"/>
 
     <!--PASSWORD-->
@@ -71,7 +71,7 @@
         android:inputType="textPassword"
         android:layout_below="@+id/username"
         android:layout_toRightOf="@+id/textView3"
-        android:text="hello"
+        android:text="chirag123"
         android:layout_marginTop="18dp"
         style="@style/LogInFont"/>
 

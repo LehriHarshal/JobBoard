@@ -41,5 +41,6 @@
     <string name="title_activity_searchable">Search</string>
     <string name="title_activity_view_requestor">Requestor Details</string>
     <string name="title_activity_notifications_page">Notifications</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
