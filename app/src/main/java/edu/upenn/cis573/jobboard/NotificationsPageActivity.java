@@ -43,6 +43,22 @@ public class NotificationsPageActivity extends BottomMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        notifications = new ArrayList<String>();
+        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+        List<String> currNotification;
+        try {
+            currNotification = (List<String>)(userQuery.get(userId)).get("notifications");
+            if(currNotification != null)
+            {
+                for(String s : currNotification)
+                {
+                    notifications.add(s);
+                }
+            }
+        }catch (Exception e)
+        {
+            Log.v("Parse ERROR","INSIDE CATCH");
+        }
         setContentView(R.layout.activity_notifications_page);
         super.init();
         super.enable("All");
@@ -50,20 +66,21 @@ public class NotificationsPageActivity extends BottomMenu {
     }
 
     private void updateNotificationsList() {
-        notifications = new ArrayList<String>();
+        /*notifications = new ArrayList<String>();
         //query to find notifications
         ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
         userQuery.getInBackground(userId, new GetCallback<ParseUser>() {
             @Override
             public void done(ParseUser o, ParseException e) {
                 List<String> currNotifications = (List<String>) o.get("notifications");
+                Log.v("Length of Noti List",currNotifications.toString());
                 if (currNotifications != null) {
                     for (String s: currNotifications) {
                         notifications.add(s);
                     }
                 }
             }
-        });
+        });*/
         //set up the listview to display notifications
         ListView notificationsListView = (ListView) findViewById(R.id.notificationsList);
         notificationsListAdapter = new ArrayAdapter<String>(
