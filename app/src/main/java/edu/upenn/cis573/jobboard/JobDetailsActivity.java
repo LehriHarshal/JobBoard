@@ -64,20 +64,23 @@ public class JobDetailsActivity extends BottomMenu {
             }
         });
 
+
         ParseQuery<Job> query2 = new ParseQuery("Job");
         try {
-            job = (Job) query2.get(job.jobId);
+            String id = job.jobId;
+            job = query2.get(job.jobId);
+            job.jobId = id;
             doer = job.getString("jobDoer");
             posterID = job.getString("jobPoster");
             job.jobName = job.getString("jobName");
+            Log.v("Values in try block", job.jobId+" "+doer+" "+posterID+" "+job.jobName);
             if (userId.equals(doer)) {
                 isJobDoer = true;
 
             }
-        } catch (ParseException e) {
+        } catch (Exception e) {
             Log.v("Parse Exception:", "While trying to get job");
         }
-
 
         TextView buttonTitle = (TextView) findViewById(R.id.Request);
         if (isJobDoer) {
@@ -212,8 +215,8 @@ public class JobDetailsActivity extends BottomMenu {
             ParseUser.getCurrentUser().put("myRequestedJobs", new ArrayList<String>());
             myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
         }
-
         myRequestedJobs.add(job.jobId);
+        Log.v("My Requested Jobs",myRequestedJobs.toString());
         ParseUser.getCurrentUser().saveInBackground();
 
         //Updates jobRequestors list in the Job
