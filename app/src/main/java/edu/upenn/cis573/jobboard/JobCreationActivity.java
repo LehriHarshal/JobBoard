@@ -142,8 +142,9 @@ public class JobCreationActivity extends Activity implements LocationListener{
         Criteria criteria = new Criteria();
         try {
             Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+            if(location!=null){
             latitude=Double.toString(location.getLatitude());
-            longitude=Double.toString(location.getLongitude());
+            longitude=Double.toString(location.getLongitude());}
         }
         catch(SecurityException s)
         {
