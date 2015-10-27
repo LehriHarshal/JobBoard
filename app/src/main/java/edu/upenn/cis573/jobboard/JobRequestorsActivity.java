@@ -67,6 +67,7 @@ public class JobRequestorsActivity extends BottomMenu {
 
         if (requestorIds != null) {
             Log.v("DEBUG:", "our list is non null.");
+            Log.v("THE LIST",requestorIds.toString());
             for (String requestor : requestorIds) {
                 //Log.v("Requestors2:", requestor);
                 //Query Parse for the user that requested the job, so we can display their name

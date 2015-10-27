@@ -74,7 +74,7 @@ public class JobDetailsActivity extends BottomMenu {
             posterID = job.getString("jobPoster");
             job.jobName = job.getString("jobName");
             Log.v("Values in try block", job.jobId+" "+doer+" "+posterID+" "+job.jobName);
-            if (userId.equals(doer)) {
+            if (userId.equals(posterID)) {
                 isJobDoer = true;
 
             }
