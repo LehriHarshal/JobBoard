@@ -69,7 +69,7 @@ public class JobCreationActivity extends Activity{
         Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
         day = c.get(Calendar.DAY_OF_MONTH);
-        month = c.get(Calendar.MONTH);
+        month = c.get(Calendar.MONTH)+1;
         String current_date = month+"/"+day+"/"+year;
         Button start_date = (Button)findViewById(R.id.creation_START_Date_Button);
         start_date.setText(current_date);
@@ -132,6 +132,18 @@ public class JobCreationActivity extends Activity{
         //displays the fieldErrors using Toast (taught in HW2)
         // This is shifted ot the Field to check method.
 
+
+        Criteria criteria = new Criteria();
+        try {
+            Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+            if(location!=null){
+            latitude=Double.toString(location.getLatitude());
+            longitude=Double.toString(location.getLongitude());}
+        }
+        catch(SecurityException s)
+        {
+            Toast.makeText(getApplicationContext(),"Kindly Switch on Location Settings",Toast.LENGTH_SHORT);
+        }
 
 
 
@@ -206,13 +218,13 @@ public class JobCreationActivity extends Activity{
         public  void onDateSet(DatePicker v, int year, int month , int day) {
 
             if(clicked_button_id == R.id.creation_START_Date_Button) {
-                startDate = month+"/"+day+"/"+year;
+                startDate = (month+1)+""+"/"+day+"/"+year;
                 Button b = (Button)findViewById(clicked_button_id);
                 b.setText(startDate);
             }
             else
             {
-                endDate = month+"/"+day+"/"+year;
+                endDate = (month+1)+""+"/"+day+"/"+year;
                 Button b = (Button)findViewById(clicked_button_id);
                 b.setText(endDate);
             }

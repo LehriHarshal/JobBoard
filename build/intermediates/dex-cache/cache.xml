@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/classes-1f59130ec85f042a16198663c0f3ad39767efde5.jar" />
+    </item>
+    <item
+        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/classes-dded44715dff12a4545a41c129dca5ba43293283.jar" />
+    </item>
+    <item
+        jar="/Users/harshal_lehri/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-4296676b13f379e77bccf1d6c6a5d77eedc61499.jar" />
+    </item>
+    <item
+        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
+        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/classes-5ef43388e3403e736df7667128e8efc7fcf3157c.jar" />
+    </item>
+    <item
+        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-cb7d1c1dd83f010d21588cf21325b51e690313bc.jar" />
+    </item>
+    <item
+        jar="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="/Users/harshal_lehri/AndroidStudioProjects/28-JobBoard/app/build/intermediates/pre-dexed/debug/classes-d48573e4a21d1a26f288f341e0dabf1d8e15eb1d.jar" />
+    </item>
+
+</items>

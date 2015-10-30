@@ -74,7 +74,7 @@ public class JobDetailsActivity extends BottomMenu {
             posterID = job.getString("jobPoster");
             job.jobName = job.getString("jobName");
             Log.v("Values in try block", job.jobId+" "+doer+" "+posterID+" "+job.jobName);
-            if (userId.equals(doer)) {
+            if (userId.equals(posterID)) {
                 isJobDoer = true;
 
             }
@@ -126,6 +126,11 @@ public class JobDetailsActivity extends BottomMenu {
 
     private void jobCompleted() {
         //Query Parse
+        if(doer==null)
+        {
+            Toast.makeText(getApplicationContext(),"This Job has not been Assigned to anyone yet",Toast.LENGTH_LONG).show();
+            return;
+        }
         ParseQuery<Job> query = new ParseQuery("Job");
         query.getInBackground(job.jobId, new GetCallback<Job>() {
             @Override
