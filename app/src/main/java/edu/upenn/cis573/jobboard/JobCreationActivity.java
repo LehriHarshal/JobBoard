@@ -135,10 +135,13 @@ public class JobCreationActivity extends Activity{
 
         Criteria criteria = new Criteria();
         try {
+            if(criteria != null){
             Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
             if(location!=null){
-            latitude=Double.toString(location.getLatitude());
-            longitude=Double.toString(location.getLongitude());}
+                latitude=Double.toString(location.getLatitude());
+                longitude=Double.toString(location.getLongitude());
+                }
+            }
         }
         catch(SecurityException s)
         {

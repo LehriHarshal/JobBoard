@@ -25,6 +25,7 @@ import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -59,6 +60,8 @@ public class NotificationsPageActivity extends BottomMenu {
         {
             Log.v("Parse ERROR","INSIDE CATCH");
         }
+
+
         setContentView(R.layout.activity_notifications_page);
         super.init();
         super.enable("All");

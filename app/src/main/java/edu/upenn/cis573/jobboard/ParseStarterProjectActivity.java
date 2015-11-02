@@ -26,9 +26,9 @@ public class ParseStarterProjectActivity extends Activity
 
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
+        //ParseObject testObject = new ParseObject("TestObject");
+        //testObject.put("foo", "bar");
+        //testObject.saveInBackground();
 
         // Edited by chirags
         //LocationFetcher locationObj=new LocationFetcher();

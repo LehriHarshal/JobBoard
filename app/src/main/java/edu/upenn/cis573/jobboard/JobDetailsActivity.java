@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,10 +86,26 @@ public class JobDetailsActivity extends BottomMenu {
         TextView buttonTitle = (TextView) findViewById(R.id.Request);
         if (isJobDoer) {
             //This job belongs to them.
-            buttonTitle.setText("Completed");
+            if(doer == null)
+            {
+                buttonTitle.setText("Unassigned");
+                buttonTitle.setEnabled(false);
+                Button sendbutton = (Button)findViewById(R.id.contactJobPosterButton);
+                sendbutton.setVisibility(View.INVISIBLE);
+            }
+            else {
+                buttonTitle.setText("Completed");
+                buttonTitle.setEnabled(true);
+                Button sendbutton = (Button)findViewById(R.id.contactJobPosterButton);
+                sendbutton.setVisibility(View.VISIBLE);
+            }
             isJobDoer();
-        } else {
+        }
+        else {
             buttonTitle.setText("Request Job");
+            buttonTitle.setEnabled(true);
+            Button sendbutton = (Button)findViewById(R.id.contactJobPosterButton);
+            sendbutton.setVisibility(View.VISIBLE);
         }
 
     }
@@ -252,6 +269,19 @@ public class JobDetailsActivity extends BottomMenu {
 
     }
 
+    public void openMessaging(View view)
+    {
+        if(!isJobDoer){
+            Intent intent = new Intent(this, MessagingActivity.class);
+            intent.putExtra("MessageFrom",userId);
+            intent.putExtra("MessageTo",posterID);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"No one", Toast.LENGTH_LONG).show();
+        }
+    }
     //button logic to go to the homepage screen
     /*public void displayHomepage(View view) {
         Intent intent = new Intent(this, HomepageActivity.class);
