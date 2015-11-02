@@ -18,8 +18,8 @@ import java.util.HashMap;
  */
 public abstract class BottomMenu extends Activity {
 
-    private Button home, profile, cart, my_jobs, alerts;
-    private TextView hometext, profiletext, carttext, my_jobstext, alertstext;
+    private Button home, profile, cart, my_jobs, alerts, message_alerts;
+    private TextView hometext, profiletext, carttext, my_jobstext, alertstext, message_text;
     private HashMap<String,Button> map;
     private HashMap<String, TextView> text_map;
     @Override
@@ -36,12 +36,14 @@ public abstract class BottomMenu extends Activity {
         cart = (Button)findViewById(R.id.buttonCart);
         my_jobs = (Button)findViewById(R.id.buttonMyPostedJobs);
         alerts = (Button)findViewById(R.id.buttonNotification);
+        message_alerts = (Button)findViewById(R.id.buttonMessages);
 
         hometext = (TextView)findViewById(R.id.text_dashboard);
         profiletext = (TextView)findViewById(R.id.text_profile);
         carttext = (TextView)findViewById(R.id.text_cart);
         my_jobstext = (TextView)findViewById(R.id.text_myjobs);
         alertstext = (TextView)findViewById(R.id.text_notifications);
+        message_text = (TextView)findViewById(R.id.text_message_notifications);
 
         map = new HashMap<String,Button>();
         map.put("Home",home);
@@ -49,6 +51,7 @@ public abstract class BottomMenu extends Activity {
         map.put("Cart",cart);
         map.put("My Jobs",my_jobs);
         map.put("Alerts",alerts);
+        map.put("Messages",message_alerts);
 
         text_map = new HashMap<String,TextView>();
         text_map.put("Home",hometext);
@@ -56,7 +59,7 @@ public abstract class BottomMenu extends Activity {
         text_map.put("Cart", carttext);
         text_map.put("My Jobs", my_jobstext);
         text_map.put("Alerts", alertstext);
-
+        text_map.put("Messages", message_text);
         /*home.setEnabled(false);
         profile.setEnabled(false);
         cart.setEnabled(false);
@@ -114,5 +117,9 @@ public abstract class BottomMenu extends Activity {
         startActivity(intent);
     }
 
+    public void viewMessages(View view) {
+        Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
+    }
 
 }

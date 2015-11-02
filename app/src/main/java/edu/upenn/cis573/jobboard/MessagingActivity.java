@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -56,6 +57,7 @@ public class MessagingActivity extends AppCompatActivity {
             messageFromUserName = user.get(message_from_user).getUsername();
             messageToUserName = user.get(message_to_user).getUsername();
             current_user = ParseUser.getCurrentUser().getUsername();
+            Log.v("Usernames", messageFromUserName+" "+messageToUserName);
         } catch (Exception e) {
 
         }
@@ -78,21 +80,24 @@ public class MessagingActivity extends AppCompatActivity {
                 final String messageTo = m.getString("Message_To");
                 final String message_from_database = m.getString("Message");
 
-                if ((!messageFrom.equals(message_from_user)) || (!messageTo.equals(message_to_user))) {
+                if (!((messageFrom.equals(message_from_user)) && (messageTo.equals(message_to_user)) || (messageFrom.equals(message_to_user)) && (messageTo.equals(message_from_user))))
+
+                {
                     //We don't want to show this to anyone
                     continue;
                 }
 
+                Log.v("Message",messageFrom+" "+messageTo+" "+message_from_database);
                 //Thread used to ensure list appears properly each time it is loaded
                 //Also adds each item to list
                 runOnUiThread(new Runnable() {
                     public void run() {
 
                         if (messageFrom.equals(message_from_user)){
-                            messageList.add(messageFromUserName + "says :\n" + message_from_database);
+                            messageList.add(messageFromUserName + " says :\n" + message_from_database);
                         }
                         else
-                            messageList.add(messageToUserName + "says :\n" + message_from_database);
+                            messageList.add(messageToUserName + " says :\n" + message_from_database);
 
                     }
                 });
@@ -153,9 +158,12 @@ public class MessagingActivity extends AppCompatActivity {
         messageObject.put("Message_From", message_from_user); //string
         messageObject.put("Message_To", message_to_user); //integer
         messageObject.put("Message", message); //variable
+        ParseACL acl = new ParseACL();
+        acl.setPublicReadAccess(true);
+        messageObject.setACL(acl);
         messageObject.saveInBackground();
         message_text.setText("");
-        messageList.add(messageFromUserName + "says :\n" + message);
+        messageList.add(messageFromUserName + " says :\n" + message);
         messageListAdapter.notifyDataSetChanged();
 
     }
