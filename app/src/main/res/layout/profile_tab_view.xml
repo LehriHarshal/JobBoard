@@ -21,18 +21,24 @@
         style="@style/LogInFont"
         android:textSize="35sp"/>
 
+
+
+
     <!--USER'S NAME-->
+
+
 
     <TextView
         android:id="@+id/usernameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="129dp"
         android:text="Username: "
         android:textAppearance="?android:attr/textAppearanceMedium"
-        style="@style/LogInFont"/>
+        style="@style/LogInFont"
+        android:layout_below="@+id/title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/emailTextView"
@@ -48,7 +54,7 @@
     <TextView
         android:id="@+id/phoneNumberTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/emailTextView"
         android:layout_marginTop="50dp"
@@ -59,16 +65,14 @@
     <Button
         style="@style/buttonBackground"
         android:id="@+id/moveForwardButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:text="Log Out"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="47dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/phoneNumberTextView"
-        />
+        android:layout_centerHorizontal="true" />
 
     <!--TABS AT BOTTOM OF PAGE -->
     <!-- TEXT -->
@@ -183,7 +187,22 @@
             android:onClick="viewNotifications"
             android:background="@drawable/notifications_icon"/>
     </LinearLayout>-->
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView"
+        android:longClickable="true"
+        android:visibility="visible"
+        android:onClick="profilePhotoOnClick"
+        android:clickable="true"
+        android:background="@drawable/profile_icon"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"/>
+
+
     <include layout = "@layout/bottom_menu" />
+
     <!--END TABS AT BOTTOM OF PAGE -->
 
 </RelativeLayout>
