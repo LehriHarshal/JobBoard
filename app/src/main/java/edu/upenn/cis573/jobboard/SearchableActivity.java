@@ -80,10 +80,12 @@ public class SearchableActivity extends BottomMenu {
                 public void done(List objects, ParseException e) {
                     for (int i = 0; i < objects.size(); i++) {
                         Job o = (Job) objects.get(i);
-                        final String descr = o.getString("jobDescription");
-
-                        myPostedJobsActivity.addvalues(jobNames,jobDescriptions,o);
-
+                        //final String descr = o.getString("jobDescription");
+                        final String type = o.getString("typeDescription");
+                        Log.v("TAG1",type);
+                        if (type == "ANUPAM TESTING") {
+                            myPostedJobsActivity.addvalues(jobNames, jobDescriptions, o);
+                        }
                     }
                 }
             });

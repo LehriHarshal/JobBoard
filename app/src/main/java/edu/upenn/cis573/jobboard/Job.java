@@ -24,6 +24,7 @@ import java.util.List;
 public class Job extends ParseObject {
     protected String jobId;
     protected String jobName;
+    protected String typeDescription;
     public Job(String name, String description, String start, String end,String latitude,String longitude ) {
         setJobName(name);
         setJobDescription(description);
@@ -93,6 +94,8 @@ public class Job extends ParseObject {
         put("Longitude",longitude);
     }
 
+    public void setTypeDescription(String typeDescription) { put("type","ANUPAM TESTING");}
+
     public void setGeoPoint(double latitude,double longitude)
     {
         ParseGeoPoint point = new ParseGeoPoint(latitude,longitude);
@@ -139,7 +142,6 @@ public class Job extends ParseObject {
         return getString("Longitude");
     }
 
-    public String getSpinnerSelection() {
-        return getString("Spinnerval");
-    }
+    public String getTypeDescription() {return getString("ANUPAM TESTING"); }
+
 }
