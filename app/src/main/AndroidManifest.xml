@@ -87,6 +87,7 @@
         </activity>
         <activity
             android:name=".SignInActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_sign_in" >
         </activity>
         <activity
@@ -95,6 +96,7 @@
         </activity>
         <activity
             android:name=".HomepageActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_homepage" >
             <meta-data
                 android:name="android.app.default_searchable"
@@ -102,31 +104,38 @@
         </activity>
         <activity
             android:name=".SignUpActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_sign_up" >
         </activity>
         <activity
             android:name=".CurrentUserActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_current_user" >
         </activity>
         <activity
             android:name=".ProfileActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_profile" >
         </activity>
         <activity
             android:name=".CartActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_cart" >
         </activity>
         <activity
             android:name=".JobCreationActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_job_creation"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".JobDetailsActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_job_details" >
         </activity>
         <activity
             android:name=".MyPostedJobsActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_my_posted_jobs" >
         </activity>
         <activity
@@ -135,6 +144,7 @@
         </activity>
         <activity
             android:name=".SearchableActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_searchable" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -146,11 +156,13 @@
         </activity>
         <activity
             android:name=".ViewRequestorActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_view_requestor"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".NotificationsPageActivity"
+            android:launchMode = "singleInstance"
             android:label="@string/title_activity_notifications_page" >
         </activity>
         <!--
