@@ -133,7 +133,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:onClick="viewMessages"
-            android:background="@drawable/chatIcon"/>
+            android:background="@drawable/chat_icon2"/>
     </LinearLayout>
 
     </merge>

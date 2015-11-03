@@ -14,9 +14,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -39,9 +42,9 @@ public class JobCreationActivity extends Activity{
     EditText endDateTextObject;
     EditText jobLocationTextObject;
 
+    public int numberselected = 0;
     String startDate="";
     String endDate="";
-
 
     protected LocationManager locationManager;
     protected LocationListener locationListener;
@@ -60,8 +63,35 @@ public class JobCreationActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.job_creation_view);
         setDate();
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.TypeDeclarations, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
         jobNameTextObject = (EditText) findViewById(R.id.creationName);
         jobDescriptionTextObject = (EditText) findViewById(R.id.creationDescription);
+
+    }
+
+
+
+    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view,
+                                   int pos, long id) {
+            // An item was selected. You can retrieve the selected item using
+     //       Object store_selection =  parent.getItemAtPosition(pos);
+       //     Log.v("ANUPAM",store_selection.toString());
+
+            JobCreationActivity.this.numberselected = pos + 1;
+
+
+        }
+
+        public void onNothingSelected(AdapterView<?> parent) {
+            // Another interface callback
+        }
     }
 
     protected  void setDate()
@@ -113,7 +143,6 @@ public class JobCreationActivity extends Activity{
         //all fields must be filled in for the sign up to work
 
 
-        // By Chirag M. Shah
         FieldToCheck fieldToCheck_obj=new FieldToCheck();
         int wrong_count=0;
         wrong_count=fieldToCheck_obj.checkField(this, jobName,wrong_count);
@@ -133,7 +162,7 @@ public class JobCreationActivity extends Activity{
         // This is shifted ot the Field to check method.
 
 
-        Criteria criteria = new Criteria();
+/*        Criteria criteria = new Criteria();
         try {
             if(criteria != null){
             Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
@@ -148,7 +177,7 @@ public class JobCreationActivity extends Activity{
             Toast.makeText(getApplicationContext(),"Kindly Switch on Location Settings",Toast.LENGTH_SHORT);
         }
 
-
+*/
 
         final Job newJob = new Job(jobName, jobDescription, startDate, endDate,Double.toString(lat),Double.toString(lon));
         //Job jObj=new Job(latitude,longitude);
@@ -181,10 +210,10 @@ public class JobCreationActivity extends Activity{
     public  void getLocation(View view)
     {
         Log.v("Here","Here");
-        Intent intent = new Intent(this, MapsActivity.class);
-        //intent.putExtra("Latitude",latitude);
-        //intent.putExtra("Longitude", longitude);
-        startActivity(intent);
+   //     Intent intent = new Intent(this, MapsActivity.class);
+     //   intent.putExtra("Latitude",latitude);
+      //  intent.putExtra("Longitude", longitude);
+       // startActivity(intent);
     }
 
     // add the user id of the new job to a "MyPostedJobs"

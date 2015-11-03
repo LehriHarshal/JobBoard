@@ -243,6 +243,36 @@
                     android:layout_weight="1.2"
                     />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_margin="4dp"
+                        android:textColor="#89cede"
+                        android:text="Type:"
+                        android:layout_weight="0.75"
+                        android:textSize="18dp"
+                        android:gravity="right"
+                        />
+
+                    <TextView
+                        android:id="@+id/typeDescription"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_margin="4dp"
+                        android:textColor="#000000"
+                        android:layout_weight="1.2"
+                        />
+                </LinearLayout>
+
+
+
             </LinearLayout>
 
 

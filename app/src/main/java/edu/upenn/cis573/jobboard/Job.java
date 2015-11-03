@@ -139,4 +139,7 @@ public class Job extends ParseObject {
         return getString("Longitude");
     }
 
+    public String getSpinnerSelection() {
+        return getString("Spinnerval");
+    }
 }

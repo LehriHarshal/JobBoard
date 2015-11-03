@@ -57,7 +57,9 @@ public class JobDetailsActivity extends BottomMenu {
                 TextView jobDescriptionTextObject = (TextView) findViewById(R.id.detailsDescription);
                 TextView startDateTextObject = (TextView) findViewById(R.id.detailsStartDate);
                 TextView endDateTextObject = (TextView) findViewById(R.id.detailsEndDate);
+                TextView typeDetails = (TextView) findViewById(R.id.typeDescription);
 
+                typeDetails.setText("ANUPAM TESTING");
                 jobNameTextObject.setText(o.getJobName());
                 jobDescriptionTextObject.setText(o.getJobDescription());
                 startDateTextObject.setText(o.getStartDate());
@@ -169,6 +171,8 @@ public class JobDetailsActivity extends BottomMenu {
                 String phone = o.getString("phone");
                 TextView phoneText = (TextView) findViewById(R.id.userPhoneNumber);
                 phoneText.setText(phone);
+
+
 
             }
         });
