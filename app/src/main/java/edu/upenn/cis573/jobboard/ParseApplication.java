@@ -27,6 +27,7 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(Job.class);
         ParseObject.registerSubclass(ProfilePhoto.class);
 
+        ParseObject.registerSubclass(Messages.class);
         ParseACL defaultACL = new ParseACL();
         // Optionally enable public read access.
         // defaultACL.setPublicReadAccess(true);

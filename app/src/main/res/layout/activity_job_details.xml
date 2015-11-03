@@ -289,20 +289,32 @@
     </LinearLayout>
 
 
-    <!--<Button
-        android:id="@+id/buttonDashboard"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/dashboard_icon"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="0dp"
-        android:onClick="displayHomepage"
-        android:layout_alignParentBottom="true"
-    />-->
 
 </RelativeLayout>
 
 </ScrollView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout_contact_job"
+        >
+        <Button
+            android:id="@+id/contactJobPosterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:text="Contact Job Poster"
+            android:textSize="13dp"
+            android:onClick="openMessaging"
+            style="@style/buttonBackground"
+            android:layout_gravity="bottom" />
+        />
+    </LinearLayout>
 <include layout = "@layout/bottom_menu"
     />
 </RelativeLayout>

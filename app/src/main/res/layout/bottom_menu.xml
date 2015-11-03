@@ -57,6 +57,15 @@
             android:layout_marginLeft = "15dp"
             style="@style/buttonContainer"/>
 
+        <TextView
+            android:id="@+id/text_message_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/text_myjobs"
+            android:text="Alerts"
+            android:layout_marginLeft = "15dp"
+            style="@style/buttonContainer"/>
+
 
     </LinearLayout>
 
@@ -115,6 +124,16 @@
             android:gravity="center"
             android:onClick="viewNotifications"
             android:background="@drawable/notifications_icon"/>
+
+        <Button
+            android:id="@+id/buttonMessages"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:onClick="viewMessages"
+            android:background="@drawable/chatIcon"/>
     </LinearLayout>
 
     </merge>
