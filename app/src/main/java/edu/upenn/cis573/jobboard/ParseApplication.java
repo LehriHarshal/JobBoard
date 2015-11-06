@@ -25,6 +25,8 @@ public class ParseApplication extends Application {
         //Old Parse Login
         //Parse.initialize(this, "rm3H0T94rlsEFyfEEojuSv29XSWrPmmzfLVCWsFb", "9tRjp0biQVhmD8nDSSKEq0jgLx6WSemFP1fOgsbc");
         ParseObject.registerSubclass(Job.class);
+        ParseObject.registerSubclass(ProfilePhoto.class);
+
         ParseObject.registerSubclass(Messages.class);
         ParseACL defaultACL = new ParseACL();
         // Optionally enable public read access.
