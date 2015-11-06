@@ -41,6 +41,7 @@ public class JobCreationActivity extends Activity{
     EditText startDateTextObject;
     EditText endDateTextObject;
     EditText jobLocationTextObject;
+    Spinner typeDescriptionInt;
 
     public int numberselected = 0;
     String startDate="";
@@ -51,6 +52,7 @@ public class JobCreationActivity extends Activity{
     protected Context context;
     String latitude;
     String longitude;
+    int typeDescription;
 
     static double lat=0;
     static double lon=0;
@@ -69,6 +71,7 @@ public class JobCreationActivity extends Activity{
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        typeDescriptionInt = (Spinner)findViewById(R.id.spinner);
         jobNameTextObject = (EditText) findViewById(R.id.creationName);
         jobDescriptionTextObject = (EditText) findViewById(R.id.creationDescription);
 
@@ -137,6 +140,7 @@ public class JobCreationActivity extends Activity{
     public void submitJob(View view) {
         String jobName = jobNameTextObject.getText().toString().trim();
         String jobDescription = jobDescriptionTextObject.getText().toString().trim();
+        String typeDescription = typeDescriptionInt.getSelectedItem().toString().trim();
         //endDateTextObject.getText().toString().trim();
 
 
@@ -161,8 +165,8 @@ public class JobCreationActivity extends Activity{
         //displays the fieldErrors using Toast (taught in HW2)
         // This is shifted ot the Field to check method.
 
-
-/*        Criteria criteria = new Criteria();
+/*
+        Criteria criteria = new Criteria();
         try {
             if(criteria != null){
             Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
@@ -177,9 +181,9 @@ public class JobCreationActivity extends Activity{
             Toast.makeText(getApplicationContext(),"Kindly Switch on Location Settings",Toast.LENGTH_SHORT);
         }
 
-*/
+    */
 
-        final Job newJob = new Job(jobName, jobDescription, startDate, endDate,Double.toString(lat),Double.toString(lon));
+        final Job newJob = new Job(jobName, jobDescription, startDate, endDate,Double.toString(lat),Double.toString(lon), typeDescription);
         //Job jObj=new Job(latitude,longitude);
 
 
@@ -210,10 +214,10 @@ public class JobCreationActivity extends Activity{
     public  void getLocation(View view)
     {
         Log.v("Here","Here");
-   //     Intent intent = new Intent(this, MapsActivity.class);
-     //   intent.putExtra("Latitude",latitude);
-      //  intent.putExtra("Longitude", longitude);
-       // startActivity(intent);
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("Latitude",latitude);
+        intent.putExtra("Longitude", longitude);
+        startActivity(intent);
     }
 
     // add the user id of the new job to a "MyPostedJobs"
