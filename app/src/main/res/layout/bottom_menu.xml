@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Home"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="20dp"
             style="@style/buttonContainer"
             />
 
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/text_profile"
             android:text="Cart"
-            android:layout_marginRight="18dp"
+            android:layout_marginRight="15dp"
             style="@style/buttonContainer"/>
 
         <TextView
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/text_myjobs"
             android:text="Chat"
-            android:layout_marginLeft = "25dp"
+            android:layout_marginLeft = "15dp"
             style="@style/buttonContainer"/>
 
 
@@ -83,7 +83,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/dashboard_icon"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="10dp"
             android:layout_marginLeft="0dp"
             android:onClick="displayHomepage"
             />
@@ -103,7 +103,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="25dp"
             android:background="@drawable/cart_icon"
             android:onClick="displayCart"/>
 
@@ -112,7 +112,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="7dp"
             android:background="@drawable/myjobs_icon"
             android:onClick="displayMyPostedJobs"/>
         <Button
@@ -120,7 +120,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:gravity="center"
             android:onClick="viewNotifications"
             android:background="@drawable/notifications_icon"/>
@@ -136,5 +136,139 @@
             android:background="@drawable/chat_icon2"/>
     </LinearLayout>
 
+<!--<LinearLayout
+
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_gravity="bottom"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/buttonDashboard"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dashboard_icon"
+            android:onClick="displayHomepage"
+            />
+
+        <TextView
+            android:id="@+id/text_dashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            style="@style/buttonContainer"
+            />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/buttonProfile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/profile_icon"
+            android:onClick="displayProfile"
+            />
+
+        <TextView
+            android:id="@+id/text_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            style="@style/buttonContainer"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/buttonCart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/cart_icon"
+            android:onClick="displayCart"/>
+
+        <TextView
+            android:id="@+id/text_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cart"
+
+            style="@style/buttonContainer"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/buttonMyPostedJobs"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/myjobs_icon"
+            android:onClick="displayMyPostedJobs"/>
+
+        <TextView
+            android:id="@+id/text_myjobs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/text_cart"
+            android:text="My Jobs"
+            style="@style/buttonContainer"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/buttonNotification"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:onClick="viewNotifications"
+            android:background="@drawable/notifications_icon"/>
+
+        <TextView
+            android:id="@+id/text_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/text_myjobs"
+            android:text="Alerts"
+            style="@style/buttonContainer"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/buttonMessages"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:onClick="viewMessages"
+            android:background="@drawable/chat_icon2"/>
+
+        <TextView
+            android:id="@+id/text_message_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/text_myjobs"
+            android:text="Chat"
+            style="@style/buttonContainer"/>
+
+    </LinearLayout>
+    </LinearLayout>-->
     </merge>
 
