@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +29,6 @@ import java.util.List;
 
 public class JobDetailsActivity extends BottomMenu {
     Job job=new Job();
-
     String doer;
     String doerUsername;
     String posterID;
@@ -57,7 +57,9 @@ public class JobDetailsActivity extends BottomMenu {
                 TextView jobDescriptionTextObject = (TextView) findViewById(R.id.detailsDescription);
                 TextView startDateTextObject = (TextView) findViewById(R.id.detailsStartDate);
                 TextView endDateTextObject = (TextView) findViewById(R.id.detailsEndDate);
+                TextView spinnerTextValue = (TextView) findViewById(R.id.spinnerTextValue);
 
+                spinnerTextValue.setText(o.getTypeDescription());
                 jobNameTextObject.setText(o.getJobName());
                 jobDescriptionTextObject.setText(o.getJobDescription());
                 startDateTextObject.setText(o.getStartDate());
@@ -169,6 +171,8 @@ public class JobDetailsActivity extends BottomMenu {
                 String phone = o.getString("phone");
                 TextView phoneText = (TextView) findViewById(R.id.userPhoneNumber);
                 phoneText.setText(phone);
+
+
 
             }
         });

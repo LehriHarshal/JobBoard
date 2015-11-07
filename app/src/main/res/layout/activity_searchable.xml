@@ -31,4 +31,17 @@
 
     <include layout = "@layout/bottom_menu" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/textViewSearch"
+        android:textColor="#00ff00"
+        android:typeface="sans"
+        android:textSize="35sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

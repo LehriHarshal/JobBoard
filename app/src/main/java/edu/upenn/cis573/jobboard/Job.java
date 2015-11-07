@@ -24,11 +24,14 @@ import java.util.List;
 public class Job extends ParseObject {
     protected String jobId;
     protected String jobName;
-    public Job(String name, String description, String start, String end,String latitude,String longitude ) {
+    protected String typeDescription;
+
+    public Job(String name, String description, String start, String end,String latitude,String longitude,String typeDescription ) {
         setJobName(name);
         setJobDescription(description);
         setStartDate(start);
         setEndDate(end);
+        setTypeDescription(typeDescription);
         setJobPoster();
         setJobStatus("available");  //default
         setJobLocation(latitude,longitude);
@@ -93,6 +96,8 @@ public class Job extends ParseObject {
         put("Longitude",longitude);
     }
 
+    public void setTypeDescription(String typeDescription) { put("typeDescription",typeDescription);}
+
     public void setGeoPoint(double latitude,double longitude)
     {
         ParseGeoPoint point = new ParseGeoPoint(latitude,longitude);
@@ -138,5 +143,7 @@ public class Job extends ParseObject {
     public String getLongitude() {
         return getString("Longitude");
     }
+
+    public String getTypeDescription() {return getString("typeDescription");}
 
 }

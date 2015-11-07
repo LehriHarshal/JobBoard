@@ -6,6 +6,7 @@
     <string name="hello">Hello World, ParseStarterProjectActivity!</string>
     <string name="newJobsAroundYou">New Jobs Around You</string>
     <string name="cartTab">Cart</string>
+    <string name="google_maps_key">AIzaSyAq0nmtYXhv2wudEw5eXShBYzCYFBWy_n4</string>
     <string name="settingsTab">Settings</string>
     <string name="dashboardTab">Dashboard</string>
     <string name="app_name">Job Board</string>
