@@ -200,13 +200,7 @@
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         />
-
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/moveForwardButton">
     <include layout = "@layout/bottom_menu" />
-</RelativeLayout>
     <!--END TABS AT BOTTOM OF PAGE -->
 
 </RelativeLayout>
