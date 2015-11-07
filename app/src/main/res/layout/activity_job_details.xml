@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/linearLayout2">
+            android:id="@+id/linearLayout2"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -328,6 +329,7 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:id="@+id/linearLayout_contact_job"
+        android:layout_gravity="bottom"
         >
         <Button
             android:id="@+id/contactJobPosterButton"
@@ -335,7 +337,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
             android:text="Contact Job Poster"
