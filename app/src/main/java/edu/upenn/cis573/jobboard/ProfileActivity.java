@@ -4,11 +4,13 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +26,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -93,12 +97,26 @@ public class ProfileActivity extends BottomMenu {
         phone.append(ParseUser.getCurrentUser().get("phone").toString());
 
 
-        if(image!=null)
-        {
-            ImageView i=(ImageView)findViewById(R.id.imageView);
-            i.setBackground(image);
+            if (ParseUser.getCurrentUser().get("picStatus") == true)
+            {
+                ParseFile p = ParseUser.getCurrentUser().getParseFile("photo");
+                Drawable d=ProfileActivity.image;
+                try {
+                    byte picBytes[] = p.getData();
+                    Log.d("Size of array", Integer.toString(picBytes.length));
+                    Bitmap img=BitmapFactory.decodeByteArray(picBytes, 0, picBytes.length);
+                    d = new BitmapDrawable(getResources(),img);
+                }
+                catch(Exception e)
+                {
+                    Log.d("Error","Dynamically not being able to fetch");
+                }
 
-        }
+
+                ImageView i = (ImageView) findViewById(R.id.imageView);
+                i.setBackground(d);
+            }
+
 
     }
 
