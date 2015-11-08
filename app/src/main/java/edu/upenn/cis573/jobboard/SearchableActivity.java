@@ -1,27 +1,34 @@
 package edu.upenn.cis573.jobboard;
-        import android.app.Activity;
-        import android.app.SearchManager;
-        import android.content.Intent;
-        import android.graphics.Color;
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.ListView;
-        import android.widget.TextView;
 
-        import com.parse.FindCallback;
-        import com.parse.ParseException;
-        import com.parse.ParseQuery;
+import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class SearchableActivity extends Activity {
 
+    public static int SEARCH_CATEGORY = 0;
+    public static ParseGeoPoint USER_LOCATION = new ParseGeoPoint();
     ArrayAdapter<String> listAdapter;
     ArrayList<Job> jobObjects = new ArrayList<>();
 
@@ -61,43 +68,151 @@ public class SearchableActivity extends Activity {
     private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            Log.d("ANUPAM", "In SearchActivity: " + SEARCH_CATEGORY);
             String search = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
 
             final ArrayList<String> jobNames = new ArrayList<String>();
             final ArrayList<String> jobDescriptions = new ArrayList<String>();
+            int i = 0;
 
-            Log.v("searchable", search);
-            //Query Parse
-            ParseQuery<Job> query = new ParseQuery("Job");
-            query.whereContains("typeDescription", search);
-            query.findInBackground(new FindCallback<Job>() {
-                @Override
-                public void done(List objects, ParseException e) {
-                    for (int i = 0; i < objects.size(); i++) {
-                        Job o = (Job) objects.get(i);
-                        jobObjects.add(o);
-                        final String name = o.getString("jobName");
-                        final String descr = o.getString("jobDescription");
+            if (SEARCH_CATEGORY == 0) {
+                //Query Parse
+                ParseQuery<Job> query = new ParseQuery("Job");
+                query.whereContains("typeDescription", search);
+                query.findInBackground(new FindCallback<Job>() {
+                    @Override
+                    public void done(List objects, ParseException e) {
+                        for (int i = 0; i < objects.size(); i++) {
+                            Job o = (Job) objects.get(i);
+                            jobObjects.add(o);
+                            final String name = o.getString("jobName");
+                            final String descr = o.getString("jobDescription");
 
-                        Log.v("searchable", name);
+                            Log.v("searchable", name);
 
-                        String[] temp = new String[2];
-                        temp[0] = name;
-                        temp[1] = descr;
+                            String[] temp = new String[2];
+                            temp[0] = name;
+                            temp[1] = descr;
 
-                        //Thread used to ensure list appears properly each time it is loaded
-                        //Also adds each item to list
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                jobNames.add(name);
-                                jobDescriptions.add(descr);
-                                listAdapter.notifyDataSetChanged();
-                            }
-                        });
+                            //Thread used to ensure list appears properly each time it is loaded
+                            //Also adds each item to list
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    jobNames.add(name);
+                                    jobDescriptions.add(descr);
+                                    listAdapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
                     }
+                });
+            } else if (SEARCH_CATEGORY == 1) {
+                if (USER_LOCATION == null) {
+                    return;
                 }
-            });
+                //Query Parse
+                ParseQuery<Job> query = new ParseQuery("Job");
+                query.whereNear("location", USER_LOCATION);
+                query.setLimit(10);
+
+                query.findInBackground(new FindCallback<Job>() {
+                    @Override
+                    public void done(List objects, ParseException e) {
+                        for (int i = 0; i < objects.size(); i++) {
+                            Job o = (Job) objects.get(i);
+                            jobObjects.add(o);
+                            final String name = o.getString("jobName");
+                            final String descr = o.getString("jobDescription");
+
+                            Log.v("searchable", name);
+
+                            String[] temp = new String[2];
+                            temp[0] = name;
+                            temp[1] = descr;
+                            //Thread used to ensure list appears properly each time it is loaded
+                            //Also adds each item to list
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    jobNames.add(name);
+                                    jobDescriptions.add(descr);
+                                    listAdapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                    }
+                });
+            } else if (SEARCH_CATEGORY == 2) {
+
+                final List<String> userIds = new ArrayList<>();
+                ParseQuery<ParseObject> query1 = ParseQuery.getQuery("_User");
+                query1.orderByDescending("userRating");
+                query1.findInBackground(new FindCallback<ParseObject>() {
+                    public void done(List<ParseObject> objects, ParseException e) {
+                        if (e == null) {
+                            // The query was successful. Internet?
+                            for (ParseObject object : objects) {
+                                userIds.add(object.getObjectId());
+                                Log.d("AnupamAlur", "UserId: " + object.getObjectId());
+                            }
+                        } else {
+                            Log.e("AnupamAlur", "Error", e);
+                        }
+                    }
+                });
+
+                //Query Parse
+                ParseQuery<Job> query = new ParseQuery("Job");
+                query.findInBackground(new FindCallback<Job>() {
+                    @Override
+                    public void done(List objects, ParseException e) {
+                        List<Job> jobs = objects;
+                        for (String userId : userIds) {
+                            for (Job job : jobs) {
+                                String jobDoer = job.getString("jobDoer");
+                                if (!TextUtils.isEmpty(jobDoer) && jobDoer.equals(userId)) {
+                                    jobObjects.add(job);
+                                    final String name = job.getString("jobName");
+                                    final String descr = job.getString("jobDescription");
+
+                                    Log.v("searchable", name);
+                                    //
+                                    String[] temp = new String[2];
+                                    temp[0] = name;
+                                    temp[1] = descr;
+                                    //Thread used to ensure list appears properly each time it is loaded
+                                    //Also adds each item to list
+                                    runOnUiThread(new Runnable() {
+                                        public void run() {
+                                            jobNames.add(name);
+                                            jobDescriptions.add(descr);
+                                            listAdapter.notifyDataSetChanged();
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                        jobs.removeAll(jobObjects);
+                        for (Job job : jobs) {
+                            final String name = job.getString("jobName");
+                            final String descr = job.getString("jobDescription");
+                            String[] temp = new String[2];
+                            temp[0] = name;
+                            temp[1] = descr;
+                            //Thread used to ensure list appears properly each time it is loaded
+                            //Also adds each item to list
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    jobNames.add(name);
+                                    jobDescriptions.add(descr);
+                                    listAdapter.notifyDataSetChanged();
+                                }
+                            });
+
+                        }
+                    }
+                });
+            }
 
             ListView jobsListView = (ListView) findViewById(R.id.list);
 
@@ -129,7 +244,6 @@ public class SearchableActivity extends Activity {
                     return view;
                 }
             };
-
             jobsListView.setAdapter(listAdapter);
         }
     }
