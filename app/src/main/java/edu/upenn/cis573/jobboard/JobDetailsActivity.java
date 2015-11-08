@@ -302,15 +302,17 @@ public class JobDetailsActivity extends BottomMenu {
             ParseUser.getCurrentUser().put("myFollowings", new ArrayList<String>());
             myFollowings = ParseUser.getCurrentUser().getList("myFollowings");
         }
-        if(!myFollowings.contains(posterID))
+        if(myFollowings.contains(posterID)) {
+            Toast.makeText(getApplicationContext(), "Already Following", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else
             myFollowings.add(posterID);
         ParseUser.getCurrentUser().put("myFollowings", myFollowings);
         ParseUser.getCurrentUser().saveInBackground();
         Log.v("Following List", myFollowings.toString());
-        if(myFollowings.contains(posterID))
-            Toast.makeText(getApplicationContext(),"Already Following",Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(getApplicationContext(),"Now Following",Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getApplicationContext(),"Now Following",Toast.LENGTH_SHORT).show();
         return;
         /*if (followings == null)
             followings = new ArrayList<String>();

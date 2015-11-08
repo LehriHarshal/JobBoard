@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -39,8 +40,8 @@ public class NotificationsPageActivity extends BottomMenu {
     ArrayAdapter<String> notificationsListAdapter;
     String userId = ParseUser.getCurrentUser().getObjectId();
     ArrayList<String> notifications = new ArrayList<String>();
-
-
+    ArrayList<String> jobIDList = new ArrayList<String>();
+    int max_Limit_Follow_Notifications = 10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,18 +63,49 @@ public class NotificationsPageActivity extends BottomMenu {
             Log.v("Parse ERROR","INSIDE CATCH");
         }
 
-        /*ParseUser currentUser = ParseUser.getCurrentUser();
-        List<String> followings = currentUser.getList("Followings");
-        ParseQuery<ParseObject> followings_job = (ParseQuery.getQuery("Job")).whereContainedIn("JobPoster",followings);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        List<String> followings = currentUser.getList("myFollowings");
+        ParseQuery<ParseObject> followings_job = (ParseQuery.getQuery("Job"));//.whereContainedIn("JobPoster", followings);
         followings_job = followings_job.addDescendingOrder("createdAt");
+        ParseQuery<ParseUser> users= ParseUser.getQuery();
 
         if(followings_job != null)
         {
-            for(String following : followings_job.)
+            List<ParseObject> job_list = null;
+            try {
+                job_list = followings_job.find();
+            }catch (Exception e)
             {
-
+                Toast.makeText(getApplicationContext(),"Error when retrieving Jobs",Toast.LENGTH_SHORT).show();
             }
-        }*/
+
+            if(job_list != null)
+            {
+                int counter = 0;
+                for(ParseObject o : job_list)
+                {
+                    if(counter >= max_Limit_Follow_Notifications)
+                        break;
+
+                    try {
+                        String userID = o.getString("jobPoster");
+                        if(!followings.contains(userID))
+                            continue;
+                        counter++;
+                        String userName = users.get(userID).getUsername();
+                        String jobId = o.getObjectId();
+                        String jobName = o.getString("jobName");
+                        String message = userName+" has posted a new Job : "+jobName;
+                        notifications.add(message);
+                        jobIDList.add(jobId);
+                        Log.v("User",userId+" "+userName+" "+jobId+" "+jobName);
+                    }
+                    catch(Exception e)
+                    {
+                    }
+                }
+            }
+        }
 
         setContentView(R.layout.activity_notifications_page);
         super.init();
@@ -109,9 +141,20 @@ public class NotificationsPageActivity extends BottomMenu {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                TextView textView2 = (TextView) view.findViewById(android.R.id.text2);
                 textView.setTextColor(Color.parseColor("#89cede"));
-                textView.setText(notifications.get(position));
-                textView.setTextSize(20);
+                String message = notifications.get(position);
+                if(message.contains("has posted a new Job"))
+                {
+                    String message1[] = message.split(":");
+                    textView.setText(message1[0]);
+                    textView.setTextSize(20);
+                    textView2.setText(message1[1]);
+                }
+                else {
+                    textView.setText(notifications.get(position));
+                    textView.setTextSize(20);
+                }
 
                 return view;
             }
@@ -121,11 +164,21 @@ public class NotificationsPageActivity extends BottomMenu {
         notificationsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                optionToDelete(position);
+                if (notifications.get(position).contains("has posted a new Job"))
+                    openJob(position);
+                else
+                    optionToDelete(position);
             }
         });
     }
 
+    private void openJob(int position)
+    {
+        String id = jobIDList.get(position);
+        Intent intent = new Intent(this, JobDetailsActivity.class);
+        intent.putExtra("jobID", id);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
