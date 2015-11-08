@@ -97,7 +97,7 @@ public class ProfileActivity extends BottomMenu {
         phone.append(ParseUser.getCurrentUser().get("phone").toString());
 
 
-            if (ParseUser.getCurrentUser().get("picStatus") == true)
+            if (ParseUser.getCurrentUser().getBoolean("picStatus") == true)
             {
                 ParseFile p = ParseUser.getCurrentUser().getParseFile("photo");
                 Drawable d=ProfileActivity.image;
