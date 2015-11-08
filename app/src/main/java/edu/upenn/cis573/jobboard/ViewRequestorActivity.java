@@ -155,8 +155,8 @@ public class ViewRequestorActivity extends BottomMenu {
         builder.show();
 
 
-        Intent venmoIntent = VenmoLibrary.openVenmoPayment("2590", "Job Board", userPhone, "0", u.jobName, "pay");
-        startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
+        //Intent venmoIntent = VenmoLibrary.openVenmoPayment("2590", "Job Board", userPhone, "0", u.jobName, "pay");
+        //startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
 
     }
 
