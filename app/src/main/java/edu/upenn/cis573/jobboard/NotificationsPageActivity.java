@@ -49,6 +49,7 @@ public class NotificationsPageActivity extends BottomMenu {
         List<String> currNotification;
         try {
             currNotification = (List<String>)(userQuery.get(userId)).get("notifications");
+
             if(currNotification != null)
             {
                 for(String s : currNotification)
@@ -61,6 +62,18 @@ public class NotificationsPageActivity extends BottomMenu {
             Log.v("Parse ERROR","INSIDE CATCH");
         }
 
+        /*ParseUser currentUser = ParseUser.getCurrentUser();
+        List<String> followings = currentUser.getList("Followings");
+        ParseQuery<ParseObject> followings_job = (ParseQuery.getQuery("Job")).whereContainedIn("JobPoster",followings);
+        followings_job = followings_job.addDescendingOrder("createdAt");
+
+        if(followings_job != null)
+        {
+            for(String following : followings_job.)
+            {
+
+            }
+        }*/
 
         setContentView(R.layout.activity_notifications_page);
         super.init();
