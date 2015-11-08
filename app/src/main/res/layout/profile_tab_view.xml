@@ -1,3 +1,14 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="450dp">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -200,6 +211,8 @@
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         />
+    </RelativeLayout>
+    </ScrollView>
     <include layout = "@layout/bottom_menu" />
     <!--END TABS AT BOTTOM OF PAGE -->
 
