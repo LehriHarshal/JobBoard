@@ -1,13 +1,15 @@
 package edu.upenn.cis573.jobboard;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,13 +25,14 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class HomepageActivity extends BottomMenu {
     ArrayAdapter<String> homeListAdapter;
     ArrayList<Job> jobObjects = new ArrayList<>();
     ArrayList<Job> shownObjects = new ArrayList<>();
+    private AlertDialog searchDialog;
+    private int category;
 
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
@@ -48,7 +51,7 @@ public class HomepageActivity extends BottomMenu {
 
 
         //Query Parse
-        ParseQuery<Job> query =  ParseQuery.getQuery("Job");
+        ParseQuery<Job> query = ParseQuery.getQuery("Job");
         query.findInBackground(new FindCallback<Job>() {
             @Override
             public void done(List<Job> objects, ParseException e) {
@@ -120,6 +123,34 @@ public class HomepageActivity extends BottomMenu {
                 openJob(position);
             }
         });
+
+
+        category = 0;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("SEARCH BY")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (category == 1) {
+                            Intent mapIntent = new Intent(HomepageActivity.this, MapsActivity.class);
+                            mapIntent.putExtra("FROM", "search");
+                            startActivity(mapIntent);
+                        } else if(category == 2) {
+                            Intent intent = new Intent(HomepageActivity.this, SearchableActivity.class);
+                            SearchableActivity.SEARCH_CATEGORY = 2;
+                            intent.setAction(Intent.ACTION_SEARCH);
+                            startActivity(intent);
+                        }
+                    }
+                })
+                .setSingleChoiceItems(R.array.SearchCategories, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SearchableActivity.SEARCH_CATEGORY = which;
+                        category = which;
+                    }
+                });
+        searchDialog = builder.create();
     }
 
 
@@ -149,6 +180,9 @@ public class HomepageActivity extends BottomMenu {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.search) {
+
+            Log.d("ANUPAM", "In shown");
+            searchDialog.show();
             return true;
         }
 
@@ -189,8 +223,6 @@ public class HomepageActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
-
-
 
 
 }

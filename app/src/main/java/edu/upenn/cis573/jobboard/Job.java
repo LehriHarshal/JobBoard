@@ -7,18 +7,11 @@ package edu.upenn.cis573.jobboard;
  */
 
 
-import com.google.android.gms.vision.barcode.Barcode;
 import com.parse.ParseACL;
+import com.parse.ParseClassName;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
-
-import android.location.Location;
-import android.location.LocationListener;
-
-import com.parse.ParseClassName;
 import com.parse.ParseUser;
-
-import java.util.List;
 
 @ParseClassName("Job")
 public class Job extends ParseObject {
@@ -26,7 +19,7 @@ public class Job extends ParseObject {
     protected String jobName;
     protected String typeDescription;
 
-    public Job(String name, String description, String start, String end,String latitude,String longitude,String typeDescription ) {
+    public Job(String name, String description, String start, String end, String latitude, String longitude, String typeDescription) {
         setJobName(name);
         setJobDescription(description);
         setStartDate(start);
@@ -34,7 +27,7 @@ public class Job extends ParseObject {
         setTypeDescription(typeDescription);
         setJobPoster();
         setJobStatus("available");  //default
-        setJobLocation(latitude,longitude);
+        setJobLocation(latitude, longitude);
         ParseACL acl = new ParseACL();
         acl.setPublicReadAccess(true);
         acl.setPublicWriteAccess(true);
@@ -54,28 +47,10 @@ public class Job extends ParseObject {
 
     }
 
-    public void  setJobLocation(String latitude, String longitude)
-    {
+    public void setJobLocation(String latitude, String longitude) {
         setLatitude(latitude);
         setLongitude(longitude);
         setGeoPoint(Double.parseDouble(latitude), Double.parseDouble(longitude));
-    }
-
-    //Setters
-    public void setJobName(String name) {
-        put("jobName", name);
-    }
-
-    public void setJobDescription(String description) {
-        put("jobDescription", description);
-    }
-
-    public void setStartDate(String start) {
-        put("startDate", start);
-    }
-
-    public void setEndDate(String end) {
-        put("endDate", end);
     }
 
     public void setJobPoster() {
@@ -86,43 +61,58 @@ public class Job extends ParseObject {
         put("jobStatus", status);
     }
 
-    public void setLatitude(String latitude)
-    {
-        put("Latitude",latitude);
-    }
-
-    public void setLongitude(String longitude)
-    {
-        put("Longitude",longitude);
-    }
-
-    public void setTypeDescription(String typeDescription) { put("typeDescription",typeDescription);}
-
-    public void setGeoPoint(double latitude,double longitude)
-    {
-        ParseGeoPoint point = new ParseGeoPoint(latitude,longitude);
+    public void setGeoPoint(double latitude, double longitude) {
+        ParseGeoPoint point = new ParseGeoPoint(latitude, longitude);
         put("Location", point);
     }
-    /*public void setJobDoer(String userID) {
-        put("jobDoer", userID);
-    }*/
-
 
     //Getters
     public String getJobName() {
         return getString("jobName");
     }
 
+    //Setters
+    public void setJobName(String name) {
+        put("jobName", name);
+    }
+
     public String getJobDescription() {
         return getString("jobDescription");
+    }
+
+    public void setJobDescription(String description) {
+        put("jobDescription", description);
     }
 
     public String getStartDate() {
         return getString("startDate");
     }
 
+    public void setStartDate(String start) {
+        put("startDate", start);
+    }
+
     public String getEndDate() {
         return getString("endDate");
+    }
+    /*public void setJobDoer(String userID) {
+        put("jobDoer", userID);
+    }*/
+
+    public void setEndDate(String end) {
+        put("endDate", end);
+    }
+
+    public String getJobPoster() {
+        return getString("jobPoster");
+    }
+
+    public String getLatitude() {
+        return getString("Latitude");
+    }
+
+    public void setLatitude(String latitude) {
+        put("Latitude", latitude);
     }
 
     /*public List<String> getJobRequestors() {
@@ -133,17 +123,20 @@ public class Job extends ParseObject {
         return getString("jobDoer");
     }*/
 
-    public String getJobPoster() {
-        return getString("jobPoster");
-    }
-
-    public String getLatitude() {
-        return getString("Latitude");
-    }
     public String getLongitude() {
         return getString("Longitude");
     }
 
-    public String getTypeDescription() {return getString("typeDescription");}
+    public void setLongitude(String longitude) {
+        put("Longitude", longitude);
+    }
+
+    public String getTypeDescription() {
+        return getString("typeDescription");
+    }
+
+    public void setTypeDescription(String typeDescription) {
+        put("typeDescription", typeDescription);
+    }
 
 }

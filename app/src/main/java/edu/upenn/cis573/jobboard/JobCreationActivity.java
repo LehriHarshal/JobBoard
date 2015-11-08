@@ -22,9 +22,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.vision.barcode.Barcode;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -34,31 +31,43 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class JobCreationActivity extends Activity{
+public class JobCreationActivity extends Activity {
 
+    static double lat = 0;
+    static double lon = 0;
+    public int numberselected = 0;
+    protected LocationManager locationManager;
+    protected LocationListener locationListener;
+    protected Context context;
     EditText jobNameTextObject;
     EditText jobDescriptionTextObject;
     EditText startDateTextObject;
     EditText endDateTextObject;
     EditText jobLocationTextObject;
     Spinner typeDescriptionInt;
-
-    public int numberselected = 0;
-    String startDate="";
-    String endDate="";
-
-    protected LocationManager locationManager;
-    protected LocationListener locationListener;
-    protected Context context;
+    String startDate = "";
+    String endDate = "";
     String latitude;
     String longitude;
-    int typeDescription;
-
-    static double lat=0;
-    static double lon=0;
-
     int clicked_button_id;
-    int year,day,month;
+    int year, day, month;
+    private DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker v, int year, int month, int day) {
+
+            if (clicked_button_id == R.id.creation_START_Date_Button) {
+                startDate = (month + 1) + "" + "/" + day + "/" + year;
+                Button b = (Button) findViewById(clicked_button_id);
+                b.setText(startDate);
+            } else {
+                endDate = (month + 1) + "" + "/" + day + "/" + year;
+                Button b = (Button) findViewById(clicked_button_id);
+                b.setText(endDate);
+            }
+
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,51 +76,29 @@ public class JobCreationActivity extends Activity{
         setDate();
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.TypeDeclarations, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.TypeDeclarations, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        typeDescriptionInt = (Spinner)findViewById(R.id.spinner);
+        typeDescriptionInt = (Spinner) findViewById(R.id.spinner);
         jobNameTextObject = (EditText) findViewById(R.id.creationName);
         jobDescriptionTextObject = (EditText) findViewById(R.id.creationDescription);
 
     }
 
-
-
-    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-
-        public void onItemSelected(AdapterView<?> parent, View view,
-                                   int pos, long id) {
-            // An item was selected. You can retrieve the selected item using
-     //       Object store_selection =  parent.getItemAtPosition(pos);
-       //     Log.v("ANUPAM",store_selection.toString());
-
-            JobCreationActivity.this.numberselected = pos + 1;
-
-
-        }
-
-        public void onNothingSelected(AdapterView<?> parent) {
-            // Another interface callback
-        }
-    }
-
-    protected  void setDate()
-    {
+    protected void setDate() {
         Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
         day = c.get(Calendar.DAY_OF_MONTH);
-        month = c.get(Calendar.MONTH)+1;
-        String current_date = month+"/"+day+"/"+year;
-        Button start_date = (Button)findViewById(R.id.creation_START_Date_Button);
+        month = c.get(Calendar.MONTH) + 1;
+        String current_date = month + "/" + day + "/" + year;
+        Button start_date = (Button) findViewById(R.id.creation_START_Date_Button);
         start_date.setText(current_date);
-        Button end_date = (Button)findViewById(R.id.creation_END_Date_Button);
+        Button end_date = (Button) findViewById(R.id.creation_END_Date_Button);
         end_date.setText(current_date);
         startDate = current_date;
         endDate = current_date;
     }
-
 
 
     @Override
@@ -147,45 +134,42 @@ public class JobCreationActivity extends Activity{
         //all fields must be filled in for the sign up to work
 
 
-        FieldToCheck fieldToCheck_obj=new FieldToCheck();
-        int wrong_count=0;
-        wrong_count=fieldToCheck_obj.checkField(this, jobName,wrong_count);
-        if(wrong_count!=0)
+        FieldToCheck fieldToCheck_obj = new FieldToCheck();
+        int wrong_count = 0;
+        wrong_count = fieldToCheck_obj.checkField(this, jobName, wrong_count);
+        if (wrong_count != 0)
             return;
-        wrong_count=fieldToCheck_obj.checkField(this, jobDescription,wrong_count);
-        if(wrong_count!=0)
+        wrong_count = fieldToCheck_obj.checkField(this, jobDescription, wrong_count);
+        if (wrong_count != 0)
             return;
         Log.v("Start date", startDate + " End Date " + endDate);
-        wrong_count=fieldToCheck_obj.checkField(this, startDate,wrong_count);
-        if(wrong_count!=0)
+        wrong_count = fieldToCheck_obj.checkField(this, startDate, wrong_count);
+        if (wrong_count != 0)
             return;
-        wrong_count=fieldToCheck_obj.checkField(this, endDate,wrong_count);
-        if(wrong_count!=0)
+        wrong_count = fieldToCheck_obj.checkField(this, endDate, wrong_count);
+        if (wrong_count != 0)
             return;
         //displays the fieldErrors using Toast (taught in HW2)
         // This is shifted ot the Field to check method.
 
-/*
+
         Criteria criteria = new Criteria();
         try {
-            if(criteria != null){
-            Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-            if(location!=null){
-                latitude=Double.toString(location.getLatitude());
-                longitude=Double.toString(location.getLongitude());
+            if (criteria != null) {
+                Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+                if (location != null) {
+                    latitude = Double.toString(location.getLatitude());
+                    longitude = Double.toString(location.getLongitude());
+
                 }
             }
-        }
-        catch(SecurityException s)
-        {
-            Toast.makeText(getApplicationContext(),"Kindly Switch on Location Settings",Toast.LENGTH_SHORT);
+        } catch (SecurityException s) {
+            Toast.makeText(getApplicationContext(), "Kindly Switch on Location Settings", Toast.LENGTH_SHORT);
         }
 
-    */
 
-        final Job newJob = new Job(jobName, jobDescription, startDate, endDate,Double.toString(lat),Double.toString(lon), typeDescription);
+        final Job newJob = new Job(jobName, jobDescription, startDate, endDate, Double.toString(lat), Double.toString(lon), typeDescription);
         //Job jObj=new Job(latitude,longitude);
-
 
 
         //Ensures all users can see jobs posted by other users
@@ -211,11 +195,10 @@ public class JobCreationActivity extends Activity{
     }
 
     // Call back for the Location
-    public  void getLocation(View view)
-    {
-        Log.v("Here","Here");
+    public void getLocation(View view) {
+        Log.v("Here", "Here");
         Intent intent = new Intent(this, MapsActivity.class);
-        intent.putExtra("Latitude",latitude);
+        intent.putExtra("Latitude", latitude);
         intent.putExtra("Longitude", longitude);
         startActivity(intent);
     }
@@ -240,36 +223,31 @@ public class JobCreationActivity extends Activity{
     //    return;
     //}
 
-    public Dialog openDateDialog(View view)
-    {
-        Button b = (Button)view;
+    public Dialog openDateDialog(View view) {
+        Button b = (Button) view;
         clicked_button_id = b.getId();
-        DatePickerDialog d = new DatePickerDialog(this,dateListener,year,month,day);
+        DatePickerDialog d = new DatePickerDialog(this, dateListener, year, month, day);
         d.show();
         return d;
     }
 
-    private DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
+    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
-        public  void onDateSet(DatePicker v, int year, int month , int day) {
+        public void onItemSelected(AdapterView<?> parent, View view,
+                                   int pos, long id) {
+            // An item was selected. You can retrieve the selected item using
+            //       Object store_selection =  parent.getItemAtPosition(pos);
+            //     Log.v("ANUPAM",store_selection.toString());
 
-            if(clicked_button_id == R.id.creation_START_Date_Button) {
-                startDate = (month+1)+""+"/"+day+"/"+year;
-                Button b = (Button)findViewById(clicked_button_id);
-                b.setText(startDate);
-            }
-            else
-            {
-                endDate = (month+1)+""+"/"+day+"/"+year;
-                Button b = (Button)findViewById(clicked_button_id);
-                b.setText(endDate);
-            }
+            JobCreationActivity.this.numberselected = pos + 1;
 
 
         }
-    };
 
-
+        public void onNothingSelected(AdapterView<?> parent) {
+            // Another interface callback
+        }
+    }
 
 
 }

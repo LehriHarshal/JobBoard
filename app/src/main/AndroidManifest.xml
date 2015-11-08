@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.upenn.cis573.jobboard"
-    >
+    package="edu.upenn.cis573.jobboard">
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -11,7 +10,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     // Added for Profile photo
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="false" />
     //
     <uses-permission
@@ -40,7 +40,7 @@
     <!-- NEEDED TO NOTIFY THE USER -->
     <service android:name="com.parse.PushService" />
 
-    <receiver android:name="com.parse.ParseBroadcastReceiver" >
+    <receiver android:name="com.parse.ParseBroadcastReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
             <action android:name="android.intent.action.USER_PRESENT" />
@@ -48,7 +48,7 @@
     </receiver>
     <receiver
         android:name="com.parse.GcmBroadcastReceiver"
-        android:permission="com.google.android.c2dm.permission.SEND" >
+        android:permission="com.google.android.c2dm.permission.SEND">
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
@@ -58,7 +58,7 @@
     </receiver>
     <receiver
         android:name="com.parse.ParsePushBroadcastReceiver"
-        android:exported="false" >
+        android:exported="false">
         <intent-filter>
             <action android:name="com.parse.push.intent.RECEIVE" />
             <action android:name="com.parse.push.intent.DELETE" />
@@ -72,7 +72,7 @@
         android:icon="@drawable/nowhiring"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+        android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
         <meta-data
             android:name="com.parse.APPLICATION_ID"
             android:value="@string/parse_app_id" />
@@ -83,7 +83,7 @@
         <activity
             android:name=".ParseStarterProjectActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -92,65 +92,55 @@
         </activity>
         <activity
             android:name=".SignInActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_sign_in" >
-        </activity>
+            android:label="@string/title_activity_sign_in"
+            android:launchMode="singleInstance"></activity>
         <activity
             android:name=".VenmoWebViewActivity"
-            android:label="" >
-        </activity>
+            android:label=""></activity>
         <activity
             android:name=".HomepageActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_homepage" >
+            android:label="@string/title_activity_homepage"
+            android:launchMode="singleInstance">
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchableActivity" />
         </activity>
         <activity
             android:name=".SignUpActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_sign_up" >
-        </activity>
+            android:label="@string/title_activity_sign_up"
+            android:launchMode="singleInstance"></activity>
         <activity
             android:name=".CurrentUserActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_current_user" >
-        </activity>
+            android:label="@string/title_activity_current_user"
+            android:launchMode="singleInstance"></activity>
         <activity
             android:name=".ProfileActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_profile" >
-        </activity>
+            android:label="@string/title_activity_profile"
+            android:launchMode="singleInstance"></activity>
         <activity
             android:name=".CartActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_cart" >
-        </activity>
+            android:label="@string/title_activity_cart"
+            android:launchMode="singleInstance"></activity>
         <activity
             android:name=".JobCreationActivity"
-            android:launchMode = "singleInstance"
             android:label="@string/title_activity_job_creation"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity
             android:name=".JobDetailsActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_job_details" >
-        </activity>
+            android:label="@string/title_activity_job_details"
+            android:launchMode="singleInstance"></activity>
         <activity
             android:name=".MyPostedJobsActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_my_posted_jobs" >
-        </activity>
+            android:label="@string/title_activity_my_posted_jobs"
+            android:launchMode="singleInstance"></activity>
         <activity
             android:name=".JobRequestorsActivity"
-            android:label="@string/title_activity_job_requestors" >
-        </activity>
+            android:label="@string/title_activity_job_requestors"></activity>
         <activity
             android:name=".SearchableActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_searchable" >
+            android:label="@string/title_activity_searchable"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -161,15 +151,13 @@
         </activity>
         <activity
             android:name=".ViewRequestorActivity"
-            android:launchMode = "singleInstance"
             android:label="@string/title_activity_view_requestor"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity
             android:name=".NotificationsPageActivity"
-            android:launchMode = "singleInstance"
-            android:label="@string/title_activity_notifications_page" >
-        </activity>
+            android:label="@string/title_activity_notifications_page"
+            android:launchMode="singleInstance"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -184,16 +172,13 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" >
-        </activity>
-        <activity android:name=".MessagingActivity"
-            android:theme="@style/Theme.AppCompat.Light"
-            >
-        </activity>
-        <activity android:name=".ChatActivity"
-            android:theme="@style/Theme.AppCompat.Light"
-            >
-        </activity>
+            android:label="@string/title_activity_maps"></activity>
+        <activity
+            android:name=".MessagingActivity"
+            android:theme="@style/Theme.AppCompat.Light"></activity>
+        <activity
+            android:name=".ChatActivity"
+            android:theme="@style/Theme.AppCompat.Light"></activity>
     </application>
 
 </manifest>

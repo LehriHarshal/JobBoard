@@ -45,4 +45,10 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_messaging">Messaging</string>
 
+    <string-array name="SearchCategories">
+        <item>TYPE</item>
+        <item>MY CURRENT LOCATION</item>
+        <item>RATINGS</item>
+    </string-array>
+
 </resources>
