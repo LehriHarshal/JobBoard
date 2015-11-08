@@ -33,9 +33,10 @@ public class JobDetailsActivity extends BottomMenu {
     String doerUsername;
     String posterID;
     boolean isJobDoer = false;
+    boolean isJobPoster = false;
 
     String userId = ParseUser.getCurrentUser().getObjectId();
-
+    String posterName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,6 @@ public class JobDetailsActivity extends BottomMenu {
         job.jobId = intent.getStringExtra("jobID");
         Log.v("Inside Job,",job+" "+job.jobId);
         Log.v("DEBUG:", "commencing.");
-
         //Query Parse
         ParseQuery<Job> query = new ParseQuery("Job");
         query.getInBackground(job.jobId, new GetCallback<Job>() {
@@ -78,8 +78,12 @@ public class JobDetailsActivity extends BottomMenu {
             job.jobName = job.getString("jobName");
             Log.v("Values in try block", job.jobId+" "+doer+" "+posterID+" "+job.jobName);
             if (userId.equals(posterID)) {
-                isJobDoer = true;
+                isJobPoster = true;
 
+            }
+            if(doer!=null && doer.equals(userId))
+            {
+                isJobDoer = true;
             }
         } catch (Exception e) {
             Log.v("Parse Exception:", "While trying to get job");
@@ -88,26 +92,29 @@ public class JobDetailsActivity extends BottomMenu {
         TextView buttonTitle = (TextView) findViewById(R.id.Request);
         if (isJobDoer) {
             //This job belongs to them.
-            if(doer == null)
-            {
-                buttonTitle.setText("Unassigned");
-                buttonTitle.setEnabled(false);
-                Button sendbutton = (Button)findViewById(R.id.contactJobPosterButton);
-                sendbutton.setVisibility(View.INVISIBLE);
-            }
-            else {
-                buttonTitle.setText("Completed");
+                buttonTitle.setText("Completed?");
                 buttonTitle.setEnabled(true);
                 Button sendbutton = (Button)findViewById(R.id.contactJobPosterButton);
                 sendbutton.setVisibility(View.VISIBLE);
-            }
+
             isJobDoer();
         }
         else {
-            buttonTitle.setText("Request Job");
-            buttonTitle.setEnabled(true);
-            Button sendbutton = (Button)findViewById(R.id.contactJobPosterButton);
-            sendbutton.setVisibility(View.VISIBLE);
+            if(isJobPoster)
+            {
+                if(doer == null) {
+                    buttonTitle.setText("Unassigned");
+                    buttonTitle.setEnabled(false);
+                    Button sendbutton = (Button) findViewById(R.id.contactJobPosterButton);
+                    sendbutton.setVisibility(View.INVISIBLE);
+                }
+            }
+            else {
+                buttonTitle.setText("Request Job");
+                buttonTitle.setEnabled(true);
+                Button sendbutton = (Button) findViewById(R.id.contactJobPosterButton);
+                sendbutton.setVisibility(View.VISIBLE);
+            }
         }
 
     }
@@ -285,6 +292,50 @@ public class JobDetailsActivity extends BottomMenu {
         {
             Toast.makeText(getApplicationContext(),"No one", Toast.LENGTH_LONG).show();
         }
+    }
+
+
+    public void follow(View view)
+    {
+        List<String> myFollowings = ParseUser.getCurrentUser().getList("myFollowings");
+        if (myFollowings == null) {
+            ParseUser.getCurrentUser().put("myFollowings", new ArrayList<String>());
+            myFollowings = ParseUser.getCurrentUser().getList("myFollowings");
+        }
+        if(!myFollowings.contains(posterID))
+            myFollowings.add(posterID);
+        ParseUser.getCurrentUser().put("myFollowings", myFollowings);
+        ParseUser.getCurrentUser().saveInBackground();
+        Log.v("Following List", myFollowings.toString());
+        if(myFollowings.contains(posterID))
+            Toast.makeText(getApplicationContext(),"Already Following",Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(getApplicationContext(),"Now Following",Toast.LENGTH_SHORT).show();
+        return;
+        /*if (followings == null)
+            followings = new ArrayList<String>();
+        if (followings.contains(posterID)) {
+            Toast.makeText(getApplicationContext(), "Already Following", Toast.LENGTH_LONG);
+            return;
+        }
+        followings.add(posterID);
+
+
+        Log.v("Followings",followings.toString());
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    current_user.save();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Error in Following", Toast.LENGTH_LONG);
+                }
+                Toast.makeText(getApplication(), "Now Following", Toast.LENGTH_SHORT);
+            }
+        });*/
+
+
     }
     //button logic to go to the homepage screen
     /*public void displayHomepage(View view) {

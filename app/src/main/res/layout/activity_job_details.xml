@@ -7,7 +7,7 @@
     >
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="500dp">
+    android:layout_height="450dp">
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -25,9 +25,13 @@
             android:orientation="vertical"
             android:id="@+id/linearLayout2"
             >
+
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/TitleTextLayout"
+                >
                 <TextView
                     android:id="@+id/detailsName"
                     android:layout_width="match_parent"
@@ -217,7 +221,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="71dp"
                 android:weightSum="2"
                 android:id="@+id/locationFieldLayout">
 
@@ -318,6 +322,30 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_below="@id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayoutFollow"
+        android:layout_marginTop="20dp"
+        >
+
+        <Button
+            android:id="@+id/FollowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:text="Follow"
+            android:textSize="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:onClick="follow"
+            style="@style/buttonBackground" />
+
+
+    </LinearLayout>
+
 
 
 
@@ -347,6 +375,7 @@
             android:layout_gravity="bottom" />
         />
     </LinearLayout>
+
 <include layout = "@layout/bottom_menu"
     />
 </RelativeLayout>

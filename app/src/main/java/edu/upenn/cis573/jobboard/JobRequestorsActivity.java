@@ -76,7 +76,7 @@ public class JobRequestorsActivity extends BottomMenu {
                     @Override
                     public void done(ParseUser o, ParseException e) {
                         final String username = o.getUsername();
-                        //inal String rating = o.get("userRating").toString();
+                        final String rating = o.get("userRating").toString();
 
                         //Thread used to ensure list appears properly each time it is loaded
                         //Also adds each item to list
@@ -85,7 +85,7 @@ public class JobRequestorsActivity extends BottomMenu {
                                 userNames.add(username);
                                 Log.v("Username Added",userNames.toString());
                                 //Allows rating to be shown as stars
-                               /* if (Double.parseDouble(rating) < 1.5) {
+                               if (Double.parseDouble(rating) < 1.5) {
                                     userRatings.add("*");
                                 }
                                 else if (Double.parseDouble(rating) < 2.5) {
@@ -99,7 +99,7 @@ public class JobRequestorsActivity extends BottomMenu {
                                 }
                                 else {
                                     userRatings.add("* * * * *");
-                                }*/
+                                }
 
                                 requestorlistAdapter.notifyDataSetChanged();
                             }
