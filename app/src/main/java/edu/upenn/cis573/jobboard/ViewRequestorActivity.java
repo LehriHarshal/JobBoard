@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class ViewRequestorActivity extends BottomMenu {
 
-
+    public RatingBar ratingBar;
     boolean isJobDoer = false;
     boolean isComplete = false;
     UserJobData u = new UserJobData();
@@ -125,18 +126,47 @@ public class ViewRequestorActivity extends BottomMenu {
 
     public void payJobDoer() {
         //Before paying the completer, rate how they did
-        CharSequence ratings[] = new CharSequence[] {"*", "* *", "* * *", "* * * *", "* * * * *"};
+        CharSequence ratings[] = new CharSequence[]{"*", "* *", "* * *", "* * * *", "* * * * *"};
+        ratingBar = new RatingBar(this);
+        //float r=ratingBar.getRating();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("How would you rate this job?");
-        builder.setItems(ratings, new DialogInterface.OnClickListener() {
+        builder.setView(ratingBar);
+
+        ratingBar.setNumStars(5);
+        //addListenerOnRatingBar();
+
+        //ratingBar.setOnRatingBarChangeListener(new RatingBar.addListenerOnRatingBar()){
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(final RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+                float r = ratingBar.getRating();
+                ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+                userQuery.getInBackground(u.userId, new GetCallback<ParseUser>() {
+                    @Override
+                    public void done(ParseUser o, ParseException e) {
+                        float r = ratingBar.getRating();
+                        Double oldRating = Double.parseDouble(o.get("userRating").toString());
+
+                        //update the rating to be the average of old ratings and new rating
+                        oldRating = (oldRating + r + 1.0) / 2;
+                        o.put("userRating", oldRating.toString());
+                        o.saveInBackground();
+                        builder.setCancelable(true);
+                    }
+                });
+
+
+           /* {
             @Override
-            public void onClick(DialogInterface dialog, final int rating) {
+            public void onClick(RatingBar ratingBar, final int rating) {
                 //Query Parse for the user that requested the job, so we can display their name
                 ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
                 userQuery.getInBackground(u.userId, new GetCallback<ParseUser>() {
                     @Override
                     public void done(ParseUser o, ParseException e) {
+                        float r=ratingBar.getRating();
                         Double oldRating = Double.parseDouble(o.get("userRating").toString());
 
                         //update the rating to be the average of old ratings and new rating
@@ -144,13 +174,14 @@ public class ViewRequestorActivity extends BottomMenu {
                         o.put("userRating", oldRating.toString());
                         o.saveInBackground();
                     }
-                });
+                });*/
 
-                if (rating == 0) {
+                if (r == 0) {
                     Log.v("DEBUG:", "Bad rating.");
                 }
                 return;
             }
+
         });
         builder.show();
 
@@ -158,8 +189,8 @@ public class ViewRequestorActivity extends BottomMenu {
         //Intent venmoIntent = VenmoLibrary.openVenmoPayment("2590", "Job Board", userPhone, "0", u.jobName, "pay");
         //startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
 
-    }
 
+    }
 
     public void selectAsJobDoer() {
         //update the Job object
@@ -220,5 +251,21 @@ public class ViewRequestorActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
+    public void addListenerOnRatingBar() {
 
+        //ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        ratingBar= new  RatingBar(this);
+
+
+        //if rating value is changed,
+        //display the current rating value in the result (textview) automatically
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+
+
+
+            }
+        });
+    }
 }

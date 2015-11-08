@@ -77,7 +77,7 @@ public class JobRequestorsActivity extends BottomMenu {
                     public void done(ParseUser o, ParseException e) {
                         final String username = o.getUsername();
                         final String rating = o.get("userRating").toString();
-
+                        Log.v("Rating from Databaase",rating);
                         //Thread used to ensure list appears properly each time it is loaded
                         //Also adds each item to list
                         runOnUiThread(new Runnable() {
@@ -132,7 +132,7 @@ public class JobRequestorsActivity extends BottomMenu {
 
                     text1.setText(userNames.get(position));
                     text1.setTextSize(25);
-                    //text2.setText("Rating: " + userRatings.get(position));
+                    text2.setText("Rating: " + userRatings.get(position));
                     text2.setPadding(50, 0, 0, 0);
                     return view;
                 }
