@@ -113,7 +113,8 @@ public class SearchableActivity extends Activity {
                 }
                 //Query Parse
                 ParseQuery<Job> query = new ParseQuery("Job");
-                query.whereNear("location", USER_LOCATION);
+                System.out.println("\nuser location : " + USER_LOCATION);
+                query.whereNear("Location", USER_LOCATION);
                 query.setLimit(10);
 
                 query.findInBackground(new FindCallback<Job>() {
@@ -122,6 +123,7 @@ public class SearchableActivity extends Activity {
                         for (int i = 0; i < objects.size(); i++) {
                             Job o = (Job) objects.get(i);
                             jobObjects.add(o);
+
                             final String name = o.getString("jobName");
                             final String descr = o.getString("jobDescription");
 
