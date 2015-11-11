@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.upenn.cis573.jobboard">
+    package="edu.upenn.cis573.jobboard" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -40,7 +40,7 @@
     <!-- NEEDED TO NOTIFY THE USER -->
     <service android:name="com.parse.PushService" />
 
-    <receiver android:name="com.parse.ParseBroadcastReceiver">
+    <receiver android:name="com.parse.ParseBroadcastReceiver" >
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
             <action android:name="android.intent.action.USER_PRESENT" />
@@ -48,7 +48,7 @@
     </receiver>
     <receiver
         android:name="com.parse.GcmBroadcastReceiver"
-        android:permission="com.google.android.c2dm.permission.SEND">
+        android:permission="com.google.android.c2dm.permission.SEND" >
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
@@ -58,7 +58,7 @@
     </receiver>
     <receiver
         android:name="com.parse.ParsePushBroadcastReceiver"
-        android:exported="false">
+        android:exported="false" >
         <intent-filter>
             <action android:name="com.parse.push.intent.RECEIVE" />
             <action android:name="com.parse.push.intent.DELETE" />
@@ -72,7 +72,7 @@
         android:icon="@drawable/nowhiring"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+        android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         <meta-data
             android:name="com.parse.APPLICATION_ID"
             android:value="@string/parse_app_id" />
@@ -83,7 +83,7 @@
         <activity
             android:name=".ParseStarterProjectActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -93,14 +93,14 @@
         <activity
             android:name=".SignInActivity"
             android:label="@string/title_activity_sign_in"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".VenmoWebViewActivity"
-            android:label=""></activity>
+            android:label="" />
         <activity
             android:name=".HomepageActivity"
             android:label="@string/title_activity_homepage"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance" >
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchableActivity" />
@@ -108,39 +108,39 @@
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".CurrentUserActivity"
             android:label="@string/title_activity_current_user"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".CartActivity"
             android:label="@string/title_activity_cart"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".JobCreationActivity"
             android:label="@string/title_activity_job_creation"
             android:launchMode="singleInstance"
-            android:theme="@android:style/Theme.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".JobDetailsActivity"
             android:label="@string/title_activity_job_details"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".MyPostedJobsActivity"
             android:label="@string/title_activity_my_posted_jobs"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".JobRequestorsActivity"
-            android:label="@string/title_activity_job_requestors"></activity>
+            android:label="@string/title_activity_job_requestors" />
         <activity
             android:name=".SearchableActivity"
             android:label="@string/title_activity_searchable"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -153,11 +153,11 @@
             android:name=".ViewRequestorActivity"
             android:label="@string/title_activity_view_requestor"
             android:launchMode="singleInstance"
-            android:theme="@android:style/Theme.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".NotificationsPageActivity"
             android:label="@string/title_activity_notifications_page"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -172,13 +172,15 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
         <activity
             android:name=".MessagingActivity"
-            android:theme="@style/Theme.AppCompat.Light"></activity>
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity
             android:name=".ChatActivity"
-            android:theme="@style/Theme.AppCompat.Light"></activity>
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity android:name=".EmailVerificationActivity" >
+        </activity>
     </application>
 
 </manifest>
