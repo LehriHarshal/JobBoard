@@ -25,6 +25,9 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
            />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
         <Button
             android:id="@+id/sendMessageButton"
             android:layout_width="wrap_content"
@@ -37,6 +40,21 @@
             android:textSize="15dp"
             android:onClick="sendMessage"
             style="@style/buttonBackground"/>
+            <Button
+                android:id="@+id/refreshButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="130dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:text="Refresh"
+                android:textSize="15dp"
+                android:onClick="refreshMessages"
+                style="@style/buttonBackground"/>
+
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
