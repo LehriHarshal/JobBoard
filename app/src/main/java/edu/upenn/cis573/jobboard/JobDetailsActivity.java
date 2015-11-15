@@ -110,11 +110,20 @@ public class JobDetailsActivity extends BottomMenu {
 
 
         List<String> myFollowingscheck = ParseUser.getCurrentUser().getList("myFollowings");
+        Log.d("Checking", ParseUser.getCurrentUser().toString());
+        Log.d("Checking", myFollowingscheck.toString());
         Button btn = (Button) findViewById(R.id.FollowButton);
+
         if (myFollowingscheck.contains(posterID)) {
             btn.setText("UNFOLLOW");
         }
-        Log.d("C", "Came here");
+
+        Log.d("Check1", posterID.toString());
+        Log.d("Check1", ParseUser.getCurrentUser().getObjectId().toString());
+        if (posterID.equals(ParseUser.getCurrentUser().getObjectId())) {
+            btn.setAlpha(.5f);
+            btn.setClickable(false);
+        }
 
     }
 
@@ -292,6 +301,7 @@ public class JobDetailsActivity extends BottomMenu {
     public void follow(View view) {
         List<String> myFollowings = ParseUser.getCurrentUser().getList("myFollowings");
         Button btn = (Button) findViewById(R.id.FollowButton);
+
         if (myFollowings == null) {
             ParseUser.getCurrentUser().put("myFollowings", new ArrayList<String>());
             myFollowings = ParseUser.getCurrentUser().getList("myFollowings");
@@ -299,7 +309,7 @@ public class JobDetailsActivity extends BottomMenu {
         if (myFollowings.contains(posterID) && !btn.getText().equals("UNFOLLOW")) {
             Toast.makeText(getApplicationContext(), "Already Following", Toast.LENGTH_SHORT).show();
             return;
-        } else if (btn.getText().equals("FOLLOW") && !myFollowings.contains(posterID)) {
+        } else if (btn.getText().equals("FOLLOW") && !myFollowings.contains(posterID) && !posterID.equals(ParseUser.getCurrentUser())) {
             myFollowings.add(posterID);
             ParseUser.getCurrentUser().put("myFollowings", myFollowings);
             ParseUser.getCurrentUser().saveInBackground();
