@@ -1,47 +1,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LogInFont"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    style="@style/LogInFont">
+    android:background="@color/white">
 
 
-
-
-   <!-- <Button
-        android:id="@+id/buttonDashboard"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/dashboard_icon"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="15dp"
-        android:onClick="displayHomepage"
-        android:layout_alignParentBottom="true"
-        />-->
+    <!-- <Button
+         android:id="@+id/buttonDashboard"
+         android:layout_width="40dp"
+         android:layout_height="40dp"
+         android:background="@drawable/dashboard_icon"
+         android:layout_marginRight="15dp"
+         android:layout_marginLeft="10dp"
+         android:layout_marginBottom="15dp"
+         android:onClick="displayHomepage"
+         android:layout_alignParentBottom="true"
+         />-->
 
 
     <ListView
         android:id="@+id/list"
-        android:layout_above="@+id/button_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/button_container"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="10dp">
-    </ListView>
+        android:layout_marginBottom="10dp"></ListView>
 
-    <include layout = "@layout/bottom_menu" />
+    <include layout="@layout/bottom_menu" />
 
     <TextView
+        android:id="@+id/textViewSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/textViewSearch"
-        android:textColor="#00ff00"
-        android:typeface="sans"
-        android:textSize="35sp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:text=""
+        android:textColor="#00ff00"
+        android:textSize="35sp"
+        android:typeface="sans" />
 
 </RelativeLayout>
