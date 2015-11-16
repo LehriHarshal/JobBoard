@@ -17,12 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,13 +63,14 @@ public class MessagingActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+        ParseQuery<ParseObject> query;
+        query= ParseQuery.getQuery("Messages");
 
-
-        ParseQuery<Messages> query = ParseQuery.getQuery("Messages");
 
         messageList = new ArrayList<String>();
 
-        List<Messages> messageObjectsFromDatabase = null;
+
+        List<ParseObject> messageObjectsFromDatabase = null;
         messageListView = (ListView) findViewById(R.id.message_list);
         try {
             messageObjectsFromDatabase = query.find();
@@ -75,7 +78,7 @@ public class MessagingActivity extends AppCompatActivity {
 
         }
         if (messageObjectsFromDatabase != null) {
-            for (Messages m : messageObjectsFromDatabase) {
+            for (ParseObject m : messageObjectsFromDatabase) {
                 final String messageFrom = m.getString("Message_From");
                 final String messageTo = m.getString("Message_To");
                 final String message_from_database = m.getString("Message");
@@ -154,12 +157,28 @@ public class MessagingActivity extends AppCompatActivity {
 
         //Messages m = new Messages(message_from_user,message_to_user,message);
         //m.saveInBackground();
+        if(message.equals(""))
+        {
+            return;
+        }
         ParseObject messageObject = ParseObject.create("Messages");
         messageObject.put("Message_From", message_from_user); //string
         messageObject.put("Message_To", message_to_user); //integer
         messageObject.put("Message", message); //variable
         ParseACL acl = new ParseACL();
-        acl.setPublicReadAccess(true);
+        ParseQuery<ParseUser> queryParseUser = ParseUser.getQuery();
+        ParseUser sender = null;
+        ParseUser receiver = null;
+        try {
+            sender = queryParseUser.get(message_from_user);
+            receiver = queryParseUser.get(message_to_user);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(),"Error in fetching User",Toast.LENGTH_SHORT);
+        }
+        acl.setReadAccess(sender, true);
+        acl.setReadAccess(receiver,true);
         messageObject.setACL(acl);
         messageObject.saveInBackground();
         message_text.setText("");

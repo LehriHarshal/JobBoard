@@ -1,3 +1,330 @@
+commit 8627d21a5b3844920c8865d1d3207a6be0ba3897
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Mon Nov 9 14:07:29 2015 -0500
+
+    Removed small error in case of search by location
+
+commit 30ed9ccf1a93f6c9d9347997742c7c0b33d1f7bb
+Merge: 510708c e2b3dc6
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sun Nov 8 17:55:55 2015 -0500
+
+    Merge branch 'Following_v1.0'
+
+commit 510708c61c371f22c158e95b2308385e7ee9747a
+Author: Nishant <nishantbindu@gmail.com>
+Date:   Sun Nov 8 17:55:00 2015 -0500
+
+    Improved GUI for ratings
+
+commit e2b3dc662c43bad265fe30e13a59231531afec24
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sun Nov 8 17:53:11 2015 -0500
+
+    Added Following Feature to the App
+
+commit 6f34d78d92e67e87650ba7d8e3203cc6daa1ce14
+Merge: f68e498 672a7ca
+Author: Nishant <nishantbindu@gmail.com>
+Date:   Sun Nov 8 17:49:55 2015 -0500
+
+    Merge branch 'master' of https://github.com/LehriHarshal/JobBoard
+
+commit f68e4984448dea25c155fcd7c9c4ec4c73bcf3d2
+Merge: f1d4914 40c8216
+Author: Nishant <nishantbindu@gmail.com>
+Date:   Sun Nov 8 17:46:27 2015 -0500
+
+    Improved GUI for ratings
+
+commit 672a7ca28fd2e4515d3b1514cfcda3c7210fab7c
+Merge: 7864d5b 40c8216
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Sun Nov 8 16:01:32 2015 -0500
+
+    All user points completed
+
+commit 7864d5be07202745cbda95993c9e00105369ed69
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Sun Nov 8 15:57:20 2015 -0500
+
+    Searching and sorting according to the rating done
+
+commit c0c167261a804b5eaa64710f41dad3367667d4e1
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Sun Nov 8 15:54:41 2015 -0500
+
+    Searching according to the location done
+
+commit f1d491433cf16fa613ed6450c68c48a554774cf4
+Author: Nishant <nishantbindu@gmail.com>
+Date:   Sun Nov 8 14:40:17 2015 -0500
+
+    just for pulling
+
+commit 40c8216ce0f8cbf07c131adf74eeb0ebcf07024a
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sun Nov 8 14:33:10 2015 -0500
+
+    Able to add Followings to the List. Next part is adding notifications based on the job postings of people in the 'following' list
+
+commit d499b9b310057b609417cdcdf3826f4fcabdf072
+Merge: 750f4f3 a7ad897
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Sat Nov 7 17:46:19 2015 -0500
+
+    Merge branch 'master' of https://github.com/LehriHarshal/JobBoard
+
+commit 750f4f3f21a629c9045d841a82adb667a5f0e2ef
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Sat Nov 7 17:45:49 2015 -0500
+
+    Added Dynamic Profile Photo updates. The user can now loggout and yet see the photo as the photo will be retrieved from parse itself.-- Chirag
+
+commit a7ad897084455865faef735070833035641eb4cd
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Nov 7 17:45:12 2015 -0500
+
+    Pushing minor fixes with Layout 2
+
+commit 07db0c6c368b663f8f03c3baa82898bfd8704f61
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Nov 7 16:21:02 2015 -0500
+
+    Pushing minor fixes with Layout
+
+commit d00d3bf6cd6bdef2ca315b172f6aef968129f50f
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Nov 7 15:46:59 2015 -0500
+
+    Pushing minor fixes
+
+commit dc0078a173a3782b81b382ddf87a1c8a6f481155
+Merge: d4a3ce3 91e0eee
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Nov 7 14:11:15 2015 -0500
+
+    Commit before pull
+
+commit d4a3ce3f8e05bc86dd3977b1f6f0ddab1fb183e2
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Nov 7 14:08:19 2015 -0500
+
+    Commiting my changes before pulling new upgrades
+
+commit 91e0eee5b138905367fae545e1765680e464ad9d
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Fri Nov 6 17:08:43 2015 -0500
+
+    Search and Sort according to Type working perfectly
+
+commit 2f3f5b40c89e1167d5b5dacb6771dd10f721d6b3
+Merge: 2b57517 b59dd85
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Fri Nov 6 12:52:14 2015 -0500
+
+    Adding files -anupam
+
+commit 677924a3b8e4c8755e98e11d3274afabb5134adc
+Merge: ae386e2 b59dd85
+Author: Harshal Lehri <harshal_lehri@hou285.wireless-pennnet.upenn.edu>
+Date:   Tue Nov 3 12:35:11 2015 -0500
+
+    Merge branch 'master' of https://github.com/LehriHarshal/JobBoard
+    Updating Local Repo
+
+commit b59dd853151239839dc3bbb5756f481cc440e546
+Merge: 7e849fd 16179a3
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Tue Nov 3 12:31:51 2015 -0500
+
+    Profile Activity and Maps added
+
+commit ae386e22415afb371030d8d383d148506914ca74
+Merge: 24ff9bb 16179a3
+Author: Harshal Lehri <harshal_lehri@vagvlan536.0775.wlan.sas.upenn.edu>
+Date:   Tue Nov 3 10:10:41 2015 -0500
+
+    Merge branch 'master' of https://github.com/LehriHarshal/JobBoard
+    
+    Merging Changes made by Nishant
+
+commit 2b57517b5855fa4f1ebba421062eb64bc8c461c2
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Tue Nov 3 04:54:55 2015 -0500
+
+    Searching sorting by type done. A few results inaccurate. Will fix them by next iteration
+
+commit 7eec80688af51c1164d933a98b8c525ce34b5970
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Tue Nov 3 04:16:18 2015 -0500
+
+    Fixed Action Bar not visible Problem
+
+commit 499748153585e0aeec97d6b3c4180f728768b4db
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Tue Nov 3 03:47:01 2015 -0500
+
+    added type to job
+
+commit 75eb448b51fa893dd25f01dde2599c5592244d23
+Author: Anupam <aalur@seas.upenn.edu>
+Date:   Tue Nov 3 00:59:04 2015 -0500
+
+    testing on branch Anupam
+
+commit 16179a3fb4e7a73dd321b8726a3bb35b3d2d265f
+Author: Nishant <nishantbindu@gmail.com>
+Date:   Mon Nov 2 22:02:56 2015 -0500
+
+    Activities were getting created multiple time. Fixed that
+
+commit 24ff9bb37caf873fcde06bfb223351e683238e35
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Mon Nov 2 16:12:15 2015 -0500
+
+    Basic Functionality of Messaging Now works. It is slow and cannot fetch Dynamic Updates. Will add that
+
+commit 9e19c3d9049d8474da29744792b72e6413d1f294
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sun Nov 1 22:44:07 2015 -0500
+
+    User able to send messages to Parse Database. Next to include Chat Activity
+
+commit 7e849fdeffc9cccd651efb34c3cab5d689d49411
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Sat Oct 31 20:49:14 2015 -0400
+
+    Profile Photo functionality added
+
+commit 4342e57ce3b702e50118bf0a456e378fe0bedc25
+Merge: f7c35fa fb96e95
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Fri Oct 30 11:50:16 2015 -0400
+
+    Resolving merge conflicts with the main branch
+
+commit f7c35faa6bd24d6d79a1250d6a77c2df45c176fa
+Merge: f12e324 a8c8c88
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Tue Oct 27 18:48:11 2015 -0400
+
+    Merge remote-tracking branch 'origin' into Chirag
+    
+    Conflicts:
+    	build/intermediates/dex-cache/cache.xml
+
+commit f12e3247266a899a4c45f0e4a09ed04bfce4d253
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Tue Oct 27 18:33:04 2015 -0400
+
+    Location functionality added! Enhanced version added in which user can dynamically set the location and post a job remotely. Major Feature! Activity also created
+
+commit fb96e957751fb98264ce725ab9df26f5bdfe99c3
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Tue Oct 27 14:38:13 2015 -0400
+
+    Notifications appear now! Minor fixes remain
+
+commit 256fe6af1274836bd27b58b67283fdccd983d54d
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Tue Oct 27 02:14:53 2015 -0400
+
+    Fixed part of JobDetailsActivity, The activity now shows the Complete Task option where appropriate
+
+commit 265e988539412289d3b43642caa995d96feaf7a8
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Mon Oct 26 22:49:08 2015 -0400
+
+    Location gave null pointer exception. Have temporarily fixed it.
+
+commit a8c8c880538cd6269d029ccde7914b8d6f88a103
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Mon Oct 26 21:33:58 2015 -0400
+
+    Fixed the Request Job Issue, Should be working now
+
+commit 8f79bbeed634f1aecbb90e1ce10afac443bb44f1
+Merge: 4c84da7 79b0553
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Oct 24 19:42:33 2015 -0400
+
+    Merge branch 'master' of https://github.com/LehriHarshal/JobBoard
+
+commit 4c84da7c143a70ddc1e69f9abcd737cc81db26b8
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Oct 24 19:42:26 2015 -0400
+
+    Commiting before Pulling location changes
+
+commit 79b055324ed7b3e87ac2ff4754148b12cadfb878
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Sat Oct 24 19:39:22 2015 -0400
+
+    Location functionality added :D The location can be viewed in the database. Also, location autoupdate checker added.
+
+commit 365d57943563a7bc969ab5e8948eac3a2cf25abd
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Sat Oct 24 15:57:57 2015 -0400
+
+    Email Verification added
+
+commit 7de8aca3c514c5edf421c6479783e3881f5f0966
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Sat Oct 24 15:46:54 2015 -0400
+
+    Email Verification feature added.
+
+commit 9fe37e45d5cbea3af88020fadd64e00bc69de7eb
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Oct 24 15:43:59 2015 -0400
+
+    Created New Database, Checking Email Verification
+
+commit 1a0b858f2e0ddb30f1cb95bdf4e1d04a5042d3da
+Merge: 5664439 1fb4d15
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Oct 24 15:18:05 2015 -0400
+
+    Refreshing Project 2
+
+commit 56644392bcf1161057d9ab05c295196476e613dd
+Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
+Date:   Sat Oct 24 15:12:21 2015 -0400
+
+    Refreshing Project
+
+commit 1fb4d1552eaf4d2c8b87919f8f8f37cb3328c5b2
+Author: chirags <chiragshah271093@gmail.com>
+Date:   Fri Oct 23 16:54:57 2015 -0400
+
+    Hello, Commiting demo changes from Ubuntu
+
+commit 5622331342c942386362cb2a384eb9d52f260f4f
+Merge: 275d593 ad3266c
+Author: Chirag <chirags@seas.upenn.edu>
+Date:   Tue Oct 13 12:46:31 2015 -0400
+
+    Testing
+
+commit 275d593bbbeff40f4be8a4b8c36bce7d656011f0
+Author: Chirag <chirags@seas.upenn.edu>
+Date:   Tue Oct 13 12:28:02 2015 -0400
+
+     SignInActivity Modified
+
+commit ad3266ca43a3d2e4ba911dcaf5573636f9d8ea0e
+Author: Anupam Alur <anupamalur@gmail.com>
+Date:   Tue Oct 13 09:19:28 2015 -0400
+
+    Removed primitive obsession from the ViewRequestor Activity.java by creating a new class UserJobData for userId,jobId,jobName and jobStatus. Also removed code repitition from SearchableActivity.java and MyPostedJobsActivity.java by creating a new method called addvalues in MyPostedJobsActivity and calling it from Searchable Activity whenever required. This avoided writing the code again and again.
+
+commit 61909850450ecefbd331aabe531c2cfb102c23a9
+Author: Anupam Alur <anupamalur@gmail.com>
+Date:   Tue Oct 13 02:36:06 2015 -0400
+
+    removed code repititon and eliminated primitive obsession
+
 commit ff310bf86e5168d172f09a1c16521d9d6db036cd
 Author: Harshal Lehri <harshal_lehri@Harshals-MacBook-Pro.local>
 Date:   Tue Oct 13 00:39:37 2015 -0400

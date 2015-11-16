@@ -153,7 +153,7 @@ public class JobCreationActivity extends Activity {
         // This is shifted ot the Field to check method.
 
 
-        Criteria criteria = new Criteria();
+       /* Criteria criteria = new Criteria();
         try {
             if (criteria != null) {
                 Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
@@ -165,7 +165,7 @@ public class JobCreationActivity extends Activity {
             }
         } catch (SecurityException s) {
             Toast.makeText(getApplicationContext(), "Kindly Switch on Location Settings", Toast.LENGTH_SHORT);
-        }
+        }*/
 
 
         final Job newJob = new Job(jobName, jobDescription, startDate, endDate, Double.toString(lat), Double.toString(lon), typeDescription);
