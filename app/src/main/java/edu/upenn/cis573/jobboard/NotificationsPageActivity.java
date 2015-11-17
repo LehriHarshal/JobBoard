@@ -38,7 +38,7 @@ import java.util.List;
 public class NotificationsPageActivity extends BottomMenu {
 
     ArrayAdapter<String> notificationsListAdapter;
-    String userId = ParseUser.getCurrentUser().getObjectId();
+    String userId = ParseUser.getCurrentUser().getObjectId().toString();
     ArrayList<String> notifications = new ArrayList<String>();
     ArrayList<String> jobIDList = new ArrayList<String>();
     int max_Limit_Follow_Notifications = 10;
@@ -182,18 +182,20 @@ public class NotificationsPageActivity extends BottomMenu {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_notifications_page, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.search) {
+        if(id==R.id.action_logout){
+            logoutUser();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -230,6 +232,14 @@ public class NotificationsPageActivity extends BottomMenu {
         updateNotificationsList();
     }
 
+    public  void logoutUser() {
+        //Parse method to log out by removing CurrentUser
+        ParseUser.logOut();
+        Intent intent = new Intent(NotificationsPageActivity.this, CurrentUserActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
 
     //go to the profile screen
     /*public void displayProfile(View view) {
@@ -256,4 +266,5 @@ public class NotificationsPageActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
+
 }

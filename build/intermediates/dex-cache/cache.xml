@@ -2,81 +2,11 @@
 <items version="2" >
 
     <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\jars\classes.jar"
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-e2e15d5f8cd1635038037167048d4640f63812ac.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-56294c13f6f069fd51225a3787d0af91b9ed2a75.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-953d50124d333f0d30a8b031dbccecb7ce63720f.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-b6431f6310092250f52a333c5b0887d5e025c381.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-3ae2c2cddf7fcd410dd28cf587bf8193c410c7d9.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-c4f6d499a3651d931bff5de31ad41c071705b0ce.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-92e744b49672fda2f363673c583c86483ee191a1.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-bdb06c9e49cca787ab9ade5edf9479938943661c.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-e3d54186255463012f6630c8165f720d77ed618c.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="17449c47df35c754b257532052f1270c444f7993">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-3ca15e301a86c4555c8f3b225e9ddfea954db308.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-2cae3b9dabb0cfce8589993beb06fe9a6380a517.jar" />
+        sha1="b92002cb2f0e11a226ac5bac6dff1dc2a9d0b774">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-48950946e02b81112e24c3f707a174a821120a45.jar" />
     </item>
     <item
         jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
@@ -86,88 +16,11 @@
         <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-9b1ceb0607ec940836cb2e25a222000f32b615ab.jar" />
     </item>
     <item
-        jar="C:\Users\Nishant\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.0-a6c2a138e237665b95630006240a9d9b4e8dd4c5.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-7211247f61840b874eb1fba115c834ea61d344ed.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="997773777cf3904c11d6764fe3b7668538220e49">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-2f7439e2c6f9e94604677532224ff489ec259ce7.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-51aa8b0693aa3acd56547c001378bcc78635b173.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-dba626d1bae247e972cf73fcea919f4572e75e61.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\libs\bolts-android-1.1.4.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="129874135e6081269ace2312092031558865de12">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-4eb8538da0619239712c71b3ed96803da3f55d03.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-435f661d9ecc0c86b05efda248c2fec0f58096d3.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-722983969396c89ed359317eded60f99a3050955.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\libs\json-simple-1.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5d6f9b6a9ddca2a28c0216cc44efb2e20d9c23b5">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\json-simple-1.1.1-a34b8fb16f4b0df292ef894acdf18ef6b15a2907.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-f84880018e45869c446f60c81c349cc730e0cd88.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\libs\Parse-1.8.4.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="0fcb6bbc9cf6d2643a90c812539aa82ed16ea315">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\Parse-1.8.4-89f1c170597eeeb94f0e37af2b130b4c59688d35.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-ac8f1065a2e45b1e7cbaca1734bbb7f023f698cf.jar" />
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-dcc0b88d03d8dab9c6ec44757ba9b5e753212bc9.jar" />
     </item>
     <item
         jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\jars\classes.jar"
@@ -184,11 +37,67 @@
         <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-6475c6469b2bebc5078fe363c85ea1cc27d4bf94.jar" />
     </item>
     <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\jars\classes.jar"
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="3178362320bcf51228835b60ff978efadfd1f783">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-32db08f8adfa79a1f581911255f7ce6dd3de06bc.jar" />
+        sha1="997773777cf3904c11d6764fe3b7668538220e49">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-2f7439e2c6f9e94604677532224ff489ec259ce7.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-f84880018e45869c446f60c81c349cc730e0cd88.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\libs\bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-4eb8538da0619239712c71b3ed96803da3f55d03.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-92e744b49672fda2f363673c583c86483ee191a1.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\libs\Parse-1.8.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0fcb6bbc9cf6d2643a90c812539aa82ed16ea315">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\Parse-1.8.4-89f1c170597eeeb94f0e37af2b130b4c59688d35.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-953d50124d333f0d30a8b031dbccecb7ce63720f.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-ac8f1065a2e45b1e7cbaca1734bbb7f023f698cf.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-51aa8b0693aa3acd56547c001378bcc78635b173.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-56294c13f6f069fd51225a3787d0af91b9ed2a75.jar" />
     </item>
     <item
         jar="F:\JobBoard\JobBoard\app\libs\ParseCrashReporting-1.8.4.jar"
@@ -198,39 +107,18 @@
         <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\ParseCrashReporting-1.8.4-0d3b89eac0e5b770dbf640e0100d91add015989e.jar" />
     </item>
     <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\jars\classes.jar"
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-5be5c6d464c1741cdf7760182c9ac3ad9e8660ed.jar" />
+        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-e2e15d5f8cd1635038037167048d4640f63812ac.jar" />
     </item>
     <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\jars\classes.jar"
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-5eb24c6c4fd8cef08b7e6f51a6aa41f6c68d4b32.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="482de223655d06253cc6a4955d653f8994169500">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-a3388fd257d093aa8a3ed1d4ca58227e61ee5897.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\libs\ParseFacebookUtils-1.8.4.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="f17db949d266ba0b578e0f1314014a6a581d8935">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\ParseFacebookUtils-1.8.4-d543862bdcc5b40e0688f52486e1c38b6494ea02.jar" />
-    </item>
-    <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="b92002cb2f0e11a226ac5bac6dff1dc2a9d0b774">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-48950946e02b81112e24c3f707a174a821120a45.jar" />
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-dba626d1bae247e972cf73fcea919f4572e75e61.jar" />
     </item>
     <item
         jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\jars\classes.jar"
@@ -240,11 +128,123 @@
         <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-149998790da792ab389267ec8551957eb71a001a.jar" />
     </item>
     <item
-        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
-        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-dcc0b88d03d8dab9c6ec44757ba9b5e753212bc9.jar" />
+        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-3ae2c2cddf7fcd410dd28cf587bf8193c410c7d9.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\libs\ParseFacebookUtils-1.8.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f17db949d266ba0b578e0f1314014a6a581d8935">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\ParseFacebookUtils-1.8.4-d543862bdcc5b40e0688f52486e1c38b6494ea02.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="482de223655d06253cc6a4955d653f8994169500">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-a3388fd257d093aa8a3ed1d4ca58227e61ee5897.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-2cae3b9dabb0cfce8589993beb06fe9a6380a517.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-e3d54186255463012f6630c8165f720d77ed618c.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-b6431f6310092250f52a333c5b0887d5e025c381.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-5eb24c6c4fd8cef08b7e6f51a6aa41f6c68d4b32.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-bdb06c9e49cca787ab9ade5edf9479938943661c.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-5be5c6d464c1741cdf7760182c9ac3ad9e8660ed.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="17449c47df35c754b257532052f1270c444f7993">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-3ca15e301a86c4555c8f3b225e9ddfea954db308.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\libs\json-simple-1.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5d6f9b6a9ddca2a28c0216cc44efb2e20d9c23b5">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\json-simple-1.1.1-a34b8fb16f4b0df292ef894acdf18ef6b15a2907.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-435f661d9ecc0c86b05efda248c2fec0f58096d3.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-7211247f61840b874eb1fba115c834ea61d344ed.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3178362320bcf51228835b60ff978efadfd1f783">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-32db08f8adfa79a1f581911255f7ce6dd3de06bc.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-722983969396c89ed359317eded60f99a3050955.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nishant\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.0-a6c2a138e237665b95630006240a9d9b4e8dd4c5.jar" />
+    </item>
+    <item
+        jar="F:\JobBoard\JobBoard\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
+        <dex dex="F:\JobBoard\JobBoard\app\build\intermediates\pre-dexed\debug\classes-c4f6d499a3651d931bff5de31ad41c071705b0ce.jar" />
     </item>
 
 </items>
