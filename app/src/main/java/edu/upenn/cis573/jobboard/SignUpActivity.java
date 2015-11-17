@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -48,6 +49,14 @@ public class SignUpActivity extends Activity {
     }
 
     protected void signupUser() {
+
+        if(!VenmoLibrary.isVenmoInstalled(getApplicationContext()))
+        {
+            setContentView(R.layout.venmo_webview);
+            WebView myWebView = (WebView) findViewById(R.id.venmo_wv);
+            myWebView.loadUrl("http://www.venmo.com");
+            return;
+        }
         String username = usernameTextObject.getText().toString().trim();
         String password = passwordTextObject.getText().toString().trim();
         String email = emailTextObject.getText().toString().trim();

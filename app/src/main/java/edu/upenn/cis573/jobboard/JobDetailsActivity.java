@@ -1,8 +1,5 @@
 package edu.upenn.cis573.jobboard;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,33 +7,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class JobDetailsActivity extends BottomMenu {
-    Job job=new Job();
+
+    Job job = new Job();
     String doer;
     String doerUsername;
     String posterID;
     boolean isJobDoer = false;
     boolean isJobPoster = false;
-
     String userId = ParseUser.getCurrentUser().getObjectId();
     String posterName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +39,9 @@ public class JobDetailsActivity extends BottomMenu {
         super.enable("Home");
         Intent intent = getIntent();
         job.jobId = intent.getStringExtra("jobID");
-        Log.v("Inside Job,",job+" "+job.jobId);
+        Log.v("Inside Job,", job + " " + job.jobId);
         Log.v("DEBUG:", "commencing.");
+
         //Query Parse
         ParseQuery<Job> query = new ParseQuery("Job");
         query.getInBackground(job.jobId, new GetCallback<Job>() {
@@ -76,13 +71,12 @@ public class JobDetailsActivity extends BottomMenu {
             doer = job.getString("jobDoer");
             posterID = job.getString("jobPoster");
             job.jobName = job.getString("jobName");
-            Log.v("Values in try block", job.jobId+" "+doer+" "+posterID+" "+job.jobName);
+            Log.v("Values in try block", job.jobId + " " + doer + " " + posterID + " " + job.jobName);
             if (userId.equals(posterID)) {
                 isJobPoster = true;
 
             }
-            if(doer!=null && doer.equals(userId))
-            {
+            if (doer != null && doer.equals(userId)) {
                 isJobDoer = true;
             }
         } catch (Exception e) {
@@ -92,30 +86,69 @@ public class JobDetailsActivity extends BottomMenu {
         TextView buttonTitle = (TextView) findViewById(R.id.Request);
         if (isJobDoer) {
             //This job belongs to them.
-                buttonTitle.setText("Completed?");
-                buttonTitle.setEnabled(true);
-                Button sendbutton = (Button)findViewById(R.id.contactJobPosterButton);
-                sendbutton.setVisibility(View.VISIBLE);
+            buttonTitle.setText("Completed?");
+            buttonTitle.setEnabled(true);
+            Button sendbutton = (Button) findViewById(R.id.contactJobPosterButton);
+            sendbutton.setVisibility(View.VISIBLE);
 
             isJobDoer();
-        }
-        else {
-            if(isJobPoster)
-            {
-                if(doer == null) {
+        } else {
+            if (isJobPoster) {
+                if (doer == null) {
                     buttonTitle.setText("Unassigned");
                     buttonTitle.setEnabled(false);
                     Button sendbutton = (Button) findViewById(R.id.contactJobPosterButton);
                     sendbutton.setVisibility(View.INVISIBLE);
                 }
-            }
-            else {
+            } else {
                 buttonTitle.setText("Request Job");
                 buttonTitle.setEnabled(true);
                 Button sendbutton = (Button) findViewById(R.id.contactJobPosterButton);
                 sendbutton.setVisibility(View.VISIBLE);
             }
         }
+
+
+        List<String> myFollowingscheck = ParseUser.getCurrentUser().getList("myFollowings");
+
+        Log.d("Checking", ParseUser.getCurrentUser().toString());
+        Log.d("Checking", myFollowingscheck.toString());
+        Button btn = (Button) findViewById(R.id.FollowButton);
+
+
+        if (myFollowingscheck == null) {
+            ParseUser.getCurrentUser().put("myFollowings", new ArrayList<String>());
+            myFollowingscheck = ParseUser.getCurrentUser().getList("myFollowings");
+        }
+
+        if (myFollowingscheck.contains(posterID)) {
+            btn.setText("UNFOLLOW");
+        }
+
+        Log.d("Check1", posterID.toString());
+        Log.d("Check1", ParseUser.getCurrentUser().getObjectId().toString());
+        if (posterID.equals(ParseUser.getCurrentUser().getObjectId())) {
+            btn.setAlpha(.5f);
+            btn.setClickable(false);
+        }
+
+        List<String> myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
+        if (myRequestedJobs == null) {
+            ParseUser.getCurrentUser().put("myRequestedJobs", new ArrayList<String>());
+            myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
+        }
+
+        if (myRequestedJobs.contains(job.jobId)) {
+
+            Log.v("UP2", job.jobId);
+            Log.v("UP2", myRequestedJobs.toString());
+
+            Button btn2 = (Button) findViewById(R.id.Request);
+            btn2.setAlpha(.5f);
+            btn2.setClickable(false);
+            btn2.setText("Job Requested");
+        }
+
 
     }
 
@@ -129,20 +162,22 @@ public class JobDetailsActivity extends BottomMenu {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if(id==R.id.action_logout){
+            logoutUser();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     public void updateJob(View view) {
+        Button btn2 = (Button) findViewById(R.id.Request);
+        btn2.setAlpha(.5f);
+        btn2.setClickable(false);
+        btn2.setText("Job Requested");
+
         if (isJobDoer) {
             jobCompleted();
         } else {
@@ -152,9 +187,8 @@ public class JobDetailsActivity extends BottomMenu {
 
     private void jobCompleted() {
         //Query Parse
-        if(doer==null)
-        {
-            Toast.makeText(getApplicationContext(),"This Job has not been Assigned to anyone yet",Toast.LENGTH_LONG).show();
+        if (doer == null) {
+            Toast.makeText(getApplicationContext(), "This Job has not been Assigned to anyone yet", Toast.LENGTH_LONG).show();
             return;
         }
         ParseQuery<Job> query = new ParseQuery("Job");
@@ -180,12 +214,16 @@ public class JobDetailsActivity extends BottomMenu {
                 phoneText.setText(phone);
 
 
-
             }
         });
 
         String message = doerUsername + " has completed task: " + job.jobName;
         NotificationsManager.notifyUser(posterID, message);
+
+        Button btn2 = (Button) findViewById(R.id.Request);
+        btn2.setAlpha(.5f);
+        btn2.setClickable(false);
+        btn2.setText("Completed!");
 
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
@@ -249,7 +287,7 @@ public class JobDetailsActivity extends BottomMenu {
             myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
         }
         myRequestedJobs.add(job.jobId);
-        Log.v("My Requested Jobs",myRequestedJobs.toString());
+        Log.v("My Requested Jobs", myRequestedJobs.toString());
         ParseUser.getCurrentUser().saveInBackground();
 
         //Updates jobRequestors list in the Job
@@ -280,40 +318,49 @@ public class JobDetailsActivity extends BottomMenu {
 
     }
 
-    public void openMessaging(View view)
-    {
-        if(!isJobDoer){
+    public void openMessaging(View view) {
+        if (!isJobDoer) {
             Intent intent = new Intent(this, MessagingActivity.class);
-            intent.putExtra("MessageFrom",userId);
-            intent.putExtra("MessageTo",posterID);
+            intent.putExtra("MessageFrom", userId);
+            intent.putExtra("MessageTo", posterID);
             startActivity(intent);
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(),"No one", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "No one", Toast.LENGTH_LONG).show();
         }
     }
 
 
-    public void follow(View view)
-    {
+    public void follow(View view) {
         List<String> myFollowings = ParseUser.getCurrentUser().getList("myFollowings");
+        Button btn = (Button) findViewById(R.id.FollowButton);
+
         if (myFollowings == null) {
             ParseUser.getCurrentUser().put("myFollowings", new ArrayList<String>());
             myFollowings = ParseUser.getCurrentUser().getList("myFollowings");
         }
-        if(myFollowings.contains(posterID)) {
+        if (myFollowings.contains(posterID) && !btn.getText().equals("UNFOLLOW")) {
             Toast.makeText(getApplicationContext(), "Already Following", Toast.LENGTH_SHORT).show();
             return;
-        }
-        else
+        } else if (btn.getText().equals("FOLLOW") && !myFollowings.contains(posterID) && !posterID.equals(ParseUser.getCurrentUser())) {
             myFollowings.add(posterID);
-        ParseUser.getCurrentUser().put("myFollowings", myFollowings);
-        ParseUser.getCurrentUser().saveInBackground();
-        Log.v("Following List", myFollowings.toString());
+            ParseUser.getCurrentUser().put("myFollowings", myFollowings);
+            ParseUser.getCurrentUser().saveInBackground();
+            Log.v("Following List", myFollowings.toString());
 
-        Toast.makeText(getApplicationContext(),"Now Following",Toast.LENGTH_SHORT).show();
-        return;
+            Toast.makeText(getApplicationContext(), "Now Following", Toast.LENGTH_SHORT).show();
+            btn.setText("UNFOLLOW");
+            return;
+        } else if (btn.getText().equals("UNFOLLOW") && myFollowings.contains(posterID)) {
+
+            myFollowings.remove(posterID);
+            ParseUser.getCurrentUser().put("myFollowings", myFollowings);
+            ParseUser.getCurrentUser().saveInBackground();
+            Log.v("Following List", myFollowings.toString());
+
+            Toast.makeText(getApplicationContext(), "Now Unfollowing", Toast.LENGTH_SHORT).show();
+            btn.setText("FOLLOW");
+            return;
+        }
         /*if (followings == null)
             followings = new ArrayList<String>();
         if (followings.contains(posterID)) {
@@ -344,6 +391,12 @@ public class JobDetailsActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
-
+    public  void logoutUser() {
+        //Parse method to log out by removing CurrentUser
+        ParseUser.logOut();
+        Intent intent = new Intent(JobDetailsActivity.this, CurrentUserActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
 }

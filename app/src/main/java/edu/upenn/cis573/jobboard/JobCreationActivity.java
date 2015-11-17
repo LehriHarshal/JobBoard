@@ -5,8 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Criteria;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -20,7 +18,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.parse.ParseACL;
 import com.parse.ParseException;
@@ -108,20 +105,7 @@ public class JobCreationActivity extends Activity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     //go to the sign up screen
     public void submitJob(View view) {
@@ -149,10 +133,27 @@ public class JobCreationActivity extends Activity {
         wrong_count = fieldToCheck_obj.checkField(this, endDate, wrong_count);
         if (wrong_count != 0)
             return;
+
         //displays the fieldErrors using Toast (taught in HW2)
         // This is shifted ot the Field to check method.
 
 
+<<<<<<< HEAD
+=======
+       /* Criteria criteria = new Criteria();
+        try {
+            if (criteria != null) {
+                Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+                if (location != null) {
+                    latitude = Double.toString(location.getLatitude());
+                    longitude = Double.toString(location.getLongitude());
+
+                }
+            }
+        } catch (SecurityException s) {
+            Toast.makeText(getApplicationContext(), "Kindly Switch on Location Settings", Toast.LENGTH_SHORT);
+        }*/
+>>>>>>> d7b33d55e21616c8aee0d4dae38f972845673605
 
 
         final Job newJob = new Job(jobName, jobDescription, startDate, endDate, Double.toString(lat), Double.toString(lon), typeDescription);
@@ -234,6 +235,24 @@ public class JobCreationActivity extends Activity {
         public void onNothingSelected(AdapterView<?> parent) {
             // Another interface callback
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(id==R.id.action_logout){
+            logoutUser();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    public  void logoutUser() {
+        //Parse method to log out by removing CurrentUser
+        ParseUser.logOut();
+        Intent intent = new Intent(JobCreationActivity.this, CurrentUserActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 

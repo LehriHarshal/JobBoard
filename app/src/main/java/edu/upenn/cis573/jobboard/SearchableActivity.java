@@ -20,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,21 +50,26 @@ public class SearchableActivity extends Activity {
         getMenuInflater().inflate(R.menu.menu_searchable, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if(id==R.id.action_logout){
+            logoutUser();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+    public  void logoutUser() {
+        //Parse method to log out by removing CurrentUser
+        ParseUser.logOut();
+        Intent intent = new Intent(SearchableActivity.this, CurrentUserActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+
 
     private void handleIntent(Intent intent) {
 

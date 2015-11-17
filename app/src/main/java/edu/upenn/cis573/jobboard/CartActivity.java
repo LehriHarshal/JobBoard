@@ -1,15 +1,22 @@
 package edu.upenn.cis573.jobboard;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.parse.GetCallback;
@@ -24,6 +31,7 @@ public class CartActivity extends BottomMenu {
     //Used for clicking of jobs and displaying their info
     ArrayList<Job> jobObjects = new ArrayList<>();
     ArrayAdapter<String> cartListAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +111,27 @@ public class CartActivity extends BottomMenu {
 
     }
 
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_cart, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+         if(id==R.id.action_logout){
+            logoutUser();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     //go to the JobDetailsActivity
     public void openJob(int position) {
         String id = jobObjects.get(position).getObjectId();
@@ -136,6 +165,13 @@ public class CartActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
+    public  void logoutUser() {
+        //Parse method to log out by removing CurrentUser
+        ParseUser.logOut();
+        Intent intent = new Intent(CartActivity.this, CurrentUserActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
 
 }

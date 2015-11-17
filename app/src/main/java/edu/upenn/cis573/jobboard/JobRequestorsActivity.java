@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -148,6 +150,7 @@ public class JobRequestorsActivity extends BottomMenu {
             });
 
         }
+
     }
 
     private void goToRequestorsProfile(int position) {
@@ -182,4 +185,27 @@ public class JobRequestorsActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_job_requestors, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(id==R.id.action_logout){
+            logoutUser();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    public  void logoutUser() {
+        //Parse method to log out by removing CurrentUser
+        ParseUser.logOut();
+        Intent intent = new Intent(JobRequestorsActivity.this, CurrentUserActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 }
