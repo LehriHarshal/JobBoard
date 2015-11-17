@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -154,6 +155,18 @@ public class ViewRequestorActivity extends BottomMenu {
                         o.put("userRating", oldRating.toString());
                         o.saveInBackground();
                         builder.setCancelable(true);
+
+                        if(VenmoLibrary.isVenmoInstalled(getApplicationContext())) {
+                            Intent venmoIntent = VenmoLibrary.openVenmoPayment("3164", "Mobile JobBoard", userPhone, "0", u.jobName, "pay");
+                            startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
+                        }
+                        else
+                        {
+                            setContentView(R.layout.venmo_webview);
+                            WebView myWebView = (WebView) findViewById(R.id.venmo_wv);
+                            myWebView.loadUrl("http://www.venmo.com");
+
+                        }
                     }
                 });
 
@@ -186,8 +199,9 @@ public class ViewRequestorActivity extends BottomMenu {
         builder.show();
 
 
-        //Intent venmoIntent = VenmoLibrary.openVenmoPayment("2590", "Job Board", userPhone, "0", u.jobName, "pay");
-        //startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
+
+
+
 
 
     }

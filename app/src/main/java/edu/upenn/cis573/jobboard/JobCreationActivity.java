@@ -5,8 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Criteria;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -20,7 +18,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.parse.ParseACL;
 import com.parse.ParseException;
@@ -149,6 +146,7 @@ public class JobCreationActivity extends Activity {
         wrong_count = fieldToCheck_obj.checkField(this, endDate, wrong_count);
         if (wrong_count != 0)
             return;
+
         //displays the fieldErrors using Toast (taught in HW2)
         // This is shifted ot the Field to check method.
 
@@ -166,7 +164,6 @@ public class JobCreationActivity extends Activity {
         } catch (SecurityException s) {
             Toast.makeText(getApplicationContext(), "Kindly Switch on Location Settings", Toast.LENGTH_SHORT);
         }*/
-
 
         final Job newJob = new Job(jobName, jobDescription, startDate, endDate, Double.toString(lat), Double.toString(lon), typeDescription);
         //Job jObj=new Job(latitude,longitude);
