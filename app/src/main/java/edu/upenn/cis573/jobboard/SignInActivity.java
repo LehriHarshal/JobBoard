@@ -56,31 +56,51 @@ public class SignInActivity extends Activity {
 
         //all fields must be filled in for the login to work
         // Edited by Chirag
-        FieldToCheck fieldToCheck_obj=new FieldToCheck();
-        int wrong_count=0;
-        wrong_count=fieldToCheck_obj.checkField(SignInActivity.this,username,wrong_count);
-        if(wrong_count!=0)
+        FieldToCheck fieldToCheck_obj = new FieldToCheck();
+        int wrong_count = 0;
+        wrong_count = fieldToCheck_obj.checkField(SignInActivity.this, username, wrong_count);
+        if (wrong_count != 0)
             return;
-        wrong_count=fieldToCheck_obj.checkField(SignInActivity.this,password,wrong_count);
-        if(wrong_count!=0)
+        wrong_count = fieldToCheck_obj.checkField(SignInActivity.this, password, wrong_count);
+        if (wrong_count != 0)
             return;
+// Added by Chirag
+        try {
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            currentUser.logOut();
+        }
+        catch (Exception e){
 
-        ParseUser.logInInBackground(username, password, new LogInCallback() {
-            @Override
-            public void done(ParseUser parseUser, ParseException e) {
-                if (e == null) {
-                    // Start an intent for the CurrentUserActivity, which routes user if logged in
-                    Intent intent = new Intent(SignInActivity.this, CurrentUserActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                } else {
-                    //If e is not null, there is an error which we display
-                    Toast.makeText(SignInActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+            ParseUser.logInInBackground(username, password, new LogInCallback() {
+                @Override
+                public void done(ParseUser parseUser, ParseException e) {
+                    if (e == null) {
+                        // Start an intent for the CurrentUserActivity, which routes user if logged in
+                        // Check if the user has verified the email if login is successful
+                        if (ParseUser.getCurrentUser().getBoolean("ManuallyVerified") == true && ParseUser.getCurrentUser().getBoolean("emailVerified")==true) {
+                            Intent intent = new Intent(SignInActivity.this, CurrentUserActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Intent intent = new Intent(SignInActivity.this, EmailVerificationActivity.class);
+                            startActivity(intent);
+                        }
+
+                    } else {
+                        //If e is not null, there is an error which we display
+                        Toast.makeText(SignInActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
 
-    }
+        }
+
+
+
 
     //go to the sign up screen
     public void goToSignUp(View view) {

@@ -134,7 +134,29 @@ public class JobCreationActivity extends Activity {
         wrong_count = fieldToCheck_obj.checkField(this, endDate, wrong_count);
         if (wrong_count != 0)
             return;
-        
+
+        //displays the fieldErrors using Toast (taught in HW2)
+        // This is shifted ot the Field to check method.
+
+
+<<<<<<< HEAD
+=======
+       /* Criteria criteria = new Criteria();
+        try {
+            if (criteria != null) {
+                Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+                if (location != null) {
+                    latitude = Double.toString(location.getLatitude());
+                    longitude = Double.toString(location.getLongitude());
+
+                }
+            }
+        } catch (SecurityException s) {
+            Toast.makeText(getApplicationContext(), "Kindly Switch on Location Settings", Toast.LENGTH_SHORT);
+        }*/
+>>>>>>> d7b33d55e21616c8aee0d4dae38f972845673605
+
+
         final Job newJob = new Job(jobName, jobDescription, startDate, endDate, Double.toString(lat), Double.toString(lon), typeDescription);
         //Job jObj=new Job(latitude,longitude);
 

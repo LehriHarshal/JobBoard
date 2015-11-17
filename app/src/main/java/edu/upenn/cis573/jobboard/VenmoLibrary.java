@@ -20,7 +20,6 @@ import java.util.List;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-
 public class VenmoLibrary {
     private static final String VENMO_PACKAGE = "com.venmo";
     private static final String VENMO_ACTIVITY = "com.venmo.ComposeActivity";
@@ -31,7 +30,7 @@ public class VenmoLibrary {
      * Takes the recipients, amount, and note, and returns an Intent object
      */
     public static Intent openVenmoPayment(String myAppId, String myAppName, String recipients,
-            String amount, String note, String txn) {
+                                          String amount, String note, String txn) {
         String venmo_uri = "venmosdk://paycharge?txn=" + txn;
 
         if (!recipients.equals("")) {
@@ -137,8 +136,8 @@ public class VenmoLibrary {
     }
 
     /**
-    * @return a boolean indicating whether or not the Venmo app is installed on a client's device. 
-    */
+     * @return a boolean indicating whether or not the Venmo app is installed on a client's device.
+     */
     public static boolean isVenmoInstalled(Context context) {
         PackageManager packageManager = context.getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(new Intent()

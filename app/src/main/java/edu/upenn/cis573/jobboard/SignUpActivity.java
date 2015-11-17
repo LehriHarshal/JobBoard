@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,6 +14,8 @@ import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import java.util.Random;
 
 
 /**
@@ -24,6 +27,7 @@ public class SignUpActivity extends Activity {
     EditText passwordTextObject;
     EditText emailTextObject;
     EditText phoneTextObject;
+    String Key;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,14 @@ public class SignUpActivity extends Activity {
     }
 
     protected void signupUser() {
+
+        if(!VenmoLibrary.isVenmoInstalled(getApplicationContext()))
+        {
+            setContentView(R.layout.venmo_webview);
+            WebView myWebView = (WebView) findViewById(R.id.venmo_wv);
+            myWebView.loadUrl("http://www.venmo.com");
+            return;
+        }
         String username = usernameTextObject.getText().toString().trim();
         String password = passwordTextObject.getText().toString().trim();
         String email = emailTextObject.getText().toString().trim();
@@ -73,6 +85,7 @@ public class SignUpActivity extends Activity {
         //Now, we use Parse to create users
         ParseUser currentUser = ParseUser.getCurrentUser();
         currentUser.logOut();
+        generateRandomKey();
 
         final ParseUser newUser = new ParseUser();
         newUser.setUsername(username);
@@ -80,6 +93,8 @@ public class SignUpActivity extends Activity {
         newUser.setEmail(email);
         newUser.put("phone", phone);
         newUser.put("userRating",1);
+        newUser.put("RandomKey",Key);
+        newUser.put("ManuallyVerified",false);
 
         //This is a Parse method to sign up a user
         newUser.signUpInBackground(new SignUpCallback() {
@@ -87,8 +102,7 @@ public class SignUpActivity extends Activity {
             public void done(ParseException e) {
                 if (e == null) {
                     // Start an intent for the CurrentUserActivity, which routes user if logged in
-                    Intent intent = new Intent(SignUpActivity.this, CurrentUserActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent(SignUpActivity.this, EmailVerificationActivity.class);
                     startActivity(intent);
                 } else {
                     //If e is not null, there is an error which we display
@@ -97,6 +111,15 @@ public class SignUpActivity extends Activity {
             }
         });
 
+
+    }
+
+    void generateRandomKey()
+    {
+        Random r=new Random();
+        int randomKey=r.nextInt(9999);
+        randomKey=10000+randomKey;
+        Key=Integer.toString(randomKey);
 
     }
 }

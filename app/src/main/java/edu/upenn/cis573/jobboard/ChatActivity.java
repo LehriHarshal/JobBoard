@@ -46,24 +46,37 @@ public class ChatActivity extends AppCompatActivity {
         }
 
 
-        ParseQuery<Messages> query = ParseQuery.getQuery("Messages");
+        ParseQuery<ParseObject> query;
+        LocalDB db = LocalDB.getObject();
+        messageList =  (ArrayList<String>)db.Messages;
+
+        if(db.LastUpdated.equals("0/0/0")) {
+            query= ParseQuery.getQuery("Messages");
+        }
+        else
+        {
+            query = ParseQuery.getQuery("Messages").whereGreaterThan("CreatedAt",db.LastUpdated);
+        }
+
         ParseQuery<ParseUser> user = ParseUser.getQuery();
         messageList = new ArrayList<String>();
         messageFromUserIDList = new ArrayList<String>();
         messageUserNameList = new ArrayList<String>();
 
-        List<Messages> messageObjectsFromDatabase = null;
+        List<ParseObject> messageObjectsFromDatabase = null;
         messageListView = (ListView) findViewById(R.id.incoming_message_list);
 
         try {
             messageObjectsFromDatabase = query.find();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_LONG);
         }
-        Log.v("Message From Database",messageObjectsFromDatabase.toString());
+
+
         if (messageObjectsFromDatabase != null) {
             HashSet<String> uniqueMessages = new HashSet<String>();
-            for (Messages m : messageObjectsFromDatabase) {
+            for (ParseObject m : messageObjectsFromDatabase) {
                 final String messageFrom = m.getString("Message_From");
                 final String messageTo = m.getString("Message_To");
 
