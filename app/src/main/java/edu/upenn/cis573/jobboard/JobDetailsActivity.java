@@ -110,9 +110,13 @@ public class JobDetailsActivity extends BottomMenu {
 
 
         List<String> myFollowingscheck = ParseUser.getCurrentUser().getList("myFollowings");
-        Log.d("Checking", ParseUser.getCurrentUser().toString());
-        Log.d("Checking", myFollowingscheck.toString());
+
         Button btn = (Button) findViewById(R.id.FollowButton);
+
+        if (myFollowingscheck == null) {
+            ParseUser.getCurrentUser().put("myFollowings", new ArrayList<String>());
+            myFollowingscheck = ParseUser.getCurrentUser().getList("myFollowings");
+        }
 
         if (myFollowingscheck.contains(posterID)) {
             btn.setText("UNFOLLOW");
@@ -123,6 +127,23 @@ public class JobDetailsActivity extends BottomMenu {
         if (posterID.equals(ParseUser.getCurrentUser().getObjectId())) {
             btn.setAlpha(.5f);
             btn.setClickable(false);
+        }
+
+        List<String> myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
+        if (myRequestedJobs == null) {
+            ParseUser.getCurrentUser().put("myRequestedJobs", new ArrayList<String>());
+            myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
+        }
+
+        if (myRequestedJobs.contains(job.jobId)) {
+
+            Log.v("UP2", job.jobId);
+            Log.v("UP2", myRequestedJobs.toString());
+
+            Button btn2 = (Button) findViewById(R.id.Request);
+            btn2.setAlpha(.5f);
+            btn2.setClickable(false);
+            btn2.setText("Job Requested");
         }
 
     }
@@ -151,6 +172,11 @@ public class JobDetailsActivity extends BottomMenu {
     }
 
     public void updateJob(View view) {
+        Button btn2 = (Button) findViewById(R.id.Request);
+        btn2.setAlpha(.5f);
+        btn2.setClickable(false);
+        btn2.setText("Job Requested");
+
         if (isJobDoer) {
             jobCompleted();
         } else {
@@ -192,6 +218,11 @@ public class JobDetailsActivity extends BottomMenu {
 
         String message = doerUsername + " has completed task: " + job.jobName;
         NotificationsManager.notifyUser(posterID, message);
+
+        Button btn2 = (Button) findViewById(R.id.Request);
+        btn2.setAlpha(.5f);
+        btn2.setClickable(false);
+        btn2.setText("Completed!");
 
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
