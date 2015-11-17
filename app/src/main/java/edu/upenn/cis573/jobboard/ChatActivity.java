@@ -158,4 +158,8 @@ public class ChatActivity extends AppCompatActivity {
         });
 
     }
+    public static void logoutUser() {
+        //Parse method to log out by removing CurrentUser
+        ParseUser.logOut();
+    }
 }

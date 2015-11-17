@@ -6,4 +6,9 @@
         android:icon="@android:drawable/ic_menu_search"
         android:showAsAction="collapseActionView|ifRoom"
         android:title="@string/search_title" />
+
+    <item android:id="@+id/action_logout"
+        android:title="Logout"
+        android:orderInCategory="100"
+        android:showAsAction="always"  />
 </menu>

@@ -110,9 +110,16 @@ public class JobDetailsActivity extends BottomMenu {
 
 
         List<String> myFollowingscheck = ParseUser.getCurrentUser().getList("myFollowings");
+
         Log.d("Checking", ParseUser.getCurrentUser().toString());
         Log.d("Checking", myFollowingscheck.toString());
         Button btn = (Button) findViewById(R.id.FollowButton);
+
+
+        if (myFollowingscheck == null) {
+            ParseUser.getCurrentUser().put("myFollowings", new ArrayList<String>());
+            myFollowingscheck = ParseUser.getCurrentUser().getList("myFollowings");
+        }
 
         if (myFollowingscheck.contains(posterID)) {
             btn.setText("UNFOLLOW");
@@ -124,6 +131,24 @@ public class JobDetailsActivity extends BottomMenu {
             btn.setAlpha(.5f);
             btn.setClickable(false);
         }
+
+        List<String> myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
+        if (myRequestedJobs == null) {
+            ParseUser.getCurrentUser().put("myRequestedJobs", new ArrayList<String>());
+            myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
+        }
+
+        if (myRequestedJobs.contains(job.jobId)) {
+
+            Log.v("UP2", job.jobId);
+            Log.v("UP2", myRequestedJobs.toString());
+
+            Button btn2 = (Button) findViewById(R.id.Request);
+            btn2.setAlpha(.5f);
+            btn2.setClickable(false);
+            btn2.setText("Job Requested");
+        }
+
 
     }
 
@@ -137,20 +162,22 @@ public class JobDetailsActivity extends BottomMenu {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if(id==R.id.action_logout){
+            logoutUser();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     public void updateJob(View view) {
+        Button btn2 = (Button) findViewById(R.id.Request);
+        btn2.setAlpha(.5f);
+        btn2.setClickable(false);
+        btn2.setText("Job Requested");
+
         if (isJobDoer) {
             jobCompleted();
         } else {
@@ -192,6 +219,11 @@ public class JobDetailsActivity extends BottomMenu {
 
         String message = doerUsername + " has completed task: " + job.jobName;
         NotificationsManager.notifyUser(posterID, message);
+
+        Button btn2 = (Button) findViewById(R.id.Request);
+        btn2.setAlpha(.5f);
+        btn2.setClickable(false);
+        btn2.setText("Completed!");
 
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
@@ -359,6 +391,12 @@ public class JobDetailsActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
-
+    public  void logoutUser() {
+        //Parse method to log out by removing CurrentUser
+        ParseUser.logOut();
+        Intent intent = new Intent(JobDetailsActivity.this, CurrentUserActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
 }

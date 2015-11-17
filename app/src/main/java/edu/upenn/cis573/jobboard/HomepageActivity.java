@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -185,7 +186,10 @@ public class HomepageActivity extends BottomMenu {
             searchDialog.show();
             return true;
         }
-
+        else if(id==R.id.action_logout){
+            logoutUser();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -223,6 +227,12 @@ public class HomepageActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
-
+    public  void logoutUser() {
+        //Parse method to log out by removing CurrentUser
+        ParseUser.logOut();
+        Intent intent = new Intent(HomepageActivity.this, CurrentUserActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
 }
