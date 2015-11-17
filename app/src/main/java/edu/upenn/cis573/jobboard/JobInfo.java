@@ -1,5 +1,9 @@
 package edu.upenn.cis573.jobboard;
 
+import android.content.Intent;
+
+import com.parse.ParseUser;
+
 import java.util.ArrayList;
 
 /**
