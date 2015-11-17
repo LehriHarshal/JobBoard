@@ -172,6 +172,7 @@ public class MessagingActivity extends AppCompatActivity {
     // Have to Edit
     public void refreshMessages(View view)
     {
+
         refreshChat();
     }
 }
