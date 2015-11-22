@@ -3,6 +3,7 @@ package edu.upenn.cis573.jobboard;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import com.parse.ParseUser;
 
@@ -26,5 +27,17 @@ public class CurrentUserActivity extends Activity {
             //if Parse has no user logged in, take us to the SignInActivity
             startActivity(new Intent(this, SignInActivity.class));
         }
+    }
+    //Overriding back button function
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
+            Intent intent = new Intent(this, HomepageActivity.class);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -254,5 +255,17 @@ public class SearchableActivity extends Activity {
             };
             jobsListView.setAdapter(listAdapter);
         }
+    }
+    //Overriding back button function
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
+            Intent intent = new Intent(this, HomepageActivity.class);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

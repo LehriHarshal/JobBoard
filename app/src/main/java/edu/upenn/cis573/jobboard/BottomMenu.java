@@ -89,35 +89,41 @@ public abstract class BottomMenu extends Activity {
         }
     }
     public void displayProfile(View view) {
+        finish();
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
 
     //go to the cart screen
     public void displayCart(View view) {
+        finish();
         Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
     }
 
     // go to the job creation screen
     public void viewNotifications(View view) {
+        finish();
         Intent intent = new Intent(this, NotificationsPageActivity.class);
         startActivity(intent);
     }
 
     // go to the MyPostedJobs screen
     public void displayMyPostedJobs(View view) {
+        finish();
         Intent intent = new Intent(this, MyPostedJobsActivity.class);
         startActivity(intent);
     }
 
     //button logic to go to the homepage screen
     public void displayHomepage(View view) {
+        finish();
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }
 
     public void viewMessages(View view) {
+        finish();
         Intent intent = new Intent(this, ChatActivity.class);
         startActivity(intent);
     }
