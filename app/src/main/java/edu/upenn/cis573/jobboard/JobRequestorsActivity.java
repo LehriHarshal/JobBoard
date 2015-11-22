@@ -1,6 +1,5 @@
 package edu.upenn.cis573.jobboard;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -49,7 +50,7 @@ public class JobRequestorsActivity extends BottomMenu {
             Log.v("Parse Exception:", "While trying to get job");
         }
 
-        final ArrayList<String> jobRequestors = (ArrayList<String>)job.get("jobRequestors");
+        final ArrayList<String> jobRequestors = (ArrayList<String>) job.get("jobRequestors");
 
         if (jobRequestors != null) {
             for (String requestor : jobRequestors) {
@@ -70,7 +71,7 @@ public class JobRequestorsActivity extends BottomMenu {
 
         if (requestorIds != null) {
             Log.v("DEBUG:", "our list is non null.");
-            Log.v("THE LIST",requestorIds.toString());
+            Log.v("THE LIST", requestorIds.toString());
             for (String requestor : requestorIds) {
                 //Log.v("Requestors2:", requestor);
                 //Query Parse for the user that requested the job, so we can display their name
@@ -80,27 +81,23 @@ public class JobRequestorsActivity extends BottomMenu {
                     public void done(ParseUser o, ParseException e) {
                         final String username = o.getUsername();
                         final String rating = o.get("userRating").toString();
-                        Log.v("Rating from Databaase",rating);
+                        Log.v("Rating from Databaase", rating);
                         //Thread used to ensure list appears properly each time it is loaded
                         //Also adds each item to list
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 userNames.add(username);
-                                Log.v("Username Added",userNames.toString());
+                                Log.v("Username Added", userNames.toString());
                                 //Allows rating to be shown as stars
-                               if (Double.parseDouble(rating) < 1.5) {
+                                if (Double.parseDouble(rating) < 1.5) {
                                     userRatings.add("*");
-                                }
-                                else if (Double.parseDouble(rating) < 2.5) {
+                                } else if (Double.parseDouble(rating) < 2.5) {
                                     userRatings.add("* *");
-                                }
-                                else if (Double.parseDouble(rating) < 3.5) {
+                                } else if (Double.parseDouble(rating) < 3.5) {
                                     userRatings.add("* * *");
-                                }
-                                else if (Double.parseDouble(rating) < 4.5) {
+                                } else if (Double.parseDouble(rating) < 4.5) {
                                     userRatings.add("* * * *");
-                                }
-                                else {
+                                } else {
                                     userRatings.add("* * * * *");
                                 }
 
@@ -191,18 +188,20 @@ public class JobRequestorsActivity extends BottomMenu {
         getMenuInflater().inflate(R.menu.menu_job_requestors, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
-        if(id==R.id.action_logout){
+        if (id == R.id.action_logout) {
             logoutUser();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-    public  void logoutUser() {
+
+    public void logoutUser() {
         //Parse method to log out by removing CurrentUser
         ParseUser.logOut();
         Intent intent = new Intent(JobRequestorsActivity.this, CurrentUserActivity.class);
@@ -210,14 +209,37 @@ public class JobRequestorsActivity extends BottomMenu {
         startActivity(intent);
     }
 
+    public void delete_job(View view) {
+        Button deletebutton = (Button) findViewById(R.id.DeleteButton);
+        //Query Parse
+        ParseQuery<Job> query123 = new ParseQuery("Job");
+        query123.getInBackground(jobId, new GetCallback<Job>() {
+            @Override
+            public void done(Job o, ParseException e) {
+                job = o;
+                try {
+                    job.delete();
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+                Toast.makeText(getApplicationContext(), "The job has been deleted", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        Intent intent = new Intent(this, HomepageActivity.class);
+        startActivity(intent);
+
+        Log.d("Activity finished", "here");
+        finish();
+    }
+
+
     //Overriding back button function
-   @Override
-   public boolean onKeyDown(int keyCode, KeyEvent event)
-   {
-       if ((keyCode == KeyEvent.KEYCODE_BACK))
-       {
-           finish();
-       }
-       return super.onKeyDown(keyCode, event);
-   }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

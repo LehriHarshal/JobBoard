@@ -331,6 +331,21 @@
                     android:textSize="15dp" />
 
 
+                <Button
+                    android:id="@+id/DeleteButton"
+                    style="@style/buttonBackground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:onClick="delete_job"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Delete Job"
+                    android:textColor="#ffffff"
+                    android:textSize="15dp"
+                    android:visibility="invisible" />
+
+
             </LinearLayout>
 
 

@@ -42,6 +42,8 @@ public class JobDetailsActivity extends BottomMenu {
         job.jobId = intent.getStringExtra("jobID");
         Log.v("Inside Job,", job + " " + job.jobId);
         Log.v("DEBUG:", "commencing.");
+        Button deletebutton = (Button) findViewById(R.id.DeleteButton);
+
 
         //Query Parse
         ParseQuery<Job> query = new ParseQuery("Job");
@@ -131,6 +133,8 @@ public class JobDetailsActivity extends BottomMenu {
         if (posterID.equals(ParseUser.getCurrentUser().getObjectId())) {
             btn.setAlpha(.5f);
             btn.setClickable(false);
+            deletebutton.setVisibility(View.VISIBLE);
+
         }
 
         List<String> myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
@@ -166,7 +170,7 @@ public class JobDetailsActivity extends BottomMenu {
 
         int id = item.getItemId();
 
-        if(id==R.id.action_logout){
+        if (id == R.id.action_logout) {
             logoutUser();
             return true;
         }
@@ -387,12 +391,13 @@ public class JobDetailsActivity extends BottomMenu {
 
 
     }
+
     //button logic to go to the homepage screen
     /*public void displayHomepage(View view) {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
-    public  void logoutUser() {
+    public void logoutUser() {
         //Parse method to log out by removing CurrentUser
         ParseUser.logOut();
         Intent intent = new Intent(JobDetailsActivity.this, CurrentUserActivity.class);
@@ -400,21 +405,43 @@ public class JobDetailsActivity extends BottomMenu {
         startActivity(intent);
     }
 
-    /*@Override
-=======
+    public void delete_job(View view) {
+        Button deletebutton = (Button) findViewById(R.id.DeleteButton);
+        if (deletebutton.getVisibility() == View.VISIBLE) {
+            //Query Parse
+            ParseQuery<Job> query123 = new ParseQuery("Job");
+            query123.getInBackground(job.jobId, new GetCallback<Job>() {
+                @Override
+                public void done(Job o, ParseException e) {
+                    job = o;
+                    try {
+                        job.delete();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+                    Toast.makeText(getApplicationContext(), "The job has been deleted", Toast.LENGTH_LONG).show();
+
+                }
+            });
+        }
+
+        Intent intent = new Intent(this, HomepageActivity.class);
+        startActivity(intent);
+
+    }
+
+
     //Overriding back button function
     @Override
->>>>>>> 972a2cdcaaad346fe62d51ffa6b6643e6903e38d
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             finish();
         }
         return super.onKeyDown(keyCode, event);
-<<<<<<< HEAD
-    }*/
 
     }
+
+}
 
 

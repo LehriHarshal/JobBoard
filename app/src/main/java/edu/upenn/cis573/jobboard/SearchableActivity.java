@@ -51,25 +51,26 @@ public class SearchableActivity extends Activity {
         getMenuInflater().inflate(R.menu.menu_searchable, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
-        if(id==R.id.action_logout){
+        if (id == R.id.action_logout) {
             logoutUser();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-    public  void logoutUser() {
+
+    public void logoutUser() {
         //Parse method to log out by removing CurrentUser
         ParseUser.logOut();
         Intent intent = new Intent(SearchableActivity.this, CurrentUserActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
 
 
     private void handleIntent(Intent intent) {
@@ -256,15 +257,11 @@ public class SearchableActivity extends Activity {
             jobsListView.setAdapter(listAdapter);
         }
     }
-<<<<<<< HEAD
-=======
     //Overriding back button function
->>>>>>> 972a2cdcaaad346fe62d51ffa6b6643e6903e38d
+
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             finish();
             Intent intent = new Intent(this, HomepageActivity.class);
             startActivity(intent);
