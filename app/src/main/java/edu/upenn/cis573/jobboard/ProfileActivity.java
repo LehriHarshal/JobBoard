@@ -109,13 +109,7 @@ public class ProfileActivity extends BottomMenu {
 
     public static void logoutUser() {
         //Parse method to log out by removing CurrentUser
-        try {
-            ParseUser currentUser = ParseUser.getCurrentUser();
-            currentUser.logOut();
-        }
-        catch (Exception e){
-
-        }
+        ParseUser.logOut();
     }
 
     //go to the profile screen

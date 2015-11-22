@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -182,8 +183,9 @@ public class MyPostedJobsActivity extends BottomMenu {
     public  void logoutUser() {
         //Parse method to log out by removing CurrentUser
         ParseUser.logOut();
-        Intent intent = new Intent(MyPostedJobsActivity.this, CurrentUserActivity.class);
+        Intent intent = new Intent(MyPostedJobsActivity.this, SignInActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+    
 }
