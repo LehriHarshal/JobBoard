@@ -399,7 +399,12 @@ public class JobDetailsActivity extends BottomMenu {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
     /*@Override
+=======
+    //Overriding back button function
+    @Override
+>>>>>>> 972a2cdcaaad346fe62d51ffa6b6643e6903e38d
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
@@ -407,5 +412,9 @@ public class JobDetailsActivity extends BottomMenu {
             finish();
         }
         return super.onKeyDown(keyCode, event);
+<<<<<<< HEAD
     }*/
-}
+
+    }
+
+

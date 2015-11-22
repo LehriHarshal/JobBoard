@@ -28,9 +28,9 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <!--
-      IMPORTANT: Change "com.parse.tutorials.pushnotifications.permission.C2D_MESSAGE" in the lines below
-      to match your app's package name + ".permission.C2D_MESSAGE".
-    -->
+          IMPORTANT: Change "com.parse.tutorials.pushnotifications.permission.C2D_MESSAGE" in the lines below
+          to match your app's package name + ".permission.C2D_MESSAGE".
+        -->
     <permission
         android:name="com.parse.starter.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
@@ -103,11 +103,9 @@
         <activity
             android:name=".HomepageActivity"
             android:label="@string/title_activity_homepage"
-            android:launchMode="singleInstance" >
-            <meta-data
-                android:name="android.app.default_searchable"
-                android:value=".SearchableActivity" />
-        </activity>
+            android:launchMode="singleInstance" />
+
+
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
@@ -158,20 +156,23 @@
             android:label="@string/title_activity_view_requestor"
             android:launchMode="singleInstance"
 
+
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar"></activity>
+
+
 
         <activity
             android:name=".NotificationsPageActivity"
             android:label="@string/title_activity_notifications_page"
             android:launchMode="singleInstance" />
         <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
-        -->
+                     The API key for Google Maps-based APIs is defined as a string resource.
+                     (See the file "res/values/google_maps_api.xml").
+                     Note that the API key is linked to the encryption key used to sign the APK.
+                     You need a different API key for each encryption key, including the release key that is used to
+                     sign the APK for publishing.
+                     You can define the keys for the debug and release targets in src/debug/ and src/release/.
+                -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

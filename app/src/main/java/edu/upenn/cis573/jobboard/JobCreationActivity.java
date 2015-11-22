@@ -139,6 +139,7 @@ public class JobCreationActivity extends Activity {
         // This is shifted ot the Field to check method.
 
 
+
        /* Criteria criteria = new Criteria();
         try {
             if (criteria != null) {
@@ -152,7 +153,6 @@ public class JobCreationActivity extends Activity {
         } catch (SecurityException s) {
             Toast.makeText(getApplicationContext(), "Kindly Switch on Location Settings", Toast.LENGTH_SHORT);
         }*/
-
 
 
         final Job newJob = new Job(jobName, jobDescription, startDate, endDate, Double.toString(lat), Double.toString(lon), typeDescription);
@@ -253,16 +253,6 @@ public class JobCreationActivity extends Activity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-    /*@Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
-            finish();
-            Intent intent = new Intent(this, HomepageActivity.class);
-            startActivity(intent);
-        }
-        return super.onKeyDown(keyCode, event);
-    }*/
+
 
 }

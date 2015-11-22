@@ -28,6 +28,7 @@ public class CurrentUserActivity extends Activity {
             startActivity(new Intent(this, SignInActivity.class));
         }
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -39,4 +40,8 @@ public class CurrentUserActivity extends Activity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }
+
+
+
