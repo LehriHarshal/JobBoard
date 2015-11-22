@@ -267,7 +267,8 @@ public class NotificationsPageActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
-   /* @Override
+    //Overriding back button function
+   @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
@@ -277,5 +278,5 @@ public class NotificationsPageActivity extends BottomMenu {
             startActivity(intent);
         }
         return super.onKeyDown(keyCode, event);
-    }*/
+    }
 }

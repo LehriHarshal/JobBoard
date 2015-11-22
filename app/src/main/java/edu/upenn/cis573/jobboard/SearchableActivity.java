@@ -256,6 +256,7 @@ public class SearchableActivity extends Activity {
             jobsListView.setAdapter(listAdapter);
         }
     }
+    //Overriding back button function
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

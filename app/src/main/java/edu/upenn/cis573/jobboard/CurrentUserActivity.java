@@ -28,6 +28,7 @@ public class CurrentUserActivity extends Activity {
             startActivity(new Intent(this, SignInActivity.class));
         }
     }
+    //Overriding back button function
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
