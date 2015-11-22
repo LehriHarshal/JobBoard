@@ -135,6 +135,7 @@ public class ViewRequestorActivity extends BottomMenu {
         builder.setTitle("How would you rate this job?");
         builder.setView(ratingBar);
 
+        ratingBar.setMax(5);
         ratingBar.setNumStars(5);
         //addListenerOnRatingBar();
 
@@ -167,6 +168,7 @@ public class ViewRequestorActivity extends BottomMenu {
                             myWebView.loadUrl("http://www.venmo.com");
 
                         }
+
                     }
                 });
 
