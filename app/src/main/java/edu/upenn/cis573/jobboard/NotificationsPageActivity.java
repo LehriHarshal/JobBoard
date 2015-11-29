@@ -1,14 +1,9 @@
 package edu.upenn.cis573.jobboard;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -19,20 +14,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -43,6 +33,7 @@ public class NotificationsPageActivity extends BottomMenu {
     ArrayList<String> notifications = new ArrayList<String>();
     ArrayList<String> jobIDList = new ArrayList<String>();
     int max_Limit_Follow_Notifications = 10;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,59 +41,50 @@ public class NotificationsPageActivity extends BottomMenu {
         ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
         List<String> currNotification;
         try {
-            currNotification = (List<String>)(userQuery.get(userId)).get("notifications");
+            currNotification = (List<String>) (userQuery.get(userId)).get("notifications");
 
-            if(currNotification != null)
-            {
-                for(String s : currNotification)
-                {
+            if (currNotification != null) {
+                for (String s : currNotification) {
                     notifications.add(s);
                 }
             }
-        }catch (Exception e)
-        {
-            Log.v("Parse ERROR","INSIDE CATCH");
+        } catch (Exception e) {
+            Log.v("Parse ERROR", "INSIDE CATCH");
         }
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         List<String> followings = currentUser.getList("myFollowings");
         ParseQuery<ParseObject> followings_job = (ParseQuery.getQuery("Job"));//.whereContainedIn("JobPoster", followings);
         followings_job = followings_job.addDescendingOrder("createdAt");
-        ParseQuery<ParseUser> users= ParseUser.getQuery();
+        ParseQuery<ParseUser> users = ParseUser.getQuery();
 
-        if(followings_job != null)
-        {
+        if (followings_job != null) {
             List<ParseObject> job_list = null;
             try {
                 job_list = followings_job.find();
-            }catch (Exception e)
-            {
-                Toast.makeText(getApplicationContext(),"Error when retrieving Jobs",Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "Error when retrieving Jobs", Toast.LENGTH_SHORT).show();
             }
 
-            if(job_list != null)
-            {
+            if (job_list != null) {
                 int counter = 0;
-                for(ParseObject o : job_list)
-                {
-                    if(counter >= max_Limit_Follow_Notifications)
+                for (ParseObject o : job_list) {
+                    if (counter >= max_Limit_Follow_Notifications)
                         break;
 
                     try {
                         String userID = o.getString("jobPoster");
-                        if(!followings.contains(userID))
+                        if (!followings.contains(userID))
                             continue;
                         counter++;
                         String userName = users.get(userID).getUsername();
                         String jobId = o.getObjectId();
                         String jobName = o.getString("jobName");
-                        String message = userName+" has posted a new Job : "+jobName;
+                        String message = userName + " has posted a new Job : " + jobName;
                         notifications.add(message);
                         jobIDList.add(jobId);
-                        Log.v("User",userId+" "+userName+" "+jobId+" "+jobName);
-                    }
-                    catch(Exception e)
-                    {
+                        Log.v("User", userId + " " + userName + " " + jobId + " " + jobName);
+                    } catch (Exception e) {
                     }
                 }
             }
@@ -145,14 +127,12 @@ public class NotificationsPageActivity extends BottomMenu {
                 TextView textView2 = (TextView) view.findViewById(android.R.id.text2);
                 textView.setTextColor(Color.parseColor("#89cede"));
                 String message = notifications.get(position);
-                if(message.contains("has posted a new Job"))
-                {
+                if (message.contains("has posted a new Job")) {
                     String message1[] = message.split(":");
                     textView.setText(message1[0]);
                     textView.setTextSize(20);
                     textView2.setText(message1[1]);
-                }
-                else {
+                } else {
                     textView.setText(notifications.get(position));
                     textView.setTextSize(20);
                 }
@@ -173,8 +153,7 @@ public class NotificationsPageActivity extends BottomMenu {
         });
     }
 
-    private void openJob(int position)
-    {
+    private void openJob(int position) {
         String id = jobIDList.get(position);
         Intent intent = new Intent(this, JobDetailsActivity.class);
         intent.putExtra("jobID", id);
@@ -193,7 +172,7 @@ public class NotificationsPageActivity extends BottomMenu {
 
         int id = item.getItemId();
 
-        if(id==R.id.action_logout){
+        if (id == R.id.action_logout) {
             logoutUser();
             return true;
         }
@@ -201,7 +180,7 @@ public class NotificationsPageActivity extends BottomMenu {
     }
 
     private void optionToDelete(final int position) {
-        CharSequence options[] = new CharSequence[] {"Delete", "Keep"};
+        CharSequence options[] = new CharSequence[]{"Delete", "Keep"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Would you like to delete this notification?");
@@ -216,6 +195,7 @@ public class NotificationsPageActivity extends BottomMenu {
         builder.show();
 
     }
+
     //give the user the option of deleting this job
     public void deleteJob(final int position) {
         ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
@@ -233,7 +213,7 @@ public class NotificationsPageActivity extends BottomMenu {
         updateNotificationsList();
     }
 
-    public  void logoutUser() {
+    public void logoutUser() {
         //Parse method to log out by removing CurrentUser
         ParseUser.logOut();
         Intent intent = new Intent(NotificationsPageActivity.this, CurrentUserActivity.class);
@@ -268,22 +248,26 @@ public class NotificationsPageActivity extends BottomMenu {
         startActivity(intent);
     }*/
 
+
    /* @Override
 =======
+=======
+
+>>>>>>> be276d929662874430a7e7d8f0fd1ff1ddfd2779
     //Overriding back button function
-   @Override
->>>>>>> 972a2cdcaaad346fe62d51ffa6b6643e6903e38d
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
+    @Override
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             finish();
             Intent intent = new Intent(this, HomepageActivity.class);
             startActivity(intent);
         }
         return super.onKeyDown(keyCode, event);
 <<<<<<< HEAD
+<<<<<<< HEAD
     }*/
 
     }
+
 

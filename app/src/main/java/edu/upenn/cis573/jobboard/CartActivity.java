@@ -1,14 +1,10 @@
 package edu.upenn.cis573.jobboard;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.parse.GetCallback;
@@ -45,16 +40,16 @@ public class CartActivity extends BottomMenu {
         final ArrayList<String> jobDescriptions = new ArrayList<>();
 
         //List of IDS for all the jobs
-        final String userID= ParseUser.getCurrentUser().getObjectId();
+        final String userID = ParseUser.getCurrentUser().getObjectId();
         List<String> myRequestedJobs = ParseUser.getCurrentUser().getList("myRequestedJobs");
-        if (myRequestedJobs != null ) {
+        if (myRequestedJobs != null) {
             for (final String jobId : myRequestedJobs) {
                 //Query Parse
                 ParseQuery<Job> query = new ParseQuery("Job");
                 query.getInBackground(jobId, new GetCallback<Job>() {
                     @Override
                     public void done(final Job o, ParseException e) {
-                        if(o.get("JobDoer") == null || o.get("JobDoer").equals(userID)) {
+                        if (o.get("JobDoer") == null || o.get("JobDoer").equals(userID)) {
                             jobObjects.add(o);
                             final String name = o.getJobName();
 
@@ -126,7 +121,7 @@ public class CartActivity extends BottomMenu {
 
         int id = item.getItemId();
 
-         if(id==R.id.action_logout){
+        if (id == R.id.action_logout) {
             logoutUser();
             return true;
         }
@@ -166,7 +161,7 @@ public class CartActivity extends BottomMenu {
         Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }*/
-    public  void logoutUser() {
+    public void logoutUser() {
         //Parse method to log out by removing CurrentUser
         ParseUser.logOut();
         Intent intent = new Intent(CartActivity.this, CurrentUserActivity.class);
@@ -174,24 +169,17 @@ public class CartActivity extends BottomMenu {
         startActivity(intent);
     }
 
-   /* @Override
-=======
     //Overriding back button function
     @Override
->>>>>>> 972a2cdcaaad346fe62d51ffa6b6643e6903e38d
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             finish();
             Intent intent = new Intent(this, HomepageActivity.class);
             startActivity(intent);
         }
         return super.onKeyDown(keyCode, event);
-<<<<<<< HEAD
-    }*/
-
     }
-
+}
 
 

@@ -1,10 +1,8 @@
 package edu.upenn.cis573.jobboard;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +40,7 @@ public class MyPostedJobsActivity extends BottomMenu {
 
         //List of IDS for all the jobs
         List<String> myPostedJobs = ParseUser.getCurrentUser().getList("myPostedJobs");
-        if (myPostedJobs != null){
+        if (myPostedJobs != null) {
             for (String jobId : myPostedJobs) {
                 //Query Parse
                 ParseQuery<Job> query = new ParseQuery("Job");
@@ -50,7 +48,7 @@ public class MyPostedJobsActivity extends BottomMenu {
                     @Override
                     public void done(final Job o, ParseException e) {
                         if (o == null) return;
-                        addvalues(jobNames,jobDescriptions,o);
+                        addvalues(jobNames, jobDescriptions, o);
                     }
 
 
@@ -99,6 +97,7 @@ public class MyPostedJobsActivity extends BottomMenu {
         });
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -106,8 +105,7 @@ public class MyPostedJobsActivity extends BottomMenu {
         return true;
     }
 
-    public void addvalues(final ArrayList<String>jobNames,final ArrayList<String>jobDescriptions,final Job o)
-    {
+    public void addvalues(final ArrayList<String> jobNames, final ArrayList<String> jobDescriptions, final Job o) {
         //Thread used to ensure list appears properly each time it is loaded
         //Also adds each item to list
         runOnUiThread(new Runnable() {
@@ -121,13 +119,6 @@ public class MyPostedJobsActivity extends BottomMenu {
         });
 
     }
-
-
-
-
-
-
-
 
 
     //clicking a job in my jobs shows the list of people who requested your job
@@ -169,18 +160,20 @@ public class MyPostedJobsActivity extends BottomMenu {
         Intent intent = new Intent(this, JobCreationActivity.class);
         startActivity(intent);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
-        if(id==R.id.action_logout){
+        if (id == R.id.action_logout) {
             logoutUser();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-    public  void logoutUser() {
+
+    public void logoutUser() {
         //Parse method to log out by removing CurrentUser
         ParseUser.logOut();
         Intent intent = new Intent(MyPostedJobsActivity.this, SignInActivity.class);
@@ -188,14 +181,11 @@ public class MyPostedJobsActivity extends BottomMenu {
         startActivity(intent);
     }
 
-    
 
     //Overriding back button function
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             finish();
             Intent intent = new Intent(this, HomepageActivity.class);
             startActivity(intent);
