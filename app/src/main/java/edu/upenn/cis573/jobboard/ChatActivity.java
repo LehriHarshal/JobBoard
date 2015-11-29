@@ -18,6 +18,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -26,24 +27,89 @@ public class ChatActivity extends AppCompatActivity {
 
     String current_user;
     String messageFromUserID;
-    ArrayList<String> messageUserNameList;
-    ArrayList<String> messageList;
+    ArrayList<String> messageUserNameList=new ArrayList<>();
+    ArrayList<String> messageList=new ArrayList<>();
     ListView messageListView;
-    ArrayList<String> messageFromUserIDList;
+    ArrayList<String> messageFromUserIDList=new ArrayList<>();
     ArrayAdapter<String> messageListAdapter;
     String currentUserId;
+    HashMap<String,List<String>> savedChats= new HashMap<>();
+    ArrayList<String> users_chatted_with =new ArrayList<>();
+    boolean status=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
 
+        Log.d("Number of Elements1", Integer.toString(messageList.size()));
         try {
             current_user = ParseUser.getCurrentUser().getUsername();
             currentUserId = ParseUser.getCurrentUser().getObjectId();
         } catch (Exception e) {
 
         }
+
+        if(Messages.status==false) {
+            doStuff();
+        }
+        Log.d("Number of Elements2", Integer.toString(messageList.size()));
+
+        Log.d("Number of Elements chat",messageList.toString());
+        messageListView = (ListView) findViewById(R.id.incoming_message_list);
+
+        messageListAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_2,
+                android.R.id.text1,
+                Messages.messageUserNameList) {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                // Must always return just a View.
+                View view = super.getView(position, convertView, parent);
+
+                // If you look at the android.R.layout.simple_list_item_2 source, you'll see
+                // it's a TwoLineListItem with 2 TextViews - text1 and text2.
+                //TwoLineListItem listItem = (TwoLineListItem) view;
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                text2.setTextColor(Color.parseColor("#dc4e00"));
+
+                text1.setTextColor(Color.parseColor("#89cede"));
+                text1.setSingleLine(false);
+                text1.setMaxWidth(10);
+                text1.setText(Messages.messageUserNameList.get(position));
+                //text2.setText(messageList.get(0));
+                text2.setPadding(50, 0, 0, 0);
+                return view;
+            }
+        };
+
+        messageListView.setAdapter(messageListAdapter);
+        messageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
+                intent.putExtra("MessageFrom", currentUserId);
+                intent.putExtra("MessageTo", Messages.messageFromUserIDList.get(position));
+                startActivity(intent);
+            }
+        });
+
+    }
+
+
+    void doStuff()
+    {
+        Log.d("Size_ML: ", Integer.toString(messageUserNameList.size()));
+        //if(messageUserNameList.size()!=0)
+        //{
+        //    return;
+        //}
+        status=true;
 
 
         ParseQuery<ParseObject> query;
@@ -59,12 +125,12 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         ParseQuery<ParseUser> user = ParseUser.getQuery();
-        messageList = new ArrayList<String>();
-        messageFromUserIDList = new ArrayList<String>();
-        messageUserNameList = new ArrayList<String>();
+        //messageList = new ArrayList<String>();
+        //messageFromUserIDList = new ArrayList<String>();
+        //messageUserNameList = new ArrayList<String>();
 
         List<ParseObject> messageObjectsFromDatabase = null;
-        messageListView = (ListView) findViewById(R.id.incoming_message_list);
+
 
         try {
             messageObjectsFromDatabase = query.find();
@@ -93,10 +159,12 @@ public class ChatActivity extends AppCompatActivity {
                     if(messageTo.equals(currentUserId)) {
                         messageUserName = user.get(messageFrom).getUsername();
                         messageFromUserID = user.get(messageFrom).getObjectId();
+                        users_chatted_with.add(messageFrom);
                     }
                     else {
                         messageUserName = user.get(messageTo).getUsername();
                         messageFromUserID = user.get(messageTo).getObjectId();
+                        users_chatted_with.add(messageTo);
                     }
                 }catch(Exception e)
                 {
@@ -115,51 +183,20 @@ public class ChatActivity extends AppCompatActivity {
             }
 
         }
-
-        Log.v("Number of Elements chat",messageList.toString());
-        messageListAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_2,
-                android.R.id.text1,
-                messageUserNameList) {
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-
-                // Must always return just a View.
-                View view = super.getView(position, convertView, parent);
-
-                // If you look at the android.R.layout.simple_list_item_2 source, you'll see
-                // it's a TwoLineListItem with 2 TextViews - text1 and text2.
-                //TwoLineListItem listItem = (TwoLineListItem) view;
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-                text2.setTextColor(Color.parseColor("#dc4e00"));
-
-                text1.setTextColor(Color.parseColor("#89cede"));
-                text1.setSingleLine(false);
-                text1.setMaxWidth(10);
-                text1.setText(messageUserNameList.get(position));
-                //text2.setText(messageList.get(0));
-                text2.setPadding(50, 0, 0, 0);
-                return view;
-            }
-        };
-
-        messageListView.setAdapter(messageListAdapter);
-        messageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
-                intent.putExtra("MessageFrom", currentUserId);
-                intent.putExtra("MessageTo", messageFromUserIDList.get(position));
-                startActivity(intent);
-            }
-        });
-
+        Messages.messageFromUserIDList=messageFromUserIDList;
+        Messages.messageList=messageList;
+        Messages.messageUserNameList=messageUserNameList;
+        Messages.status=true;
     }
+
     public static void logoutUser() {
         //Parse method to log out by removing CurrentUser
         ParseUser.logOut();
+    }
+
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this, HomepageActivity.class);
+        startActivity(intent);
     }
 }

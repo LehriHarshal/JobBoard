@@ -26,7 +26,9 @@ import com.parse.ParseUser;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 public class MessagingActivity extends AppCompatActivity {
 
@@ -40,6 +42,9 @@ public class MessagingActivity extends AppCompatActivity {
     ListView messageListView;
     ArrayAdapter<String> messageListAdapter;
     ArrayList<String> messageBackgroundColor = null;
+    HashMap<String, List <String>>savedRes = new HashMap<>();
+    List<String> message_temp=new ArrayList<>();
+    HashMap< String, Boolean> status = new HashMap<>();
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,12 @@ public class MessagingActivity extends AppCompatActivity {
     }
 
     private void refreshChat() {
+
+        if(status.get(message_to_user)!=null) {
+            if (status.get(message_to_user) == true) {
+                return;
+            }
+        }
         ParseQuery<ParseUser> user = ParseUser.getQuery();
         try {
             messageFromUserName = user.get(message_from_user).getUsername();
@@ -77,11 +88,18 @@ public class MessagingActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+
+
         if (messageObjectsFromDatabase != null) {
+
             for (ParseObject m : messageObjectsFromDatabase) {
+
                 final String messageFrom = m.getString("Message_From");
                 final String messageTo = m.getString("Message_To");
                 final String message_from_database = m.getString("Message");
+                final String createdAt=m.getString("createdAt");
+
 
                 if (!((messageFrom.equals(message_from_user)) && (messageTo.equals(message_to_user)) || (messageFrom.equals(message_to_user)) && (messageTo.equals(message_from_user))))
 
@@ -90,23 +108,30 @@ public class MessagingActivity extends AppCompatActivity {
                     continue;
                 }
 
+
+
                 Log.v("Message",messageFrom+" "+messageTo+" "+message_from_database);
                 //Thread used to ensure list appears properly each time it is loaded
                 //Also adds each item to list
+                // save results before printing
                 runOnUiThread(new Runnable() {
                     public void run() {
 
                         if (messageFrom.equals(message_from_user)){
                             messageList.add(messageFromUserName + " says :\n" + message_from_database);
+                            message_temp.add(messageFromUserName + " says :\n" + message_from_database);
                         }
                         else
                             messageList.add(messageToUserName + " says :\n" + message_from_database);
+                            message_temp.add(messageFromUserName + " says :\n" + message_from_database);
 
                     }
                 });
             }
 
         }
+        status.put(message_to_user,true);
+        savedRes.put(message_to_user,message_temp);
 
                 messageListAdapter = new ArrayAdapter<String>(
                 this,
@@ -165,6 +190,7 @@ public class MessagingActivity extends AppCompatActivity {
         messageObject.put("Message_From", message_from_user); //string
         messageObject.put("Message_To", message_to_user); //integer
         messageObject.put("Message", message); //variable
+        messageObject.put("read",true); // readvariable to be true
         ParseACL acl = new ParseACL();
         ParseQuery<ParseUser> queryParseUser = ParseUser.getQuery();
         ParseUser sender = null;
@@ -178,20 +204,23 @@ public class MessagingActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Error in fetching User",Toast.LENGTH_SHORT);
         }
         acl.setReadAccess(sender, true);
-        acl.setReadAccess(receiver,true);
+        acl.setReadAccess(receiver, true);
         messageObject.setACL(acl);
         messageObject.saveInBackground();
         message_text.setText("");
         messageList.add(messageFromUserName + " says :\n" + message);
         messageListAdapter.notifyDataSetChanged();
-
+        //temp.add("messageFromUserName + \" says :\\n\" + message");
+        message_temp.add(messageFromUserName + " says :\n" + message);
+        savedRes.put(message_to_user,message_temp);
     }
 
 
     // Have to Edit
     public void refreshMessages(View view)
     {
-
+        Log.d("Here","Refreshing");
+        Toast.makeText(getApplicationContext(),"Messages Refreshed",Toast.LENGTH_SHORT).show();
         refreshChat();
     }
 }

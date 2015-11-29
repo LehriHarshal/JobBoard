@@ -37,6 +37,7 @@ public class HomepageActivity extends BottomMenu {
     private int category;
 
 
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
