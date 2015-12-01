@@ -18,8 +18,10 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -27,11 +29,14 @@ public class ChatActivity extends AppCompatActivity {
     String current_user;
     String messageFromUserID;
     ArrayList<String> messageUserNameList;
-    ArrayList<String> messageList;
+    Map<String,List<String>> messageMap;
+    Map<String,String> userIdMap;
+
     ListView messageListView;
     ArrayList<String> messageFromUserIDList;
     ArrayAdapter<String> messageListAdapter;
     String currentUserId;
+    LocalDB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,7 @@ public class ChatActivity extends AppCompatActivity {
 
         try {
             current_user = ParseUser.getCurrentUser().getUsername();
+            Log.v("Current User",current_user);
             currentUserId = ParseUser.getCurrentUser().getObjectId();
         } catch (Exception e) {
 
@@ -47,19 +53,24 @@ public class ChatActivity extends AppCompatActivity {
 
 
         ParseQuery<ParseObject> query;
-        LocalDB db = LocalDB.getObject();
-        messageList =  (ArrayList<String>)db.Messages;
 
-        if(db.LastUpdated.equals("0/0/0")) {
-            query= ParseQuery.getQuery("Messages");
+        db = LocalDB.getObject(getApplicationContext());
+
+        messageMap =  db.Messages;
+        userIdMap = db.UserIDList;
+
+        if(db.LastUpdated == null) {
+
+            query= ParseQuery.getQuery("Messages").orderByAscending("createdAt");
+            Log.v("New Query","New Query");
         }
         else
         {
-            query = ParseQuery.getQuery("Messages").whereGreaterThan("CreatedAt",db.LastUpdated);
+            query = ParseQuery.getQuery("Messages").whereGreaterThan("createdAt",db.LastUpdated).orderByAscending("createdAt");
+            Log.v("Update Query","Update Query");
         }
-
         ParseQuery<ParseUser> user = ParseUser.getQuery();
-        messageList = new ArrayList<String>();
+
         messageFromUserIDList = new ArrayList<String>();
         messageUserNameList = new ArrayList<String>();
 
@@ -79,44 +90,69 @@ public class ChatActivity extends AppCompatActivity {
             for (ParseObject m : messageObjectsFromDatabase) {
                 final String messageFrom = m.getString("Message_From");
                 final String messageTo = m.getString("Message_To");
+                final String message = m.getString("Message");
 
-                if ((!messageTo.equals(currentUserId)) && (!messageFrom.equals(currentUserId))) {
-                    //We don't want to show this to anyone
-                    continue;
+                db.LastUpdated = m.getCreatedAt();
+
+                Log.v("Dates",db.LastUpdated.toString());
+
+                String messageFromUserName = null;
+                String messageToUserName = null;
+                try {
+                    messageFromUserName = user.get(messageFrom).getUsername();
+                    messageToUserName = user.get(messageTo).getUsername();
+                } catch (Exception e) {
+
                 }
 
+                //if ((!messageTo.equals(currentUserId)) && (!messageFrom.equals(currentUserId))) {
+                    //We don't want to show this to anyone
+                    //continue;
+                //}
                 //Thread used to ensure list appears properly each time it is loaded
                 //Also adds each item to list
-
                 String messageUserName = null;
+                //String messageToUserName = null;
+                String messageUserNameID = null;
                 try {
                     if(messageTo.equals(currentUserId)) {
                         messageUserName = user.get(messageFrom).getUsername();
-                        messageFromUserID = user.get(messageFrom).getObjectId();
+                        messageUserNameID = messageFrom;
+                        //messageFromUserID = user.get(messageFrom).getObjectId();
                     }
                     else {
                         messageUserName = user.get(messageTo).getUsername();
-                        messageFromUserID = user.get(messageTo).getObjectId();
+                        messageUserNameID = messageTo;
+                        //messageToUserName = user.get(messageTo).getUsername();
+                        //messageFromUserID = user.get(messageTo).getObjectId();
                     }
                 }catch(Exception e)
                 {
-
+                    Log.v("Exception", "Exception");
                 }
 
                 String userAddedToList = messageUserName;
-                if(!uniqueMessages.contains(messageFromUserID)) {
-                    messageUserNameList.add(userAddedToList);
-                    //messageList.add(message);
-                    messageFromUserIDList.add(messageFromUserID);
-                    Log.v("Message From User",messageFromUserID);
-                    uniqueMessages.add(messageFromUserID);
+                String message_to_display = messageFromUserName +" says:\n\n"+message;
+
+                if(messageMap.containsKey(messageUserName))
+                  messageMap.get(messageUserName).add(message_to_display);
+                else
+                {
+                    List<String> user_messages = new ArrayList<String>();
+                    user_messages.add(message_to_display);
+                    messageMap.put(messageUserName, user_messages);
+                    userIdMap.put(messageUserName,messageUserNameID);
+                    //messageFromUserIDList.add(messageUserNameID);
                 }
 
             }
 
         }
 
-        Log.v("Number of Elements chat",messageList.toString());
+        messageUserNameList.addAll(messageMap.keySet());
+        messageFromUserIDList.addAll(userIdMap.values());
+
+        db.save(this);
         messageListAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_2,
@@ -153,6 +189,10 @@ public class ChatActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
                 intent.putExtra("MessageFrom", currentUserId);
                 intent.putExtra("MessageTo", messageFromUserIDList.get(position));
+                intent.putExtra("LocalDB",db);
+                List<String> messages_from_user = messageMap.get(messageUserNameList.get(position));
+                intent.putStringArrayListExtra("Messages", (ArrayList<String>) messages_from_user);
+
                 startActivity(intent);
             }
         });

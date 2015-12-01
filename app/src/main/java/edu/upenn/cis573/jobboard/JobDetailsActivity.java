@@ -19,6 +19,7 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class JobDetailsActivity extends BottomMenu {
@@ -321,12 +322,37 @@ public class JobDetailsActivity extends BottomMenu {
 
     public void openMessaging(View view) {
         if (!isJobDoer) {
+
+            LocalDB db = LocalDB.getObject(this);
+            Map<String,List<String>> messages = db.Messages;
+            List<String> messageList = new ArrayList<String>();
+            String messagePosterName = null;
+            try{
+                messagePosterName = ParseUser.getQuery().get(posterID).getUsername();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            if(messages.containsKey(messagePosterName))
+            {
+                messageList.addAll(messages.get(messagePosterName));
+            }
+            else
+            {
+                db.Messages.put(messagePosterName,messageList);
+                db.UserIDList.put(messagePosterName,posterID);
+            }
             Intent intent = new Intent(this, MessagingActivity.class);
             intent.putExtra("MessageFrom", userId);
             intent.putExtra("MessageTo", posterID);
+            db.UserIDList.put(messagePosterName,posterID);
+            intent.putStringArrayListExtra("Messages", (ArrayList<String>) messageList);
+            intent.putExtra("LocalDB",db);
             startActivity(intent);
         } else {
-            Toast.makeText(getApplicationContext(), "No one", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Unable to start intent", Toast.LENGTH_LONG).show();
         }
     }
 

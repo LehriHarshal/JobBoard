@@ -187,9 +187,6 @@ public class MyPostedJobsActivity extends BottomMenu {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-<<<<<<< HEAD
-    
-=======
     //Overriding back button function
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
@@ -202,5 +199,4 @@ public class MyPostedJobsActivity extends BottomMenu {
         }
         return super.onKeyDown(keyCode, event);
     }
->>>>>>> 972a2cdcaaad346fe62d51ffa6b6643e6903e38d
 }

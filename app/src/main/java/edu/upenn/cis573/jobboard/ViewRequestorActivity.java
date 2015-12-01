@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +33,7 @@ public class ViewRequestorActivity extends BottomMenu {
     boolean isComplete = false;
     UserJobData u = new UserJobData();
     Job job;
-
+    AlertDialog.Builder builder;
     String userPhone;
 
     int REQUEST_CODE_VENMO_APP_SWITCH = 0;
@@ -42,6 +45,95 @@ public class ViewRequestorActivity extends BottomMenu {
         setContentView(R.layout.activity_view_requestor);
         super.init();
         super.enable("Home");
+
+        CharSequence ratings[] = new CharSequence[]{"*", "* *", "* * *", "* * * *", "* * * * *"};
+
+
+
+        LinearLayout l = (LinearLayout)getLayoutInflater().inflate(R.layout.ratings_job,null);
+        ratingBar = (RatingBar)l.findViewById(R.id.ratingBar_Job);
+        //float r=ratingBar.getRating();
+        ratingBar.setNumStars(5);
+        //addListenerOnRatingBar();
+        ratingBar.setMax(5);
+
+        //ratingBar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        //ratingBar.setOnRatingBarChangeListener(new RatingBar.addListenerOnRatingBar()){
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(final RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+                float r = ratingBar.getRating();
+                ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+                userQuery.getInBackground(u.userId, new GetCallback<ParseUser>() {
+                    @Override
+                    public void done(ParseUser o, ParseException e) {
+                        float r = ratingBar.getRating();
+                        if (r == 0) {
+                            Log.v("DEBUG:", "Bad rating.");
+                            return;
+                        }
+
+                        Double oldRating = Double.parseDouble(o.get("userRating").toString());
+
+                        //update the rating to be the average of old ratings and new rating
+                        oldRating = (oldRating + r + 1.0) / 2;
+                        o.put("userRating", oldRating.toString());
+                        try {
+                            o.save();
+                        }catch (Exception exc)
+                        {
+
+                        }
+
+                        Log.v("HERE WE ARE RATING",oldRating+"");
+                        //builder.setCancelable(true);
+                        if (VenmoLibrary.isVenmoInstalled(getApplicationContext())) {
+                            Intent venmoIntent = VenmoLibrary.openVenmoPayment("3164", "Mobile JobBoard", userPhone, "0", u.jobName, "pay");
+                            startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
+                        } else {
+                            setContentView(R.layout.venmo_webview);
+                            WebView myWebView = (WebView) findViewById(R.id.venmo_wv);
+                            myWebView.loadUrl("http://www.venmo.com");
+
+                        }
+
+                    }
+                });
+
+           /* {
+            @Override
+            public void onClick(RatingBar ratingBar, final int rating) {
+                //Query Parse for the user that requested the job, so we can display their name
+                ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+                userQuery.getInBackground(u.userId, new GetCallback<ParseUser>() {
+                    @Override
+                    public void done(ParseUser o, ParseException e) {
+                        float r=ratingBar.getRating();
+                        Double oldRating = Double.parseDouble(o.get("userRating").toString());
+
+                        //update the rating to be the average of old ratings and new rating
+                        oldRating = (oldRating + rating + 1.0)/2;
+                        o.put("userRating", oldRating.toString());
+                        o.saveInBackground();
+                    }
+                });*/
+
+                /*if (r == 0) {
+                    Log.v("DEBUG:", "Bad rating.");
+                }
+                return;*/
+            }
+
+        });
+
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("How would you rate this job?");
+        builder.setView(l);
+        builder.setCancelable(true);
+
+
+
+
         Intent intent = getIntent();
         u.userId = intent.getStringExtra("userID");
         u.jobId = intent.getStringExtra("jobID");
@@ -127,85 +219,8 @@ public class ViewRequestorActivity extends BottomMenu {
 
     public void payJobDoer() {
         //Before paying the completer, rate how they did
-        CharSequence ratings[] = new CharSequence[]{"*", "* *", "* * *", "* * * *", "* * * * *"};
-        ratingBar = new RatingBar(this);
-        //float r=ratingBar.getRating();
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("How would you rate this job?");
-        builder.setView(ratingBar);
-
-        ratingBar.setMax(5);
-        ratingBar.setNumStars(5);
-        //addListenerOnRatingBar();
-
-        //ratingBar.setOnRatingBarChangeListener(new RatingBar.addListenerOnRatingBar()){
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            public void onRatingChanged(final RatingBar ratingBar, float rating,
-                                        boolean fromUser) {
-                float r = ratingBar.getRating();
-                ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-                userQuery.getInBackground(u.userId, new GetCallback<ParseUser>() {
-                    @Override
-                    public void done(ParseUser o, ParseException e) {
-                        float r = ratingBar.getRating();
-                        Double oldRating = Double.parseDouble(o.get("userRating").toString());
-
-                        //update the rating to be the average of old ratings and new rating
-                        oldRating = (oldRating + r + 1.0) / 2;
-                        o.put("userRating", oldRating.toString());
-                        o.saveInBackground();
-                        builder.setCancelable(true);
-
-                        if(VenmoLibrary.isVenmoInstalled(getApplicationContext())) {
-                            Intent venmoIntent = VenmoLibrary.openVenmoPayment("3164", "Mobile JobBoard", userPhone, "0", u.jobName, "pay");
-                            startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
-                        }
-                        else
-                        {
-                            setContentView(R.layout.venmo_webview);
-                            WebView myWebView = (WebView) findViewById(R.id.venmo_wv);
-                            myWebView.loadUrl("http://www.venmo.com");
-
-                        }
-
-                    }
-                });
-
-
-           /* {
-            @Override
-            public void onClick(RatingBar ratingBar, final int rating) {
-                //Query Parse for the user that requested the job, so we can display their name
-                ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-                userQuery.getInBackground(u.userId, new GetCallback<ParseUser>() {
-                    @Override
-                    public void done(ParseUser o, ParseException e) {
-                        float r=ratingBar.getRating();
-                        Double oldRating = Double.parseDouble(o.get("userRating").toString());
-
-                        //update the rating to be the average of old ratings and new rating
-                        oldRating = (oldRating + rating + 1.0)/2;
-                        o.put("userRating", oldRating.toString());
-                        o.saveInBackground();
-                    }
-                });*/
-
-                if (r == 0) {
-                    Log.v("DEBUG:", "Bad rating.");
-                }
-                return;
-            }
-
-        });
         builder.show();
-
-
-
-
-
-
-
     }
 
     public void selectAsJobDoer() {
