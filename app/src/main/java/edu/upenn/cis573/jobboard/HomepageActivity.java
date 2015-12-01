@@ -199,6 +199,7 @@ public class HomepageActivity extends BottomMenu {
         String id = jobObjects.get(position).getObjectId();
         Intent intent = new Intent(this, JobDetailsActivity.class);
         intent.putExtra("jobID", id);
+        finish();
         startActivity(intent);
     }
 
@@ -233,6 +234,7 @@ public class HomepageActivity extends BottomMenu {
         ParseUser.logOut();
         Intent intent = new Intent(HomepageActivity.this, CurrentUserActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
         startActivity(intent);
 
     }
@@ -253,5 +255,13 @@ public class HomepageActivity extends BottomMenu {
         return super.onKeyDown(keyCode, event);
     }
 
+    protected void onActivityResult(Bundle bundle)
+    {
+        super.onResume();
+        Log.v("In onRESUME","InOnResume");
+        // updateMessangers();
+        finish();
+        startActivity(getIntent());
 
+    }
 }

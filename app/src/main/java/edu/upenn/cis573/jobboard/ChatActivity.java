@@ -1,5 +1,6 @@
 package edu.upenn.cis573.jobboard;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,13 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+
+        updateMessangers();
+
+    }
+
+    private void updateMessangers()
+    {
 
         try {
             current_user = ParseUser.getCurrentUser().getUsername();
@@ -106,8 +114,8 @@ public class ChatActivity extends AppCompatActivity {
                 }
 
                 //if ((!messageTo.equals(currentUserId)) && (!messageFrom.equals(currentUserId))) {
-                    //We don't want to show this to anyone
-                    //continue;
+                //We don't want to show this to anyone
+                //continue;
                 //}
                 //Thread used to ensure list appears properly each time it is loaded
                 //Also adds each item to list
@@ -135,7 +143,7 @@ public class ChatActivity extends AppCompatActivity {
                 String message_to_display = messageFromUserName +" says:\n\n"+message;
 
                 if(messageMap.containsKey(messageUserName))
-                  messageMap.get(messageUserName).add(message_to_display);
+                    messageMap.get(messageUserName).add(message_to_display);
                 else
                 {
                     List<String> user_messages = new ArrayList<String>();
@@ -202,4 +210,21 @@ public class ChatActivity extends AppCompatActivity {
         //Parse method to log out by removing CurrentUser
         ParseUser.logOut();
     }
+
+    protected void onResume(Bundle bundle)
+    {
+        super.onResume();
+
+       // updateMessangers();
+        this.recreate();
+
+    }
+
+    public void onBackPressed()
+    {
+        Log.v("Back Button Pressed","Back Button Pressed");
+        finish();
+    }
+
+
 }
